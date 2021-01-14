@@ -4,37 +4,77 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;         // 플레이어 이동 속도
-    public float jumpForce;     // 플레이어 점프
+    // Player movement related
+    public float speed;         // Move speed
+    float moveInput;            // Horizontal input
+    bool facingRight = true;    // Player facing direction
 
-    private float moveInput;    // 좌우 방향키 인풋
-    private bool facingRight = true;    // 플레이어가 바라보고 있는 방향
+    // Player Jump related
+    public float jumpForce; // Jumping force
+    float verticalInput;    // Vertical input
+    int extraJumps = 1;     // Number of jumps
 
-    private Rigidbody2D rigidBody;
+    // Ground Check related
+    public Transform groundCheck;   // Ground check position
+    public LayerMask groundLayer;   // Ground layer
+    public float groundRadius;      // Ground check radius
+    bool isGrounded;                // True if player on ground
+    
+    Rigidbody2D rigidBody;
 
-    private void Start()
+    void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // 플레이어 이동
+        // Ground check
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
-        // 플레이어 바라보는 방향 설정
+        moveInput = Input.GetAxisRaw("Horizontal");
+        rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
+
+        // Player facing direction
         if (!facingRight && moveInput > 0)
             Flip();
         else if (facingRight && moveInput < 0)
             Flip();
     }
 
+    void Update()
+    {
+        if (isGrounded)
+            extraJumps = 1;     // Reset extraJump if on ground
+
+        verticalInput = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (verticalInput > 0 && extraJumps > 0)  // Up arrow and can jump
+            {
+                rigidBody.velocity = Vector2.up * jumpForce;    // Jump
+                extraJumps--;
+            }
+            else if (verticalInput < 0 && isGrounded)     // Down arrow
+            {
+                Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
+            }
+        }
+    }
+
     // 플레이어 바라보는 방향 설정
-    private void Flip()
+    void Flip()
     {
         facingRight = !facingRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
     }
 }
