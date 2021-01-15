@@ -5,26 +5,38 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Player movement related
+    [Header("Movement")]
     public float speed;         // Move speed
     float moveInput;            // Horizontal input
-    bool facingRight = true;    // Player facing direction
+    [SerializeField] int faceDir = 1;            // Player facing direction 1:right, -1:left
+
+    // Player dash related
+    [Header("Dash")]
+    public float dashSpeed;             // dash speed
+    public float defaultDashTime;       // dash time
+    [SerializeField] float dashTime;    // dash timer
+    [SerializeField] bool dash = false;                  // true:dash, false:stop dash
+
 
     // Player Jump related
+    [Header("Jump")]
     public float jumpForce; // Jumping force
     float verticalInput;    // Vertical input
-    int extraJumps = 1;     // Number of jumps
+    [SerializeField] int extraJumps = 1;     // Number of jumps
 
     // Ground Check related
+    [Header("Ground Check")]
     public Transform groundCheck;   // Ground check position
     public LayerMask groundLayer;   // Ground layer
     public float groundRadius;      // Ground check radius
-    bool isGrounded;                // True if player on ground
+    [SerializeField] bool isGrounded;                // True if player on ground
     
     Rigidbody2D rigidBody;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        dashTime = defaultDashTime;     // Reset dash time
     }
 
     void FixedUpdate()
@@ -36,14 +48,37 @@ public class PlayerController : MonoBehaviour
         rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
 
         // Player facing direction
-        if (!facingRight && moveInput > 0)
+        if (faceDir == -1 && moveInput > 0)
             Flip();
-        else if (facingRight && moveInput < 0)
+        else if (faceDir == 1 && moveInput < 0)
             Flip();
+
+        if (!dash)
+        {
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                dash = true;
+            }
+        }
+        else
+        {
+            if (dashTime <= 0)
+            {
+                dashTime = defaultDashTime;
+                rigidBody.velocity = Vector2.zero;
+                dash = false;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+                rigidBody.velocity = new Vector2(faceDir * dashSpeed, rigidBody.velocity.y);
+            }
+        }
     }
 
     void Update()
     {
+        // Jumps
         if (isGrounded)
             extraJumps = 1;     // Reset extraJump if on ground
 
@@ -62,13 +97,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 플레이어 바라보는 방향 설정
+    // Set player facing direction
     void Flip()
     {
-        facingRight = !facingRight;
+        faceDir *= -1;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+    }
+
+    void Dash()
+    {
+
     }
 
 

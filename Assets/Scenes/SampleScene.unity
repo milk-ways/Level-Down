@@ -408,12 +408,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  faceDir: 1
+  dashSpeed: 30
+  defaultDashTime: 0.1
+  dashTime: 0
+  dash: 0
   jumpForce: 10
+  extraJumps: 1
   groundCheck: {fileID: 795075454}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundRadius: 0.2
+  isGrounded: 0
 --- !u!61 &1088424320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -456,10 +463,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 6200000, guid: eccf3b59df57743bfb02e6a71bd2e8ea, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1088424322
 SpriteRenderer:
