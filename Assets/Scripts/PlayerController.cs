@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     // Player Jump related
     [Header("Jump")]
     public float jumpForce;                      // Jumping force
-    float verticalInput;                             // Vertical input
     [SerializeField] int extraJumps = 1;     // Number of jumps
 
     // Ground Check related
@@ -87,17 +86,16 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
             extraJumps = 1;     // Reset extraJump if on ground
 
-        verticalInput = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (verticalInput > 0 && extraJumps > 0)  // Up arrow and can jump
+            if (Input.GetKey(KeyCode.DownArrow) && isGrounded)     // Down arrow and is grounded
+            {
+                Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
+            }
+            else if (extraJumps > 0)  // Has more than 1 jump counts
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 extraJumps--;
-            }
-            else if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
-            {
-                Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
             }
         }
 
