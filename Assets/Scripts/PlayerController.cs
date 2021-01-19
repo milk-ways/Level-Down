@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float speed;                             // Move speed
     float moveInput;                                // Horizontal input
+    float verticalInput;                            // Vertical input
     [SerializeField] int faceDir = 1;            // Player facing direction 1:right, -1:left
 
     // Player dash related
@@ -33,18 +34,12 @@ public class PlayerController : MonoBehaviour
     public float groundRadius;                         // Ground check radius
     [SerializeField] bool isGrounded;                // True if player on ground
 
-    // Attack Related
-    [Header("Attack")]
-    public Transform meleeAtkPos;               // Melee attack position
-    public LayerMask enemyLayer;                // Enemy layer
-    public float meleeAttackRange;                         // Melee attack range (radius)
-    public int attackDamage;                        // Attack damage
-
     Rigidbody2D rigidBody;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+
         dashTime = defaultDashTime;     // Reset dash time
     }
 
@@ -82,13 +77,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        verticalInput = Input.GetAxisRaw("Vertical");
+
         // Jumps
         if (isGrounded)
             extraJumps = 1;     // Reset extraJump if on ground
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKey(KeyCode.DownArrow) && isGrounded)     // Down arrow and is grounded
+            if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
             {
                 Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
             }
@@ -105,31 +102,20 @@ public class PlayerController : MonoBehaviour
             dash = true;
         }
       
-
-        // Melee Attack
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(meleeAtkPos.position, meleeAttackRange, enemyLayer);
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
-            }
-        }
+        
     }
 
     // Set player facing direction
     void Flip()
     {
         faceDir *= -1;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
+
+        transform.Rotate(0f, 180f, 0f);
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundRadius);      // Ground check gizmo
-        Gizmos.DrawWireSphere(meleeAtkPos.position, meleeAttackRange);      // Melee attack gizmo
     }
 }

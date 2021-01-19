@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Player basic settings
+    // Enemy basic settings
     [Header("Basic Settings")]
     public int hp;
 
-    // Player movement related
+    // Enemy movement related
     [Header("Movement")]
     public float speed;                             // Move speed
 
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (getDamage == true)
+        if (getDamage)
         {
             // Recieve damage
             Debug.Log("Recieved damage");
@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Did not Recieve damage");
     }
 
-    public void Die()
+    void Die()
     {
         Destroy(gameObject);
     }
