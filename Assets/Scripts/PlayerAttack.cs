@@ -44,9 +44,11 @@ public class PlayerAttack : MonoBehaviour
         // Attack
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (attackType < 2)     // Hand, Melee
+            if (attackType == 0)        // Hand
+                Punch();
+            else if (attackType == 1)   // Melee
                 MeleeAtk();
-            else
+            else                        // Ranged
                 RangedAtk();
         }
 
@@ -63,6 +65,14 @@ public class PlayerAttack : MonoBehaviour
                 reloadTime -= Time.deltaTime;
             }
         }
+    }
+
+    // Hand attack
+    void Punch()
+    {
+        Collider2D enemy = Physics2D.OverlapCircle(meleeAtkPos.position, meleeAtkRange, enemyLayer);
+        if (enemy != null)
+            enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
     }
 
     // Melee attack

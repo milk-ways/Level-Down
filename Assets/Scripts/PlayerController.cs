@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Player basic settings
     [Header("Basic Settings")]
     public int hp;
+    bool immortal = false;      // Can't be damaged when immortal
     
     // Player movement related
     [Header("Movement")]
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
             if (dashTime <= 0)
             {
                 dash = false;
+                immortal = false;
                 dashTime = defaultDashTime;
                 rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
@@ -100,10 +102,18 @@ public class PlayerController : MonoBehaviour
         if (!dash && Input.GetKeyDown(KeyCode.D))
         {
             dash = true;
+            immortal = true;
         }
       
         
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (!immortal)
+            hp -= damage;
+    }
+
 
     // Set player facing direction
     void Flip()
