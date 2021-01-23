@@ -532,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795075453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.076, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0708, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1088424323}
@@ -572,6 +572,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
+  dashEnabled: 1
+  jumpEnabled: 1
   speed: 6
   faceDir: 1
   dashSpeed: 30
@@ -579,12 +581,13 @@ MonoBehaviour:
   dashTime: 0
   dash: 0
   jumpForce: 10
-  extraJumps: 1
+  maxJumps: 1
+  extraJumps: 0
   groundCheck: {fileID: 795075454}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  groundRadius: 0.2
+  groundRadius: 0.1
   isGrounded: 0
 --- !u!61 &1088424320
 BoxCollider2D:
@@ -712,6 +715,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fa28ae9af5c466e8be1722fa7d1387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeEnabled: 1
+  rangedEnabled: 1
+  skillEnabled: 1
   meleeAtkPos: {fileID: 1235324663}
   enemyLayer:
     serializedVersion: 2

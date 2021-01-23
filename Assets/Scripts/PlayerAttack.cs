@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    // Abilities
+    public bool meleeEnabled;
+    public bool rangedEnabled;
+    public bool skillEnabled;
+
     // Attack Related
     [Header("Melee Attack")]
     public Transform meleeAtkPos;               // Melee attack position
@@ -74,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // Skill
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && skillEnabled)
         {
             SkillCast();
         }

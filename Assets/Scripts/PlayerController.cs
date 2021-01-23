@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [Header("Basic Settings")]
     public int hp;
     bool immortal = false;      // Can't be damaged when immortal
-    
+    [SerializeField] bool dashEnabled = true;       // true:can dash
+    [SerializeField] bool jumpEnabled = true;    // true:multiple jump, false:1 jump
+
     // Player movement related
     [Header("Movement")]
     public float speed;                             // Move speed
@@ -26,7 +28,8 @@ public class PlayerController : MonoBehaviour
     // Player Jump related
     [Header("Jump")]
     public float jumpForce;                      // Jumping force
-    [SerializeField] int extraJumps = 1;     // Number of jumps
+    public int maxJumps;                        // Max number of jumps
+    [SerializeField] int extraJumps = 1;        // Number of jumps
 
     // Ground Check related
     [Header("Ground Check")]
@@ -83,30 +86,31 @@ public class PlayerController : MonoBehaviour
 
         // Jumps
         if (isGrounded)
-            extraJumps = 1;     // Reset extraJump if on ground
+            extraJumps = maxJumps;     // Reset extraJump if on ground
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
             {
                 Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
-                extraJumps--;
             }
-            else if (extraJumps > 0)  // Has more than 1 jump counts
+            else if (isGrounded)  // First jump (when on ground)
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
+            }
+            else if (!isGrounded && jumpEnabled && extraJumps > 0) // Extra jumps (when not on ground)
+            {
                 extraJumps--;
+                rigidBody.velocity = Vector2.up * jumpForce;    // Jump
             }
         }
 
         // Dash
-        if (!dash && Input.GetKeyDown(KeyCode.D))
+        if (!dash && dashEnabled && Input.GetKeyDown(KeyCode.D))
         {
             dash = true;
             immortal = true;
         }
-      
-        
     }
 
     public void TakeDamage(int damage)
