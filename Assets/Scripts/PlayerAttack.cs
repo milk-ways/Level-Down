@@ -5,26 +5,33 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     // Attack Related
-    [Header("Attack")]
-    // Melee
+    [Header("Melee Attack")]
     public Transform meleeAtkPos;               // Melee attack position
     public LayerMask enemyLayer;                // Enemy layer
     public float meleeAtkRange;                  // Melee attack range (radius)
     public int attackDamage;                        // Attack damage
     [SerializeField] int attackType = 0;            // 0 - hand, 1 - melee, 2 - ranged
-    // Ranged
+
+    [Header("Ranged Attack")]
     public Transform rangeAtkPos;               // Range attack position
     public GameObject gun;                      // Gun; enable when attack
     public GameObject bullet;                   // Bullet prefab
-    public float defaultReloadTime;                    // Time for reloading
+    public float reloadTime;                    // Time for reloading
     public int maxBulletNum;                            // Max number of bullets
     [SerializeField] int bulletNum;                       // Number of bullets
-    [SerializeField] float reloadTime;              // Bullet reload timer
+    [SerializeField] float reloadTimer;              // Bullet reload timer
+
+    [Header("Skill")]
+    public GameObject skillPref;                // Skill prefab
+    public float skillCoolTime;                 // Skill use cooldown
+    [SerializeField] float skillCoolTimer;      // Skill cooldown timer
+    [SerializeField] bool skillReady = false;           // true - can use skill
 
     void Start()
     {
-        reloadTime = defaultReloadTime; // Reset reload time
+        reloadTimer = reloadTime; // Reset reload time
         bulletNum = maxBulletNum;       // Reset bullet num
+        skillCoolTimer = skillCoolTime; // Reset skill cooldown
     }
 
     void Update()
@@ -58,12 +65,28 @@ public class PlayerAttack : MonoBehaviour
             if (reloadTime <= 0)
             {
                 bulletNum = maxBulletNum;       // Reload
-                reloadTime = defaultReloadTime; // Reset timer
+                reloadTimer = reloadTime; // Reset timer
             }
             else
             {
-                reloadTime -= Time.deltaTime;
+                reloadTimer -= Time.deltaTime;
             }
+        }
+
+        // Skill
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SkillCast();
+        }
+        if (!skillReady)
+        {
+            if (skillCoolTimer <= 0)
+            {
+                skillReady = true;                  // Set to skill ready
+                skillCoolTimer = skillCoolTime;     // Reset timer
+            }
+            else
+                skillCoolTimer -= Time.deltaTime;
         }
     }
 
@@ -92,6 +115,15 @@ public class PlayerAttack : MonoBehaviour
         {
             Instantiate(bullet, rangeAtkPos.position, rangeAtkPos.rotation);
             bulletNum--;
+        }
+    }
+
+    void SkillCast()
+    {
+        if (skillReady)
+        {
+            Instantiate(skillPref, transform.position, transform.rotation);
+            skillReady = false;
         }
     }
 

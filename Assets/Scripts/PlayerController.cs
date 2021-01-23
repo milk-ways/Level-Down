@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
             if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
             {
                 Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
+                extraJumps--;
             }
             else if (extraJumps > 0)  // Has more than 1 jump counts
             {
