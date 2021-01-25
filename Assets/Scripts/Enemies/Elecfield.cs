@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elecfield : MonoBehaviour
+public class Elecfield : EnemyController
 {
     void Start()
     {

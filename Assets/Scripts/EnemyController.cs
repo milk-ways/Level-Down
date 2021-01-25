@@ -15,8 +15,11 @@ public class EnemyController : MonoBehaviour
     [Header("Get Damage")]
     [SerializeField] bool getDamage;             // true:get damage, false:immortal
 
+    public Rigidbody2D rigidBody;
+
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()

@@ -2619,7 +2619,7 @@ PrefabInstance:
     - target: {fileID: 6159892353249415047, guid: 07d061ff7e61fc74c8a084065ff4176b,
         type: 3}
       propertyPath: m_Name
-      value: Ray
+      value: Stingray
       objectReference: {fileID: 0}
     - target: {fileID: 6159892353249415047, guid: 07d061ff7e61fc74c8a084065ff4176b,
         type: 3}
@@ -2631,5 +2631,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8233243536439193620, guid: 07d061ff7e61fc74c8a084065ff4176b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1088424318}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d061ff7e61fc74c8a084065ff4176b, type: 3}
