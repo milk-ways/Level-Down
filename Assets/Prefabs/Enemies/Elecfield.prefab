@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6917236509690389488}
   m_Layer: 9
   m_Name: Elecfield
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -146,4 +146,4 @@ MonoBehaviour:
   hp: 1
   speed: 0
   getDamage: 1
-  rigidBody: {fileID: 0}
+  rigidBody: {fileID: -6187867450998029405}

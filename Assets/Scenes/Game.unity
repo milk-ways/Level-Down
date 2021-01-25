@@ -1755,6 +1755,12 @@ RectTransform:
   m_AnchoredPosition: {x: 62.989, y: -25.51}
   m_SizeDelta: {x: 26.308777, y: 24.460266}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!50 &1413287663 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: -6187867450998029405, guid: b1ffa462f85201d4d86d56326528d14f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1479781861027707892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1652493977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,6 +2116,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1870667901 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5090538469997242803, guid: b1b49a951298ed54196e452732b501a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1668621517234568494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1882794688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2490,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6917236509690389488, guid: b1ffa462f85201d4d86d56326528d14f,
+        type: 3}
+      propertyPath: rigidBody
+      value: 
+      objectReference: {fileID: 1413287663}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ffa462f85201d4d86d56326528d14f, type: 3}
 --- !u!1001 &1668621517234568494
@@ -2487,6 +2504,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3440535768635576861, guid: b1b49a951298ed54196e452732b501a2,
+        type: 3}
+      propertyPath: rigidBody
+      value: 
+      objectReference: {fileID: 1870667901}
     - target: {fileID: 1668621517607859334, guid: b1b49a951298ed54196e452732b501a2,
         type: 3}
       propertyPath: m_RootOrder
@@ -2551,6 +2573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090538469997242803, guid: b1b49a951298ed54196e452732b501a2,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1b49a951298ed54196e452732b501a2, type: 3}

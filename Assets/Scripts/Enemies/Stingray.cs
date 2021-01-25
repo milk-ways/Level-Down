@@ -11,7 +11,6 @@ public class Stingray : EnemyController
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         rigidBody.velocity = (player.transform.position - transform.position).normalized * speed;
