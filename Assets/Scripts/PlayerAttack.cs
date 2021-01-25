@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerAttack : MonoBehaviour
 {
     // Abilities
     public bool meleeEnabled;
-    public bool rangedEnabled;
+    public bool rangeEnabled;
     public bool skillEnabled;
 
     // Attack Related
@@ -15,7 +16,10 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayer;                // Enemy layer
     public float meleeAtkRange;                  // Melee attack range (radius)
     public int attackDamage;                        // Attack damage
-    [SerializeField] int attackType = 0;            // 0 - hand, 1 - melee, 2 - ranged
+    public enum AtkType { Hand, Melee, Range };
+    public AtkType currentAtkType;              // Current attack type
+    List<AtkType> atkTypeList;                  // Available attack types
+    int atkTypeIndex = 0;            // 0 - hand, 1 - melee, 2 - ranged
 
     [Header("Ranged Attack")]
     public Transform rangeAtkPos;               // Range attack position
@@ -32,11 +36,24 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float skillCoolTimer;      // Skill cooldown timer
     [SerializeField] bool skillReady = false;           // true - can use skill
 
+    // Components
+    UIController uiController;
+
     void Start()
     {
+        uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+
         reloadTimer = reloadTime; // Reset reload time
         bulletNum = maxBulletNum;       // Reset bullet num
         skillCoolTimer = skillCoolTime; // Reset skill cooldown
+
+        atkTypeList = System.Enum.GetValues(typeof(AtkType)).Cast<AtkType>().ToList();
+
+        // Testing disabled attacks (temp)
+        if (!meleeEnabled)
+            atkTypeList.Remove(AtkType.Melee);
+        if (!rangeEnabled)
+            atkTypeList.Remove(AtkType.Range);
     }
 
     void Update()
@@ -44,11 +61,10 @@ public class PlayerAttack : MonoBehaviour
         // Swap weapon
         if (Input.GetKeyDown(KeyCode.S))
         {
-            attackType++;
-            if (attackType > 2)
-                attackType = 0;
+            currentAtkType = NextAvailableAtk();
+            uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
         }
-        if (attackType == 2)
+        if (currentAtkType == AtkType.Range)
             gun.SetActive(true);
         else
             gun.SetActive(false);
@@ -56,9 +72,9 @@ public class PlayerAttack : MonoBehaviour
         // Attack
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (attackType == 0)        // Hand
+            if (currentAtkType == AtkType.Hand)        // Hand
                 Punch();
-            else if (attackType == 1)   // Melee
+            else if (currentAtkType == AtkType.Melee)   // Melee
                 MeleeAtk();
             else                        // Ranged
                 RangedAtk();
@@ -93,6 +109,16 @@ public class PlayerAttack : MonoBehaviour
             else
                 skillCoolTimer -= Time.deltaTime;
         }
+    }
+
+    // Next available attack type
+    AtkType NextAvailableAtk()
+    {
+        atkTypeIndex++;
+        if (atkTypeIndex >= atkTypeList.Count)
+            atkTypeIndex = 0;
+
+        return atkTypeList[atkTypeIndex];
     }
 
     // Hand attack

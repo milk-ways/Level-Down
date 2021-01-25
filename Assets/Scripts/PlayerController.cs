@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public float groundRadius;                         // Ground check radius
     [SerializeField] bool isGrounded;                // True if player on ground
 
+    // Components
     Rigidbody2D rigidBody;
 
     void Start()
