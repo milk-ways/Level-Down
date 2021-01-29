@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     float moveInput;                                // Horizontal input
     float verticalInput;                            // Vertical input
     [SerializeField] int faceDir = 1;            // Player facing direction 1:right, -1:left
+    bool isWalking = false;
 
     // Player dash related
     [Header("Dash")]
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;                      // Jumping force
     public int maxJumps;                        // Max number of jumps
     [SerializeField] int extraJumps = 1;        // Number of jumps
+    bool isJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
@@ -40,10 +42,12 @@ public class PlayerController : MonoBehaviour
 
     // Components
     Rigidbody2D rigidBody;
+    Animator anim;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         dashTime = defaultDashTime;     // Reset dash time
     }
@@ -56,12 +60,19 @@ public class PlayerController : MonoBehaviour
         // Movement
         moveInput = Input.GetAxisRaw("Horizontal");
         rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
+        if (moveInput != 0)
+            isWalking = true;
+        else
+            isWalking = false;
 
         // Player facing direction
         if (faceDir == -1 && moveInput > 0)
             Flip();
         else if (faceDir == 1 && moveInput < 0)
             Flip();
+
+        // Move animation
+        anim.SetBool("IsWalking", isWalking);
 
         // Dash
         if (dash)
@@ -87,7 +98,10 @@ public class PlayerController : MonoBehaviour
 
         // Jumps
         if (isGrounded)
+        {
             extraJumps = maxJumps;     // Reset extraJump if on ground
+            isJumping = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -103,8 +117,12 @@ public class PlayerController : MonoBehaviour
             {
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
+                isJumping = true;
             }
         }
+
+        // Jump animation
+        anim.SetBool("IsJumping", isJumping);
 
         // Dash
         if (!dash && dashEnabled && Input.GetKeyDown(KeyCode.D))
