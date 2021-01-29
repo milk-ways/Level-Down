@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public float speed;                             // Move speed
     float moveInput;                                // Horizontal input
     float verticalInput;                            // Vertical input
-    bool isWalking = false;
     [SerializeField] int faceDir = 1;            // Player facing direction 1:right, -1:left
 
     // Player dash related
@@ -30,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [Header("Jump")]
     public float jumpForce;                      // Jumping force
     public int maxJumps;                        // Max number of jumps
-    bool isJumping = false;
     [SerializeField] int extraJumps = 1;        // Number of jumps
 
     // Ground Check related
@@ -42,12 +40,10 @@ public class PlayerController : MonoBehaviour
 
     // Components
     Rigidbody2D rigidBody;
-    Animator anim;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
 
         dashTime = defaultDashTime;     // Reset dash time
     }
@@ -59,10 +55,6 @@ public class PlayerController : MonoBehaviour
 
         // Movement
         moveInput = Input.GetAxisRaw("Horizontal");
-        if (moveInput != 0)
-            isWalking = true;
-        else
-            isWalking = false;
         rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
 
         // Player facing direction
@@ -87,8 +79,6 @@ public class PlayerController : MonoBehaviour
                 dashTime -= Time.deltaTime;
             }
         }
-
-        anim.SetBool("IsWalking", isWalking);
     }
 
     void Update()
@@ -97,10 +87,7 @@ public class PlayerController : MonoBehaviour
 
         // Jumps
         if (isGrounded)
-        {
             extraJumps = maxJumps;     // Reset extraJump if on ground
-            isJumping = false;
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -111,13 +98,11 @@ public class PlayerController : MonoBehaviour
             else if (isGrounded)  // First jump (when on ground)
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
-                isJumping = true;
             }
             else if (!isGrounded && jumpEnabled && extraJumps > 0) // Extra jumps (when not on ground)
             {
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
-                isJumping = true;
             }
         }
 
@@ -127,8 +112,6 @@ public class PlayerController : MonoBehaviour
             dash = true;
             immortal = true;
         }
-
-        anim.SetBool("IsJumping", isJumping);
     }
 
     public void TakeDamage(int damage)
