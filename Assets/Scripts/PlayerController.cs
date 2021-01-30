@@ -39,15 +39,18 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;                  // Ground layer
     public float groundRadius;                         // Ground check radius
     [SerializeField] bool isGrounded;                // True if player on ground
-
+    [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
+        
     // Components
     Rigidbody2D rigidBody;
     Animator anim;
+    PlayerAttack playerAtk;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        playerAtk = GetComponent<PlayerAttack>();
 
         dashTime = defaultDashTime;     // Reset dash time
     }
@@ -81,6 +84,7 @@ public class PlayerController : MonoBehaviour
             {
                 dash = false;
                 immortal = false;
+                playerAtk.attackAble = true;
                 dashTime = defaultDashTime;
                 rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
@@ -97,12 +101,6 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // Jumps
-        if (isGrounded)
-        {
-            extraJumps = maxJumps;     // Reset extraJump if on ground
-            isJumping = false;
-        }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
@@ -112,24 +110,42 @@ public class PlayerController : MonoBehaviour
             else if (isGrounded)  // First jump (when on ground)
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
+                isJumping = true;
             }
             else if (!isGrounded && jumpEnabled && extraJumps > 0) // Extra jumps (when not on ground)
             {
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 isJumping = true;
+                playerAtk.attackAble = false;
             }
         }
 
+        if (isJumping && !isGrounded)
+            wasGrounded = false;
+
         // Jump animation
         anim.SetBool("IsJumping", isJumping);
+
+        // End jump
+        if (!wasGrounded && isGrounded)
+        {
+            extraJumps = maxJumps;     // Reset extraJump if on ground
+            isJumping = false;
+            playerAtk.attackAble = true;
+            wasGrounded = true;
+        }
 
         // Dash
         if (!dash && dashEnabled && Input.GetKeyDown(KeyCode.D))
         {
             dash = true;
             immortal = true;
+            playerAtk.attackAble = false;
         }
+
+        // Dash animation
+        anim.SetBool("IsDashing", dash);
     }
 
     public void TakeDamage(int damage)

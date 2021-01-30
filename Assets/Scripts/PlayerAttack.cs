@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public bool meleeEnabled;
     public bool rangeEnabled;
     public bool skillEnabled;
+    public bool attackAble = true;
 
     // Attack Related
     [Header("Melee Attack")]
@@ -23,9 +24,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Ranged Attack")]
     public Transform rangeAtkPos;               // Range attack position
-    public GameObject gun;                      // Gun; enable when attack
     public GameObject bullet;                   // Bullet prefab
     public float reloadTime;                    // Time for reloading
+    public float rangeAtkDelay;                      // Attack delay for matching animation
     public int maxBulletNum;                            // Max number of bullets
     [SerializeField] int bulletNum;                       // Number of bullets
     [SerializeField] float reloadTimer;              // Bullet reload timer
@@ -38,10 +39,12 @@ public class PlayerAttack : MonoBehaviour
 
     // Components
     UIController uiController;
+    Animator anim;
 
     void Start()
     {
         uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+        anim = GetComponent<Animator>();
 
         reloadTimer = reloadTime; // Reset reload time
         bulletNum = maxBulletNum;       // Reset bullet num
@@ -64,13 +67,9 @@ public class PlayerAttack : MonoBehaviour
             currentAtkType = NextAvailableAtk();
             uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
         }
-        if (currentAtkType == AtkType.Range)
-            gun.SetActive(true);
-        else
-            gun.SetActive(false);
 
         // Attack
-        if (Input.GetKeyDown(KeyCode.F))
+        if (attackAble && Input.GetKeyDown(KeyCode.F))
         {
             if (currentAtkType == AtkType.Hand)        // Hand
                 Punch();
@@ -83,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         // Reload bullet
         if (bulletNum < maxBulletNum)       // If bullet is used
         {
-            if (reloadTime <= 0)
+            if (reloadTimer <= 0)
             {
                 bulletNum = maxBulletNum;       // Reload
                 reloadTimer = reloadTime; // Reset timer
@@ -124,6 +123,13 @@ public class PlayerAttack : MonoBehaviour
     // Hand attack
     void Punch()
     {
+        // Punch animation
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+            anim.SetTrigger("Punch1");
+        else
+            anim.SetTrigger("Punch2");
+
         Collider2D enemy = Physics2D.OverlapCircle(meleeAtkPos.position, meleeAtkRange, enemyLayer);
         if (enemy != null)
             enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
@@ -132,6 +138,9 @@ public class PlayerAttack : MonoBehaviour
     // Melee attack
     void MeleeAtk()
     {
+        // Melee atk animation
+        anim.SetTrigger("MeleeAtk");
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(meleeAtkPos.position, meleeAtkRange, enemyLayer);
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -144,7 +153,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (bulletNum > 0)
         {
-            Instantiate(bullet, rangeAtkPos.position, rangeAtkPos.rotation);
+            // Range atk animation
+            anim.SetTrigger("RangeAtk");
+
+            StartCoroutine(Shoot());
             bulletNum--;
         }
     }
@@ -157,6 +169,13 @@ public class PlayerAttack : MonoBehaviour
             skillReady = false;
         }
     }
+
+    IEnumerator Shoot()
+    {
+        yield return new WaitForSeconds(rangeAtkDelay);
+        Instantiate(bullet, rangeAtkPos.position, rangeAtkPos.rotation);
+    }
+
 
     void OnDrawGizmos()
     {
