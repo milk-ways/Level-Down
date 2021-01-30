@@ -140,8 +140,8 @@ public class PlayerController : MonoBehaviour
         if (!dash && dashEnabled && Input.GetKeyDown(KeyCode.D))
         {
             dash = true;
-            immortal = true;
-            playerAtk.attackAble = false;
+            immortal = true;                    // Don't recieve damage when dashing
+            playerAtk.attackAble = false;       // Can't attack when dashing
         }
 
         // Dash animation
@@ -151,7 +151,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (!immortal)
+        {
             hp -= damage;
+            Debug.Log("Player damage taken");
+        }
     }
 
 

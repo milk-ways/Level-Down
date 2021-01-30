@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         if (getDamage)
         {
             // Recieve damage
-            Debug.Log("Recieved damage");
+            Debug.Log(gameObject.transform.name + "Recieved damage");
 
             hp -= damage;
 
