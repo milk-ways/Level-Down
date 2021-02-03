@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     [Header("Basic Settings")]
     public int hp;
     bool immortal = false;      // Can't be damaged when immortal
-    [SerializeField] bool dashEnabled = true;       // true:can dash
-    [SerializeField] bool jumpEnabled = true;    // true:multiple jump, false:1 jump
+    public bool dashEnabled = true;       // true:can dash
+    public bool jumpEnabled = true;    // true:multiple jump, false:1 jump
 
     // Player movement related
     [Header("Movement")]

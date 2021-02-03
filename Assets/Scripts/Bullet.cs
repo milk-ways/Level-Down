@@ -14,6 +14,9 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = transform.right * speed;
+
+        // Temp destroy after 10 sec
+        Destroy(gameObject, 10f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -32,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float reloadTimer;              // Bullet reload timer
 
     [Header("Skill")]
+    public Transform skillAtkPos;               // Skill attack position (temp melee atk pos)
     public GameObject skillPref;                // Skill prefab
     public float skillCoolTime;                 // Skill use cooldown
     [SerializeField] float skillCoolTimer;      // Skill cooldown timer
@@ -51,12 +52,6 @@ public class PlayerAttack : MonoBehaviour
         skillCoolTimer = skillCoolTime; // Reset skill cooldown
 
         atkTypeList = System.Enum.GetValues(typeof(AtkType)).Cast<AtkType>().ToList();
-
-        // Testing disabled attacks (temp)
-        if (!meleeEnabled)
-            atkTypeList.Remove(AtkType.Melee);
-        if (!rangeEnabled)
-            atkTypeList.Remove(AtkType.Range);
     }
 
     void Update()
@@ -108,6 +103,19 @@ public class PlayerAttack : MonoBehaviour
             else
                 skillCoolTimer -= Time.deltaTime;
         }
+    }
+
+    // Remove melee attack
+    public void RemoveMelee()
+    {
+        meleeEnabled = false;
+        atkTypeList.Remove(AtkType.Melee);
+    }
+
+    public void RemoveRange()
+    {
+        rangeEnabled = false;
+        atkTypeList.Remove(AtkType.Range);
     }
 
     // Next available attack type
@@ -165,7 +173,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (skillReady)
         {
-            Instantiate(skillPref, transform.position, transform.rotation);
+            Instantiate(skillPref, skillAtkPos.position, skillAtkPos.rotation);
             skillReady = false;
         }
     }

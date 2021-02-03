@@ -21,13 +21,13 @@ public class BanUIController : MonoBehaviour
     {
         playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
         for (int i = 0; i < 5; i++)
         {
             BanUI[i].enabled = false;
         }
     }
 
-    // Update is called once per frame
     private void Update()
     {
         //버튼을 누르고 2초후에 banpanel 비활성화
@@ -45,10 +45,9 @@ public class BanUIController : MonoBehaviour
 
     public void BanJump(Button button)
     {
-
         if (buttonOn == false)
         {
-            //playerController.jumpEnabled = false;         
+            playerController.jumpEnabled = false;         
             button.GetComponent<Button>().image.sprite = banimage;
             BanUI[0].enabled = true;
             buttonOn = true;
@@ -58,7 +57,7 @@ public class BanUIController : MonoBehaviour
     {
         if (buttonOn == false)
         {
-            //playerController.dashEnabled = false;
+            playerController.dashEnabled = false;
             button.GetComponent<Button>().image.sprite = banimage;
             BanUI[1].enabled = true;
             buttonOn = true;
@@ -70,7 +69,7 @@ public class BanUIController : MonoBehaviour
     {
         if (buttonOn == false)
         {
-            playerAttack.meleeEnabled = false;
+            playerAttack.RemoveMelee();
             button.GetComponent<Button>().image.sprite = banimage;
             BanUI[2].enabled = true;
             buttonOn = true;
@@ -80,7 +79,7 @@ public class BanUIController : MonoBehaviour
     {
         if (buttonOn == false)
         {
-            playerAttack.rangeEnabled = false;
+            playerAttack.RemoveRange();
             button.GetComponent<Button>().image.sprite = banimage;
             BanUI[3].enabled = true;
             buttonOn = true;

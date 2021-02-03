@@ -22,6 +22,9 @@ public class Skill : MonoBehaviour
         spawnTimer = spawnTime;
 
         rb.velocity = transform.right * speed;
+
+        // Temp destroy after 10 sec
+        Destroy(gameObject, 10f);
     }
 
     void Update()
