@@ -2146,12 +2146,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!50 &1413287663 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: -6187867450998029405, guid: b1ffa462f85201d4d86d56326528d14f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1479781861027707892}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1506750139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,11 +3786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elecfield
       objectReference: {fileID: 0}
-    - target: {fileID: 1479781860774722445, guid: b1ffa462f85201d4d86d56326528d14f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 1479781860774722447, guid: b1ffa462f85201d4d86d56326528d14f,
         type: 3}
       propertyPath: m_RootOrder
@@ -3852,13 +3841,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6917236509690389488, guid: b1ffa462f85201d4d86d56326528d14f,
-        type: 3}
-      propertyPath: rigidBody
-      value: 
-      objectReference: {fileID: 1413287663}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ffa462f85201d4d86d56326528d14f, type: 3}
+--- !u!1 &1479781861027707893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1479781860774722445, guid: b1ffa462f85201d4d86d56326528d14f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1479781861027707892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1479781861027707894
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479781861027707893}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b95b43f4a7c941ed877f0128c859a6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1668621517234568494
 PrefabInstance:
   m_ObjectHideFlags: 0
