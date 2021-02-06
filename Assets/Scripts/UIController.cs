@@ -31,6 +31,9 @@ public class UIController : MonoBehaviour
         // Skill cooltime setting (using PlayerAttack.cs)
         currentTime = playerAttack.skillCoolTime;
         delayTime = playerAttack.skillCoolTime;
+
+        // Initialize weapon image
+        ChangeWeaponImg(playerAttack.currentAtkType);
     }
  
     void Update()

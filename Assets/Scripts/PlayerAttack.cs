@@ -12,15 +12,23 @@ public class PlayerAttack : MonoBehaviour
     public bool attackAble = true;
 
     // Attack Related
+    [Header("Attack")]
+    int atkTypeIndex = 0;                       // 0 - hand, 1 - melee, 2 - ranged
+    public enum AtkType { Hand, Melee, Range };
+    public AtkType currentAtkType;              // Current attack type
+    List<AtkType> atkTypeList;                  // Available attack types
+
+    [Header("Punch")]
+    public float punchAtkTime;                  // Punch attack delay time
+    float punchAtkTimer;                        // Punch attack delay timer
+
     [Header("Melee Attack")]
     public Transform meleeAtkPos;               // Melee attack position
     public LayerMask enemyLayer;                // Enemy layer
     public float meleeAtkRange;                  // Melee attack range (radius)
+    public float meleeAtkTime;                 // Melee attack delay time
     public int attackDamage;                        // Attack damage
-    public enum AtkType { Hand, Melee, Range };
-    public AtkType currentAtkType;              // Current attack type
-    List<AtkType> atkTypeList;                  // Available attack types
-    int atkTypeIndex = 0;            // 0 - hand, 1 - melee, 2 - ranged
+    float meleeAtkTimer;                        // Melee attack delay timer
 
     [Header("Ranged Attack")]
     public Transform rangeAtkPos;               // Range attack position
@@ -51,7 +59,11 @@ public class PlayerAttack : MonoBehaviour
         bulletNum = maxBulletNum;       // Reset bullet num
         skillCoolTimer = skillCoolTime; // Reset skill cooldown
 
-        atkTypeList = System.Enum.GetValues(typeof(AtkType)).Cast<AtkType>().ToList();
+        // Initialize attacks
+        atkTypeList = new List<AtkType>();
+        atkTypeList.Add(AtkType.Melee);
+        atkTypeList.Add(AtkType.Range);
+        currentAtkType = atkTypeList[0];
     }
 
     void Update()
@@ -66,13 +78,26 @@ public class PlayerAttack : MonoBehaviour
         // Attack
         if (attackAble && Input.GetKeyDown(KeyCode.F))
         {
-            if (currentAtkType == AtkType.Hand)        // Hand
+            if (currentAtkType == AtkType.Hand && punchAtkTimer <= 0)        // Hand
+            {
                 Punch();
-            else if (currentAtkType == AtkType.Melee)   // Melee
+                punchAtkTimer = punchAtkTime;
+            }
+            else if (currentAtkType == AtkType.Melee && meleeAtkTimer <= 0)   // Melee
+            {
                 MeleeAtk();
-            else                        // Ranged
+                meleeAtkTimer = meleeAtkTime;       // Reset timer
+            }
+            else if (currentAtkType == AtkType.Range)                       // Ranged
                 RangedAtk();
         }
+
+        // Attack delay timer
+        if (punchAtkTimer > 0)
+            punchAtkTimer -= Time.deltaTime;
+        if (meleeAtkTimer > 0)
+            meleeAtkTimer -= Time.deltaTime;
+
 
         // Reload bullet
         if (bulletNum < maxBulletNum)       // If bullet is used
@@ -109,9 +134,15 @@ public class PlayerAttack : MonoBehaviour
     public void RemoveMelee()
     {
         meleeEnabled = false;
+        atkTypeList.Insert(0, AtkType.Hand);
         atkTypeList.Remove(AtkType.Melee);
+
+        if (currentAtkType == AtkType.Melee)
+            currentAtkType = AtkType.Hand;
+        uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
     }
 
+    // Remove range attack
     public void RemoveRange()
     {
         rangeEnabled = false;
