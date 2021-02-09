@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     public float speed;                             // Move speed
 
     [Header("Get Damage")]
-    [SerializeField] bool getDamage;             // true:get damage, false:immortal
+    public bool getDamage;             // true:get damage, false:immortal
 
     public Rigidbody2D rigidBody;
 
