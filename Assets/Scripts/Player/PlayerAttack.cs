@@ -68,14 +68,14 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         // Swap weapon
-        if (Input.GetKeyDown(KeyCode.S))
+        if (InputManager.instance.KeyDown("Swap"))       // Input.GetKeyDown(KeyCode.S)
         {
             currentAtkType = NextAvailableAtk();
             uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
         }
 
         // Attack
-        if (attackAble && Input.GetKeyDown(KeyCode.F))
+        if (attackAble && InputManager.instance.KeyDown("Fire1"))         // Input.GetKeyDown(KeyCode.F)
         {
             if (currentAtkType == AtkType.Hand && punchAtkTimer <= 0)        // Hand
             {
@@ -113,7 +113,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // Skill
-        if (Input.GetKeyDown(KeyCode.R) && skillEnabled)
+        if (skillEnabled && InputManager.instance.KeyDown("Fire2"))       // Input.GetKeyDown(KeyCode.R)
         {
             SkillCast();
         }

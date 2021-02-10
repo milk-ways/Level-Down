@@ -14,10 +14,10 @@ public class Dinosaur : EnemyController
 
     void Move()
     {
-        Debug.Log("Move");
+        // Debug.Log("Move");
 
         moveSec = Random.Range(1, 4);
-        Debug.Log(moveSec + "초");
+        // Debug.Log(moveSec + "초");
 
         int newMoveDir = Random.Range(-1, 2);
         while (moveDir == newMoveDir)
@@ -25,7 +25,7 @@ public class Dinosaur : EnemyController
             newMoveDir = Random.Range(-1, 2);
         }
         moveDir = newMoveDir;
-        Debug.Log(moveDir + "방향");
+        // Debug.Log(moveDir + "방향");
 
         if (moveDir == 1)
             transform.eulerAngles = new Vector3(0, 180, 0);

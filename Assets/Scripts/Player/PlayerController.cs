@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
         // Movement
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = InputManager.instance.HorizontalAxis();        // Input.GetAxisRaw("Horizontal");
         rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
         if (moveInput != 0)
             isWalking = true;
@@ -98,10 +98,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        verticalInput = Input.GetAxisRaw("Vertical");
+        verticalInput = InputManager.instance.VerticalAxis();        // Input.GetAxisRaw("Vertical");
 
         // Jumps
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (InputManager.instance.KeyDown("Jump"))           // Input.GetKeyDown(KeyCode.Space)
         {
             if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
             {
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Dash
-        if (!dash && dashEnabled && Input.GetKeyDown(KeyCode.D))
+        if (!dash && dashEnabled && InputManager.instance.KeyDown("Dash"))       // Input.GetKeyDown(KeyCode.D)
         {
             dash = true;
             immortal = true;                    // Don't recieve damage when dashing
@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
         faceDir *= -1;
 
         transform.Rotate(0f, 180f, 0f);
+        Debug.Log("Flipped");
     }
 
     void OnDrawGizmos()
