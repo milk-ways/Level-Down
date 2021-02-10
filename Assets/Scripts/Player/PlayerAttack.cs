@@ -67,6 +67,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        anim.SetFloat("State", CurrentState());
+
         // Swap weapon
         if (InputManager.instance.KeyDown("Swap"))       // Input.GetKeyDown(KeyCode.S)
         {
@@ -129,6 +131,24 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public float CurrentState()
+    {
+        switch (currentAtkType)
+        {
+            case AtkType.Hand:
+                return 1;
+
+            case AtkType.Melee:
+                return 2;
+
+            case AtkType.Range:
+                return 3;
+
+            default:
+                return 1;
+        }
+    }
+
     // Remove melee attack
     public void RemoveMelee()
     {
@@ -163,10 +183,8 @@ public class PlayerAttack : MonoBehaviour
     {
         // Punch animation
         int rand = Random.Range(0, 2);
-        if (rand == 0)
-            anim.SetTrigger("Punch1");
-        else
-            anim.SetTrigger("Punch2");
+        anim.SetFloat("PunchState", (float)rand);
+        anim.SetTrigger("Punch");
 
         Collider2D enemy = Physics2D.OverlapCircle(meleeAtkPos.position, meleeAtkRange, enemyLayer);
         if (enemy != null)
@@ -191,6 +209,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (bulletNum > 0)
         {
+            // Range atk direction
+            anim.SetFloat("RangeAtkState", InputManager.instance.VerticalAxis());
             // Range atk animation
             anim.SetTrigger("RangeAtk");
 

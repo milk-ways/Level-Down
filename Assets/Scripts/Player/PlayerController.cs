@@ -164,7 +164,6 @@ public class PlayerController : MonoBehaviour
         faceDir *= -1;
 
         transform.Rotate(0f, 180f, 0f);
-        Debug.Log("Flipped");
     }
 
     void OnDrawGizmos()
