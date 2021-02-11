@@ -22,15 +22,7 @@ public class EnemyController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
-    {
-    }
-
-    void Update()
-    {
-    }
-
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (getDamage)
         {

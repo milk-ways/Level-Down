@@ -115,7 +115,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // Skill
-        if (skillEnabled && InputManager.instance.KeyDown("Fire2"))       // Input.GetKeyDown(KeyCode.R)
+        if (attackAble && skillEnabled && InputManager.instance.KeyDown("Fire2"))       // Input.GetKeyDown(KeyCode.R)
         {
             SkillCast();
         }

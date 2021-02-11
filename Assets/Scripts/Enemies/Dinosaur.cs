@@ -7,6 +7,8 @@ public class Dinosaur : EnemyController
     public int moveSec = 0;
     public int moveDir = 0;
 
+    public bool fromBehind;
+
     void Start()
     {
         Move();
@@ -14,18 +16,16 @@ public class Dinosaur : EnemyController
 
     void Move()
     {
-        // Debug.Log("Move");
-
         moveSec = Random.Range(1, 4);
-        // Debug.Log(moveSec + "초");
 
         int newMoveDir = Random.Range(-1, 2);
+
         while (moveDir == newMoveDir)
         {
             newMoveDir = Random.Range(-1, 2);
         }
+
         moveDir = newMoveDir;
-        // Debug.Log(moveDir + "방향");
 
         if (moveDir == 1)
             transform.eulerAngles = new Vector3(0, 180, 0);
@@ -35,8 +35,15 @@ public class Dinosaur : EnemyController
         Invoke("Move", moveSec);
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        rigidBody.velocity = new Vector2(moveDir, 0) * speed;
+        rigidBody.velocity = new Vector2(moveDir * speed, rigidBody.velocity.y);
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        // Only get damage if attacked from behind
+        if (fromBehind)
+            base.TakeDamage(damage);
     }
 }

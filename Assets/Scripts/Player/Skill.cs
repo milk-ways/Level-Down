@@ -23,7 +23,7 @@ public class Skill : MonoBehaviour
 
         rb.velocity = transform.right * speed;
 
-        // Temp destroy after 10 sec
+        // Default destroy time 10 sec
         Destroy(gameObject, 10f);
     }
 
@@ -46,6 +46,11 @@ public class Skill : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.GetComponent<EnemyController>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if (collision.transform.tag == "Ground")
+        {
             Destroy(gameObject);
         }
     }

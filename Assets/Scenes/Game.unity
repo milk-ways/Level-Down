@@ -1088,6 +1088,7 @@ MonoBehaviour:
   jumpForce: 10
   maxJumps: 1
   extraJumps: 0
+  isJumping: 0
   groundCheck: {fileID: 795075454}
   groundLayer:
     serializedVersion: 2
@@ -1241,7 +1242,7 @@ MonoBehaviour:
   maxBulletNum: 5
   bulletNum: 5
   reloadTimer: 0
-  skillAtkPos: {fileID: 1235324663}
+  skillAtkPos: {fileID: 1317107146}
   skillPref: {fileID: 3216346901243955879, guid: 330808164b81f4d9e88f689ef92f2d58,
     type: 3}
   skillCoolTime: 5
@@ -2660,7 +2661,7 @@ GameObject:
   - component: {fileID: 1681857223}
   m_Layer: 8
   m_Name: Ground Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3818,6 +3819,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elecfield
       objectReference: {fileID: 0}
+    - target: {fileID: 1479781860774722445, guid: b1ffa462f85201d4d86d56326528d14f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1479781860774722447, guid: b1ffa462f85201d4d86d56326528d14f,
         type: 3}
       propertyPath: m_RootOrder
@@ -3990,6 +3996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1668621517607859336, guid: b1b49a951298ed54196e452732b501a2,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668621517607859336, guid: b1b49a951298ed54196e452732b501a2,
+        type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -4012,10 +4023,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2883685610764801067, guid: e633925328a4afb439ef21ba057891a2,
+        type: 3}
+      propertyPath: fromBehind
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3927106339461616374, guid: e633925328a4afb439ef21ba057891a2,
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927106339461616374, guid: e633925328a4afb439ef21ba057891a2,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6086185934937188295, guid: e633925328a4afb439ef21ba057891a2,
         type: 3}
@@ -4076,6 +4097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dinosaur
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579974337479986644, guid: e633925328a4afb439ef21ba057891a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e633925328a4afb439ef21ba057891a2, type: 3}
@@ -4151,6 +4177,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stingray
       objectReference: {fileID: 0}
+    - target: {fileID: 6159892353249415047, guid: 07d061ff7e61fc74c8a084065ff4176b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8233243536439193620, guid: 07d061ff7e61fc74c8a084065ff4176b,
         type: 3}
       propertyPath: upSpeed
@@ -4174,6 +4205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775662165483092087, guid: b06a8e4cdf484ef46b53e56375d0a39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7775662165483092093, guid: b06a8e4cdf484ef46b53e56375d0a39a,
         type: 3}

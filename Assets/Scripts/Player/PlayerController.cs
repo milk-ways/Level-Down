@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;                      // Jumping force
     public int maxJumps;                        // Max number of jumps
     [SerializeField] int extraJumps = 1;        // Number of jumps
-    bool isJumping = false;
+    [SerializeField] bool isJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
@@ -111,13 +111,15 @@ public class PlayerController : MonoBehaviour
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 isJumping = true;
+                anim.SetTrigger("Jump");
             }
             else if (!isGrounded && jumpEnabled && extraJumps > 0) // Extra jumps (when not on ground)
             {
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
-                isJumping = true;
+                isJumping = true;               // Required if jumping while falling from ground
                 playerAtk.attackAble = false;
+                anim.SetTrigger("DoubleJump");
             }
         }
 

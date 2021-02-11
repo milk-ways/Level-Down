@@ -9,11 +9,6 @@ public class Thwomp : EnemyController
         InvokeRepeating("Move", 1, 1);
     }
 
-    void Update()
-    {
-        
-    }
-
     void Move()
     {
         rigidBody.gravityScale *= -1;

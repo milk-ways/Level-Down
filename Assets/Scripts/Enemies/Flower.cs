@@ -15,7 +15,6 @@ public class Flower : EnemyController
     [Header("Sprite")]
     [SerializeField] Sprite appearSprite;
     [SerializeField] Sprite hideSprite;
-
     [SerializeField] bool isAppear = true;
 
     [Header("Offense")]
