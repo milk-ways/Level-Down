@@ -144,6 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  speed: 0
   getDamage: 0
-  rigidBody: {fileID: 5090538469997242803}

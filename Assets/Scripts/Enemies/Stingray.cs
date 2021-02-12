@@ -6,6 +6,7 @@ public class Stingray : EnemyController
 {
     // Attack related
     [Header("Attack")]
+    public float speed;
     public float upSpeed;
     public float upOffset;
     [SerializeField] bool isNormal = true;
@@ -13,10 +14,12 @@ public class Stingray : EnemyController
     GameObject player;
 
     // Components
+    Rigidbody2D rb;
     Animator anim;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -27,7 +30,7 @@ public class Stingray : EnemyController
         // Go up when normal
         if (isNormal && transform.position.y < player.transform.position.y + upOffset)
         {
-            rigidBody.velocity = Vector2.up * upSpeed;
+            rb.velocity = Vector2.up * upSpeed;
         }
         else
         {
@@ -38,7 +41,7 @@ public class Stingray : EnemyController
         if (isMad)
         {
             anim.SetBool("IsMad", isMad);
-            rigidBody.velocity = (player.transform.position - transform.position).normalized * speed;
+            rb.velocity = (player.transform.position - transform.position).normalized * speed;
         }
     }
 }

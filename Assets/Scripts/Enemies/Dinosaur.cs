@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Dinosaur : EnemyController
 {
+    [Header("Movement")]
+    public float speed;
     public int moveSec = 0;
     public int moveDir = 0;
 
-    public bool fromBehind;
+    [Header("Damage")]
+    public Transform behindCheck;
+    public LayerMask playerLayer;
+    public float behindRadius;
+    public bool playerIsBehind;
+
+    // Component
+    Rigidbody2D rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         Move();
     }
 
@@ -37,13 +48,25 @@ public class Dinosaur : EnemyController
 
     void FixedUpdate()
     {
-        rigidBody.velocity = new Vector2(moveDir * speed, rigidBody.velocity.y);
+        rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+    }
+
+    void Update()
+    {
+        // Check if player is behind
+        playerIsBehind = Physics2D.OverlapCircle(behindCheck.position, behindRadius, playerLayer);
     }
 
     public override void TakeDamage(int damage)
     {
         // Only get damage if attacked from behind
-        if (fromBehind)
+        if (playerIsBehind)
             base.TakeDamage(damage);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(behindCheck.position, behindRadius);      // Behind check gizmo
     }
 }

@@ -5,22 +5,10 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Enemy basic settings
-    [Header("Basic Settings")]
+    [Header("Enemy base settings")]
     public int hp;
-
-    // Enemy movement related
-    [Header("Movement")]
-    public float speed;                             // Move speed
-
-    [Header("Get Damage")]
+    // Damage
     public bool getDamage;             // true:get damage, false:immortal
-
-    public Rigidbody2D rigidBody;
-
-    void Start()
-    {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
 
     public virtual void TakeDamage(int damage)
     {

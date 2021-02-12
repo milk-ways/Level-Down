@@ -24,10 +24,5 @@ public class Elecfield : EnemyController
         spark.SetActive(!spark.activeSelf);
 
         anim.SetBool("IsActive", isActive);
-
-        //if (gameObject.activeSelf)
-        //    gameObject.SetActive(false);
-        //else
-        //    gameObject.SetActive(true);
     }
 }

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Thwomp : EnemyController
 {
+    Rigidbody2D rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         InvokeRepeating("Move", 1, 1);
     }
 
     void Move()
     {
-        rigidBody.gravityScale *= -1;
+        rb.gravityScale *= -1;
     }
 }
