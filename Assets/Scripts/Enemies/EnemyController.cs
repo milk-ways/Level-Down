@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy base settings")]
     public int hp;
     // Damage
+    public int damage;
     public bool getDamage;             // true:get damage, false:immortal
 
     public virtual void TakeDamage(int damage)
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
         if (getDamage)
         {
             // Recieve damage
-            Debug.Log(gameObject.transform.name + "Recieved damage");
+            Debug.Log(gameObject.transform.name + " Recieved damage");
 
             hp -= damage;
 
