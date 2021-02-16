@@ -21,8 +21,12 @@ public class Flower : EnemyController
     public int offenseDelay;
     [SerializeField] GameObject flowerBullet;
 
+    // Component
+    GameObject player;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         Appear(-1);
     }
 

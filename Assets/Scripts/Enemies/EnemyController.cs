@@ -11,14 +11,6 @@ public class EnemyController : MonoBehaviour
     public int damage;
     public bool getDamage;             // true:get damage, false:immortal
 
-    // Attack
-    public PlayerController player;
-
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-    }
-
     public virtual void TakeDamage(int damage)
     {
         if (getDamage)
@@ -37,14 +29,6 @@ public class EnemyController : MonoBehaviour
         else
             Debug.Log("Did not Recieve damage");
     }
-
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.transform.tag == "Player")
-    //    {
-    //        player.TakeDamage(damage);
-    //    }
-    //}
 
     void Die()
     {

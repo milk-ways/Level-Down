@@ -13,11 +13,13 @@ public class Stingray : EnemyController
     [SerializeField] bool isMad = false;
 
     // Components
+    GameObject player;
     Rigidbody2D rb;
     Animator anim;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }

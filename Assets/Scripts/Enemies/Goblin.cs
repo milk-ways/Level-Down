@@ -14,10 +14,12 @@ public class Goblin : EnemyController
     public bool playerInRange = false;
 
     // Components
+    PlayerController player;
     Rigidbody2D rb;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
     }
 
