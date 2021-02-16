@@ -7,38 +7,39 @@ public class PlayerController : MonoBehaviour
     // Player basic settings
     [Header("Basic Settings")]
     public int hp;
-    bool immortal = false;      // Can't be damaged when immortal
-    public bool dashEnabled = true;       // true:can dash
-    public bool jumpEnabled = true;    // true:multiple jump, false:1 jump
+    public float damageImmortalTime;    // Become immortal when attacked
+    public bool dashEnabled = true;     // true:can dash
+    public bool jumpEnabled = true;     // true:multiple jump, false:1 jump
+    [SerializeField] bool immortal = false;              // Can't be damaged when immortal
 
     // Player movement related
     [Header("Movement")]
     public float speed;                             // Move speed
     float moveInput;                                // Horizontal input
     float verticalInput;                            // Vertical input
-    [SerializeField] int faceDir = 1;            // Player facing direction 1:right, -1:left
+    [SerializeField] int faceDir = 1;               // Player facing direction 1:right, -1:left
     bool isWalking = false;
 
     // Player dash related
     [Header("Dash")]
-    public float dashSpeed;                           // dash speed
-    public float defaultDashTime;                  // dash lasting time
-    [SerializeField] float dashTime;                 // dash lasting countdown timer
+    public float dashSpeed;                         // dash speed
+    public float defaultDashTime;                   // dash lasting time
+    [SerializeField] float dashTime;                // dash lasting countdown timer
     [SerializeField] bool dash = false;             // true:dash, false:stop dash
 
     // Player Jump related
     [Header("Jump")]
-    public float jumpForce;                      // Jumping force
+    public float jumpForce;                     // Jumping force
     public int maxJumps;                        // Max number of jumps
     [SerializeField] int extraJumps = 1;        // Number of jumps
     [SerializeField] bool isJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
-    public Transform groundCheck;                  // Ground check position
-    public LayerMask groundLayer;                  // Ground layer
-    public float groundRadius;                         // Ground check radius
-    [SerializeField] bool isGrounded;                // True if player on ground
+    public Transform groundCheck;                   // Ground check position
+    public LayerMask groundLayer;                   // Ground layer
+    public float groundRadius;                      // Ground check radius
+    [SerializeField] bool isGrounded;               // True if player on ground
     [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
         
     // Components
@@ -150,15 +151,30 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("IsDashing", dash);
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            TakeDamage(collision.GetComponent<EnemyController>().damage);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         if (!immortal)
         {
             hp -= damage;
+            immortal = true;        // Set immortal after taking damage
             Debug.Log("Player damage taken");
+            StartCoroutine(DamageImmortal(damageImmortalTime));
         }
     }
 
+    IEnumerator DamageImmortal(float time)
+    {
+        yield return new WaitForSeconds(time);
+        immortal = false;
+    }
 
     // Set player facing direction
     void Flip()

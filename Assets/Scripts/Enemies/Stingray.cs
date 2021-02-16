@@ -11,7 +11,6 @@ public class Stingray : EnemyController
     public float upOffset;
     [SerializeField] bool isNormal = true;
     [SerializeField] bool isMad = false;
-    GameObject player;
 
     // Components
     Rigidbody2D rb;
@@ -21,8 +20,6 @@ public class Stingray : EnemyController
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()

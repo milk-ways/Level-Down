@@ -9,7 +9,6 @@ public class Goblin : EnemyController
     public int dir = 0;
 
     [Header("Attack")]
-    public PlayerController player;
     public LayerMask playerLayer;
     public float attackRadius;
     public bool playerInRange = false;
