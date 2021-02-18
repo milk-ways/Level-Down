@@ -17,6 +17,7 @@ public class Cow : EnemyController
     float returnNormalTimer;                // Timer
     bool playerInSight = false;             // True when player in sight
     bool isMad = false;
+    bool hitPlayer = false;
 
     // Component
     GameObject player;
@@ -45,7 +46,7 @@ public class Cow : EnemyController
             returnNormalTimer -= Time.deltaTime;
         }
 
-        if (isMad)
+        if (isMad && !hitPlayer)
         {
             speed = madSpeed;
             rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);
@@ -62,6 +63,22 @@ public class Cow : EnemyController
             return 1;
         else
             return -1;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            rb.velocity = Vector2.zero;
+            hitPlayer = true;
+            StartCoroutine(AttackDelay());
+        }
+    }
+
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(2);
+        hitPlayer = false;
     }
 
     void OnDrawGizmos()

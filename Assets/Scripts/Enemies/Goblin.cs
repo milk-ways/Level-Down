@@ -10,8 +10,8 @@ public class Goblin : EnemyController
 
     [Header("Attack")]
     public LayerMask playerLayer;
+    public float sightRadius;
     public float attackRadius;
-    public bool playerInRange = false;
 
     // Components
     PlayerController player;
@@ -25,14 +25,18 @@ public class Goblin : EnemyController
 
     void FixedUpdate()
     {
-        if (Physics2D.OverlapCircle(transform.position, attackRadius, playerLayer))
+        if (Physics2D.OverlapCircle(transform.position, attackRadius, playerLayer))         // If player is inside attack radius
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = Vector2.zero;
             player.TakeDamage(damage);
         }
-        else if (playerInRange)
+        else if (Physics2D.OverlapCircle(transform.position, sightRadius, playerLayer))     // If player is inside sight radius
         {
-            rb.velocity = new Vector2(dir * speed, rb.velocity.y);
+            rb.velocity = new Vector2(dir * speed, 0);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -49,6 +53,7 @@ public class Goblin : EnemyController
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRadius);      // Melee attack gizmo
+        Gizmos.DrawWireSphere(transform.position, sightRadius);
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }

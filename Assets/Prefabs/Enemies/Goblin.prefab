@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4502450080328967268}
   - component: {fileID: 4502450080328967269}
   - component: {fileID: 4502450080328967273}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -148,9 +148,8 @@ MonoBehaviour:
   getDamage: 1
   speed: 7
   dir: 0
-  player: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  attackRadius: 1.13
-  playerInRange: 0
+  sightRadius: 5
+  attackRadius: 1

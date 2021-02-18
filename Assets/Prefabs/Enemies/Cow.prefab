@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8950365242016992741}
   - component: {fileID: 8950365242016992740}
-  - component: {fileID: 8950365242016992736}
   - component: {fileID: 8950365242016992743}
   - component: {fileID: 8950365242016992742}
+  - component: {fileID: 8950365242016992736}
   m_Layer: 9
   m_Name: Cow
   m_TagString: Enemy
@@ -85,29 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8950365242016992736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8950365242016992747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72fb73c4cbc9544d8a416055058c9cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 3
-  damage: 1
-  getDamage: 1
-  normalSpeed: 3
-  madSpeed: 12
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  sightPos: {fileID: 8950365242625976437}
-  sightRadius: 1.4
-  returnNormalTime: 3
 --- !u!50 &8950365242016992743
 Rigidbody2D:
   serializedVersion: 4
@@ -155,6 +132,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &8950365242016992736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950365242016992747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fb73c4cbc9544d8a416055058c9cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 3
+  damage: 1
+  getDamage: 1
+  normalSpeed: 3
+  madSpeed: 12
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  sightPos: {fileID: 8950365242625976437}
+  sightRadius: 1.4
+  returnNormalTime: 3
 --- !u!1 &8950365242625976436
 GameObject:
   m_ObjectHideFlags: 0
