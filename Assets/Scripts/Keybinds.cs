@@ -12,6 +12,7 @@ public class Keybinds : ScriptableObject
     public KeyCode left;
     public KeyCode jump;
     public KeyCode dash;
+    public KeyCode SuperJump;
 
     // Attacks
     public KeyCode fire1;       // Normal attack
@@ -39,6 +40,9 @@ public class Keybinds : ScriptableObject
 
             case "Dash":
                 return dash;
+
+            case "SuperJump":
+                return SuperJump;
 
             case "Fire1":
                 return fire1;
@@ -80,6 +84,10 @@ public class Keybinds : ScriptableObject
 
             case "Dash":
                 dash = key;
+                break;
+
+            case "SuperJump":
+                SuperJump = key;
                 break;
 
             case "Fire1":

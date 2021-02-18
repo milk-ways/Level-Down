@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    //hp UI
+    // Hp UI
     public Image[] heart;
     private int heartnum = 5;
 
-    //weapon change
+    // Weapon change
     public Image weapon;
     public Sprite[] weaponTypes;
 
-    //skill cooltime
+    // Skill cooltime
     [SerializeField] Image skill;
     private bool isCoolTime = false;
     private float currentTime;
@@ -31,9 +31,6 @@ public class UIController : MonoBehaviour
         // Skill cooltime setting (using PlayerAttack.cs)
         currentTime = playerAttack.skillCoolTime;
         delayTime = playerAttack.skillCoolTime;
-
-        // Initialize weapon image
-        ChangeWeaponImg(playerAttack.currentAtkType);
     }
  
     void Update()

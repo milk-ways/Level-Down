@@ -18,6 +18,7 @@ MonoBehaviour:
   left: 276
   jump: 32
   dash: 100
+  SuperJump: 103
   fire1: 102
   fire2: 114
   swap: 115

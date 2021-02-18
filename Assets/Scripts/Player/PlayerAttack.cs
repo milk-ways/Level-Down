@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayer;                // Enemy layer
     public float meleeAtkRange;                  // Melee attack range (radius)
     public float meleeAtkTime;                 // Melee attack delay time
+    public float meleeAtkDelay;
     public int attackDamage;                        // Attack damage
     float meleeAtkTimer;                        // Melee attack delay timer
 
@@ -63,6 +64,7 @@ public class PlayerAttack : MonoBehaviour
         atkTypeList.Add(AtkType.Melee);
         atkTypeList.Add(AtkType.Range);
         currentAtkType = atkTypeList[0];
+        uiController.ChangeWeaponImg(currentAtkType);
     }
 
     void Update()
@@ -197,11 +199,7 @@ public class PlayerAttack : MonoBehaviour
         // Melee atk animation
         anim.SetTrigger("MeleeAtk");
 
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(meleeAtkPos.position, meleeAtkRange, enemyLayer);
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
-        }
+        StartCoroutine(MeleeAttackDelay());
     }
 
     // Ranged attack
@@ -232,6 +230,17 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(rangeAtkDelay);
         Instantiate(bullet, rangeAtkPos.position, rangeAtkPos.rotation);
+    }
+
+    IEnumerator MeleeAttackDelay()
+    {
+        yield return new WaitForSeconds(meleeAtkDelay);
+
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(meleeAtkPos.position, meleeAtkRange, enemyLayer);
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
+        }
     }
 
 

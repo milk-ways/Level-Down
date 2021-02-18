@@ -9,14 +9,13 @@ public class PlayerController : MonoBehaviour
     public int hp;
     public float damageImmortalTime;    // Become immortal when attacked
     public bool dashEnabled = true;     // true:can dash
-    public bool jumpEnabled = true;     // true:multiple jump, false:1 jump
+    public bool jumpEnabled = true;     // true:can super jump
     [SerializeField] bool immortal = false;              // Can't be damaged when immortal
 
     // Player movement related
     [Header("Movement")]
     public float speed;                             // Move speed
     float moveInput;                                // Horizontal input
-    float verticalInput;                            // Vertical input
     [SerializeField] int faceDir = 1;               // Player facing direction 1:right, -1:left
     bool isWalking = false;
 
@@ -33,12 +32,17 @@ public class PlayerController : MonoBehaviour
     public int maxJumps;                        // Max number of jumps
     [SerializeField] int extraJumps = 1;        // Number of jumps
     [SerializeField] bool isJumping = false;
+    [SerializeField] bool isFalling = false;
+
+    [Header("Super Jump")]
+    public float superJumpForce;
+    [SerializeField] bool isSuperJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
     public Transform groundCheck;                   // Ground check position
     public LayerMask groundLayer;                   // Ground layer
-    public float groundRadius;                      // Ground check radius
+    public Vector2 groundSize;
     [SerializeField] bool isGrounded;               // True if player on ground
     [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
         
@@ -58,9 +62,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Ground check
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
-
         // Movement
         moveInput = InputManager.instance.HorizontalAxis();        // Input.GetAxisRaw("Horizontal");
         rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);  // Move
@@ -99,22 +100,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        verticalInput = InputManager.instance.VerticalAxis();        // Input.GetAxisRaw("Vertical");
+        // Ground check
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, groundSize, 0, groundLayer);
 
         // Jumps
         if (InputManager.instance.KeyDown("Jump"))           // Input.GetKeyDown(KeyCode.Space)
         {
-            if (verticalInput < 0 && isGrounded)     // Down arrow and is grounded
-            {
-                Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer).gameObject.GetComponent<PlatformEffector2D>().surfaceArc = 180f;    // move down
-            }
-            else if (isGrounded)  // First jump (when on ground)
+            if (isGrounded)  // First jump (when on ground)
             {
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 isJumping = true;
                 anim.SetTrigger("Jump");
             }
-            else if (!isGrounded && jumpEnabled && extraJumps > 0) // Extra jumps (when not on ground)
+            else if (!isGrounded && !isSuperJumping && extraJumps > 0) // Extra jumps (when not on ground)
             {
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
@@ -124,19 +122,43 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Super jump
+        if (InputManager.instance.KeyDown("SuperJump"))
+        {
+            if (isGrounded && jumpEnabled)
+            {
+                rigidBody.velocity = Vector2.up * superJumpForce;
+                isJumping = true;
+                isSuperJumping = true;
+                anim.SetTrigger("Jump");
+            }
+        }
+
+        if (!isGrounded)
+        {
+            if (!isFalling)
+            {
+                isJumping = true;
+                anim.SetTrigger("Jump");
+                isFalling = true;
+            }
+        }
+
         if (isJumping && !isGrounded)
             wasGrounded = false;
 
         // Jump animation
         anim.SetBool("IsJumping", isJumping);
 
-        // End jump
+        // Land on ground (End jump)
         if (!wasGrounded && isGrounded)
         {
             extraJumps = maxJumps;     // Reset extraJump if on ground
             isJumping = false;
+            isSuperJumping = false;
             playerAtk.attackAble = true;
             wasGrounded = true;
+            isFalling = false;
         }
 
         // Dash
@@ -187,6 +209,6 @@ public class PlayerController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundRadius);      // Ground check gizmo
+        Gizmos.DrawWireCube(groundCheck.position, new Vector3(groundSize.x, groundSize.y, 0));      // Ground check gizmo
     }
 }

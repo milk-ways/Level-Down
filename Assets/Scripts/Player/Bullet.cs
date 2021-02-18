@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     public float speed;
     public int damage;
 
+    GameObject target;
+
     Rigidbody2D rb;
 
     void Start()
@@ -23,7 +25,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyController>().TakeDamage(damage);
+            if (target == null)
+            {
+                target = collision.gameObject;                                      // Get first enemy unit
+                target.GetComponent<EnemyController>().TakeDamage(damage);          // Give damage
+            }
+
             Destroy(gameObject);
         }
     }
