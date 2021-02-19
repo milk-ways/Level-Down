@@ -9,28 +9,31 @@ public class Goblin : EnemyController
     public int dir = 0;
 
     [Header("Attack")]
-    public LayerMask playerLayer;
     public float sightRadius;
     public float attackRadius;
+    bool playerInSight = false;
+    bool playerInAtk = false;
 
     // Components
     PlayerController player;
+    SightController sightController;
     Rigidbody2D rb;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if (Physics2D.OverlapCircle(transform.position, attackRadius, playerLayer))         // If player is inside attack radius
+        if (playerInAtk)         // If player is inside attack radius
         {
             rb.velocity = Vector2.zero;
             player.TakeDamage(damage);
         }
-        else if (Physics2D.OverlapCircle(transform.position, sightRadius, playerLayer))     // If player is inside sight radius
+        else if (playerInSight)     // If player is inside sight radius
         {
             rb.velocity = new Vector2(dir * speed, 0);
         }
@@ -42,18 +45,14 @@ public class Goblin : EnemyController
 
     void Update()
     {
+        playerInSight = sightController.PlayerInSight(Vector2.right, sightRadius) || sightController.PlayerInSight(Vector2.left, sightRadius);
+        playerInAtk = sightController.PlayerInSight(Vector2.right, attackRadius) || sightController.PlayerInSight(Vector2.left, attackRadius);
+
         if (player.transform.position.x > transform.position.x)
             dir = 1;
         else if (player.transform.position.x < transform.position.x)
             dir = -1;
         else
             dir = 0;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sightRadius);
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }

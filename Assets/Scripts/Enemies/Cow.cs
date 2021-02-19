@@ -10,29 +10,30 @@ public class Cow : EnemyController
     float speed;                            // Move speed
 
     [Header("Attack")]
-    public LayerMask playerLayer;
-    public Transform sightPos;
-    public float sightRadius;
+    public float sightDistance;
     public float returnNormalTime;          // Time for turning back to normal when player out of sight
     float returnNormalTimer;                // Timer
-    bool playerInSight = false;             // True when player in sight
-    bool isMad = false;
+    [SerializeField] bool playerInSight = false;             // True when player in sight
+    [SerializeField] bool isMad = false;
     bool hitPlayer = false;
 
     // Component
     GameObject player;
+    SightController sightController;
     Rigidbody2D rb;
     
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        playerInSight = Physics2D.OverlapCircle(sightPos.position, sightRadius, playerLayer);
+        playerInSight = (sightController.PlayerInSight(Vector2.right, sightDistance) || sightController.PlayerInSight(Vector2.left, sightDistance));
+
         if (playerInSight)
             isMad = true;
 
@@ -65,7 +66,8 @@ public class Cow : EnemyController
             return -1;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.transform.tag == "Player")
         {
@@ -79,11 +81,5 @@ public class Cow : EnemyController
     {
         yield return new WaitForSeconds(2);
         hitPlayer = false;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(sightPos.position, sightRadius);      // Melee attack gizmo
     }
 }
