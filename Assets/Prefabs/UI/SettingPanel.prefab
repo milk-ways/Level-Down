@@ -1,5 +1,292 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &724111619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 724111620}
+  - component: {fileID: 724111622}
+  - component: {fileID: 724111621}
+  m_Layer: 5
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &724111620
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724111619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1710527571}
+  m_Father: {fileID: 7362647311290837654}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 180, y: 50}
+  m_SizeDelta: {x: 160, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &724111622
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724111619}
+  m_CullTransparentMesh: 0
+--- !u!114 &724111621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724111619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uB300\uC26C"
+--- !u!1 &774131228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774131229}
+  - component: {fileID: 774131231}
+  - component: {fileID: 774131230}
+  m_Layer: 5
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &774131229
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774131228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1710527571}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &774131231
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774131228}
+  m_CullTransparentMesh: 0
+--- !u!114 &774131230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774131228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!1 &1710527570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710527571}
+  - component: {fileID: 1710527574}
+  - component: {fileID: 1710527573}
+  - component: {fileID: 1710527572}
+  m_Layer: 5
+  m_Name: Dash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1710527571
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710527570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 774131229}
+  m_Father: {fileID: 724111620}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 250, y: 0}
+  m_SizeDelta: {x: 160, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1710527574
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710527570}
+  m_CullTransparentMesh: 0
+--- !u!114 &1710527573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710527570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1710527572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710527570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1710527573}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1021610747}
+        m_MethodName: ChangeKeyButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &283393516441285587
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +299,7 @@ GameObject:
   - component: {fileID: 6771232056436175081}
   - component: {fileID: 6224068727010534908}
   m_Layer: 5
-  m_Name: Text (5)
+  m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +318,7 @@ RectTransform:
   m_Children:
   - {fileID: 8747585704636242767}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -170,7 +457,7 @@ GameObject:
   - component: {fileID: 4652666620973290900}
   - component: {fileID: 6108182899664043864}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,9 +563,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -304,7 +591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2009945841847988617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -376,7 +663,7 @@ GameObject:
   - component: {fileID: 4471466572920555781}
   - component: {fileID: 2558853393456596116}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,9 +769,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -505,7 +792,7 @@ GameObject:
   - component: {fileID: 164157588701774724}
   - component: {fileID: 7829627843959163509}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +870,7 @@ GameObject:
   - component: {fileID: 34534316413798852}
   - component: {fileID: 3028529491125958871}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,7 +948,7 @@ GameObject:
   - component: {fileID: 7362647309224852426}
   - component: {fileID: 7362647309224852425}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,7 +1026,7 @@ GameObject:
   - component: {fileID: 7362647309248136494}
   - component: {fileID: 7362647309248136493}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +1105,7 @@ GameObject:
   - component: {fileID: 7362647309330324181}
   - component: {fileID: 7362647309330324180}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Fire1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,9 +1211,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -948,7 +1235,7 @@ GameObject:
   - component: {fileID: 7362647309332497953}
   - component: {fileID: 7362647309332497952}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Swap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,9 +1341,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1096,7 +1383,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1183,7 +1470,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: exitSetting
         m_Mode: 1
         m_Arguments:
@@ -1206,7 +1493,7 @@ GameObject:
   - component: {fileID: 7362647309436671858}
   - component: {fileID: 7362647309436671857}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Setting Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,7 +1571,7 @@ GameObject:
   - component: {fileID: 7362647309468027261}
   - component: {fileID: 7362647309468027260}
   m_Layer: 5
-  m_Name: Text (8)
+  m_Name: Swap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1363,7 +1650,7 @@ GameObject:
   - component: {fileID: 7362647309554704973}
   - component: {fileID: 7362647309554704972}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,7 +1728,7 @@ GameObject:
   - component: {fileID: 7362647309583691326}
   - component: {fileID: 7362647309583691325}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SuperJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1519,7 +1806,7 @@ GameObject:
   - component: {fileID: 7362647309598886474}
   - component: {fileID: 7362647309598886473}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Swap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1598,7 +1885,7 @@ GameObject:
   - component: {fileID: 7362647309607268635}
   - component: {fileID: 7362647309607268634}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1704,9 +1991,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1728,7 +2015,7 @@ GameObject:
   - component: {fileID: 7362647309769630929}
   - component: {fileID: 7362647309769630928}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SuperJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1834,9 +2121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1857,7 +2144,7 @@ GameObject:
   - component: {fileID: 7362647309814429659}
   - component: {fileID: 7362647309814429658}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1876,7 +2163,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647310342461468}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1937,7 +2224,7 @@ GameObject:
   - component: {fileID: 7362647309917589005}
   - component: {fileID: 7362647309917589004}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,9 +2330,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2067,7 +2354,7 @@ GameObject:
   - component: {fileID: 7362647309923746221}
   - component: {fileID: 7362647309923746220}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Fire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,9 +2460,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2196,7 +2483,7 @@ GameObject:
   - component: {fileID: 7362647309959514183}
   - component: {fileID: 7362647309959514182}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2215,7 +2502,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647309607268633}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2275,7 +2562,7 @@ GameObject:
   - component: {fileID: 7362647310020899863}
   - component: {fileID: 7362647310020899862}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2294,7 +2581,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647309917589011}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2354,7 +2641,7 @@ GameObject:
   - component: {fileID: 7362647310217916434}
   - component: {fileID: 7362647310217916433}
   m_Layer: 5
-  m_Name: Text (7)
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2373,7 +2660,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647309330324187}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2434,7 +2721,7 @@ GameObject:
   - component: {fileID: 7362647310342461470}
   - component: {fileID: 7362647310342461469}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2540,9 +2827,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7362647310466771869}
+      - m_Target: {fileID: 1021610747}
         m_MethodName: ChangeKeyButton
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2563,7 +2850,7 @@ GameObject:
   - component: {fileID: 7362647310387908126}
   - component: {fileID: 7362647310387908125}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Key Bind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2585,7 +2872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 167, y: -14}
+  m_AnchoredPosition: {x: 170, y: 27.5}
   m_SizeDelta: {x: 180, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7362647310387908126
@@ -2641,7 +2928,7 @@ GameObject:
   - component: {fileID: 7362647310401324727}
   - component: {fileID: 7362647310401324726}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Fire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2718,7 +3005,7 @@ GameObject:
   - component: {fileID: 7362647310466771868}
   - component: {fileID: 7362647310466771871}
   - component: {fileID: 7362647310466771870}
-  - component: {fileID: 7362647310466771869}
+  - component: {fileID: 1021610747}
   m_Layer: 5
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -2784,7 +3071,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7362647310466771869
+--- !u!114 &1021610747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2796,39 +3083,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b5228715dad764686bfc965b8af890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingPanel: {fileID: 7362647310466771043}
   keyPanel: {fileID: 4998822171108262685}
-  txt:
+  keyText:
+  - {fileID: 7829627843959163509}
+  - {fileID: 3028529491125958871}
   - {fileID: 7362647309554704972}
   - {fileID: 7362647309248136493}
   - {fileID: 7362647310749027489}
   - {fileID: 7362647309583691325}
-  - {fileID: 7829627843959163509}
-  - {fileID: 3028529491125958871}
-  - {fileID: 7362647310914466488}
+  - {fileID: 774131230}
   - {fileID: 7362647309598886473}
+  - {fileID: 7362647310914466488}
   - {fileID: 7362647310401324726}
-  str:
+  keyNames:
+  - Up
+  - Down
   - Left
   - Right
   - Jump
+  - SuperJump
   - Dash
-  - Up
-  - Down
-  - Fire1
   - Swap
+  - Fire1
   - Fire2
-  strKor:
-  - "\uC88C"
-  - "\uC6B0"
-  - "\uC810\uD504"
-  - "\uB300\uC26C"
-  - "\uC0C1"
-  - "\uD558"
-  - "\uACF5\uACA9"
-  - "\uBB34\uAE30 \uC2A4\uC651"
-  - "\uC2A4\uD0AC"
-  keyname: {fileID: 6041470981653329773}
 --- !u!1 &7362647310749027495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,7 +3118,7 @@ GameObject:
   - component: {fileID: 7362647310749027490}
   - component: {fileID: 7362647310749027489}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,7 +3196,7 @@ GameObject:
   - component: {fileID: 7362647310914466489}
   - component: {fileID: 7362647310914466488}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Fire1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2997,7 +3274,7 @@ GameObject:
   - component: {fileID: 7362647311146235305}
   - component: {fileID: 7362647311146235304}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: Super Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3016,7 +3293,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647309769630935}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3063,7 +3340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB300\uC26C"
+  m_Text: "\uC288\uD37C \uC810\uD504"
 --- !u!1 &7362647311290837653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,14 +3373,15 @@ RectTransform:
   - {fileID: 7362647309436671856}
   - {fileID: 7362647309224852424}
   - {fileID: 7362647310387908124}
+  - {fileID: 5107902026967458740}
+  - {fileID: 2468746169826579}
   - {fileID: 7362647309959514181}
   - {fileID: 7362647309814429657}
   - {fileID: 7362647310020899861}
   - {fileID: 7362647311146235311}
-  - {fileID: 5107902026967458740}
-  - {fileID: 2468746169826579}
-  - {fileID: 7362647310217916432}
+  - {fileID: 724111620}
   - {fileID: 7362647309468027203}
+  - {fileID: 7362647310217916432}
   - {fileID: 7362647311329628664}
   - {fileID: 7362647309419274165}
   m_Father: {fileID: 7362647310466771868}
@@ -3163,7 +3441,7 @@ GameObject:
   - component: {fileID: 7362647311329628666}
   - component: {fileID: 7362647311329628665}
   m_Layer: 5
-  m_Name: Text (9)
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3182,7 +3460,7 @@ RectTransform:
   m_Children:
   - {fileID: 7362647309923746227}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3242,7 +3520,7 @@ GameObject:
   - component: {fileID: 8019374727433464737}
   - component: {fileID: 4255404660164857641}
   m_Layer: 5
-  m_Name: Text (6)
+  m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3261,7 +3539,7 @@ RectTransform:
   m_Children:
   - {fileID: 5875099411474416790}
   m_Father: {fileID: 7362647311290837654}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3321,7 +3599,7 @@ GameObject:
   - component: {fileID: 511189674742011336}
   - component: {fileID: 2657567168027850553}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Press Any Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

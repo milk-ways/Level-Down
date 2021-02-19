@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 6388575064211703}
   - component: {fileID: 6388575064211701}
   m_Layer: 5
-  m_Name: MainMenuPanel 1
+  m_Name: MainMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 6388576083381789}
   - component: {fileID: 6388576083381790}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Continue Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 6388576136743178}
   - component: {fileID: 6388576136743179}
   m_Layer: 5
-  m_Name: Button
+  m_Name: New Game Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 6388576865044458}
   - component: {fileID: 6388576865044459}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: Exit Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 6388576898330695}
   - component: {fileID: 6388576898330688}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Setting Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

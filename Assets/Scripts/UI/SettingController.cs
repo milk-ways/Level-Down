@@ -2,54 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 public class SettingController : MonoBehaviour
 {
-    public GameObject settingPanel;
     public GameObject keyPanel;
-    private KeyCode Akey;
-    public Text[] txt;
-    public string[] str;    //영어 키 명칭
-    public string[] strKor; //한국어 키 명칭
-    [SerializeField] Text keyname;
-    int key = -1;
-    private void Start()
+    public Text[] keyText;              // Key texts
+    public string[] keyNames;           // Name of the keys (Up, Down, Left, Right, Jump, Dash, Swap, Fire1, Fire2)
+
+    string changeKeyName = "";
+    bool changeKey = false;
+
+    void Start()
     {
-        for (int i=0; i<9; i++)
-        {
-            txt[i].text = InputManager.instance.keybinds.CheckKey(str[i]).ToString();
-        }
+        ShowKeyNames();
         keyPanel.SetActive(false);              //임시
         //settingPanel.SetActive(false);        //임시
     }
-    private void OnGUI()
+
+    void OnGUI()
     {
         Event keyEvent = Event.current;
-        if (keyEvent.isKey && key >= 0)
+        if (keyEvent.isKey && changeKey)        // Key is pressed and need to change key
         {
-            keyPanel.SetActive(false);
-            Akey = keyEvent.keyCode;
-            for (int i =0; i<9; i++)
+            KeyCode pressedKey = keyEvent.keyCode;
+            // Check if pressed key is being used
+            for (int i = 0; i < keyNames.Length; i++)
             {
-                if(InputManager.instance.keybinds.CheckKey(str[i]) == Akey && i != key)
+                // If pressed key exists
+                if (InputManager.instance.keybinds.CheckKey(keyNames[i]) == pressedKey && keyNames[i] != changeKeyName)
                 {
-                    InputManager.instance.keybinds.ChangeKey(str[i], KeyCode.None);
-                    txt[i].text = "";
+                    InputManager.instance.keybinds.ChangeKey(keyNames[i], KeyCode.None);
                 }
             }
-            InputManager.instance.keybinds.ChangeKey(str[key], Akey);
-            txt[key].text = Akey.ToString();
-            key = -1;
+            InputManager.instance.keybinds.ChangeKey(changeKeyName, pressedKey);
+            ShowKeyNames();
+
+            keyPanel.SetActive(false);
+            changeKey = false;
         }
     }
-    public void ChangeKeyButton(int num)
+
+    void ShowKeyNames()
+    {
+        for (int i = 0; i < keyNames.Length; i++)
+        {
+            keyText[i].text = InputManager.instance.keybinds.CheckKey(keyNames[i]).ToString();
+        }
+    }
+
+    public void ChangeKeyButton()
     {
         keyPanel.SetActive(true);
-        key= num;
-        keyname.text = strKor[num];
+        changeKey = true;               // Need to change key
+        changeKeyName = EventSystem.current.currentSelectedGameObject.name;
     }
+
     public void exitSetting()
     {
-        settingPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
 

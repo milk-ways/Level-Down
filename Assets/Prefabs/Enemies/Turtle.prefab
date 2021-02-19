@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.15, y: 1.095}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &3776186493621097693
 GameObject:
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7b1eb86b97b36420a9eae6f58daa4872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 418260d9b95c044e2be3e3e681d56ae7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,14 +159,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.15, y: 1.095}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 8.6, y: 4.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.15, y: 1.095}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &3776186493621097690
 Rigidbody2D:
@@ -188,7 +188,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3776186493621097688
 MonoBehaviour:
   m_ObjectHideFlags: 0

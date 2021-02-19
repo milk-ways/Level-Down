@@ -5,92 +5,76 @@ using UnityEngine;
 public class Flower : EnemyController
 {
     [Header("Sight")]
-    public int appearSightX; // X축 시야
-    public int appearSightY; // Y축 시야
-    public int hideSightX; // 플레이어가 근접할 시 숨는다.
-
-    float playerDistX; // X-distance (player <-> flower)
-    float playerDistY; // Y-distance (player <-> flower)
+    public float appearSightX;      // X축 시야 범위
+    // public float appearSightY;      // Y축 시야
+    public float hideSightX;        // 플레이어가 근접할 시 숨는다.
+    bool playerInSight = false;     // Player is in sight
+    bool playerInhidesight = false; // Player is inside hide sight
 
     [Header("Sprite")]
     [SerializeField] Sprite appearSprite;
     [SerializeField] Sprite hideSprite;
-    [SerializeField] bool isAppear = true;
+    [SerializeField] bool isAppear;     // True: appear, false: hide
 
     [Header("Offense")]
     public int offenseDelay;
     [SerializeField] GameObject flowerBullet;
 
     // Component
-    GameObject player;
+    PlayerController player;
+    SightController sightController;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        Appear(-1);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        sightController = GetComponent<SightController>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        playerDistY = player.transform.position.y - transform.position.y;
+        playerInSight = sightController.PlayerInSight(Vector2.right, appearSightX) || sightController.PlayerInSight(Vector2.left, appearSightX);
+        playerInhidesight = sightController.PlayerInSight(Vector2.right, hideSightX) || sightController.PlayerInSight(Vector2.left, hideSightX);
 
-        if (playerDistY > appearSightY || playerDistY < 0) // Y축 시야 밖인 경우
-        {
-            if (isAppear)
-                Hide();
-            return;
-        }
-
-        playerDistX = player.transform.position.x - transform.position.x;
+        if (!playerInSight || playerInhidesight)
+            Hide();     // Stay hiding if player is not in sight
 
         if (!isAppear)
-        {
-            if (playerDistX <= appearSightX && playerDistX > hideSightX) // X축 시야 내, 오른쪽 방향
-                Appear(1);
+            if (playerInSight && !playerInhidesight)        // Player is in sight and outside hide sight
+                Appear(Dir());
+    }
 
-            if (playerDistX >= appearSightX * -1 && playerDistX < hideSightX * -1) // X축 시야 내, 왼쪽 방향
-                Appear(-1);
-
-            return;
-        }
-
-        if (isAppear)
-        {
-            if (playerDistX > appearSightX || playerDistX < appearSightX * -1) // X축 시야 밖
-                Hide();
-
-            else if (playerDistX <= hideSightX && playerDistX >= hideSightX * -1) // 근접 시 숨음
-                Hide();
-        }
+    int Dir()
+    {
+        if (transform.position.x < player.transform.position.x)
+            return 1;       // Player on right
+        else
+            return -1;      // Player on left
     }
 
     void Appear(int dir)
     {
         isAppear = true;
+        gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;        // Change to appear sprite
 
-        gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;
-
+        // Set direction depending on player location
         if (dir == 1)
             transform.eulerAngles = new Vector3(0, 0, 0);
         else if (dir == -1)
             transform.eulerAngles = new Vector3(0, 180, 0);
 
-        getDamage = true;
-
-        InvokeRepeating("Offense", offenseDelay, offenseDelay);
+        getDamage = true;           // Can get damage from player
+        InvokeRepeating("Offense", offenseDelay, offenseDelay);     // Start attacking
     }
 
     void Hide()
     {
         isAppear = false;
-
-        gameObject.GetComponent<SpriteRenderer>().sprite = hideSprite;
-
-        getDamage = false;
-
-        CancelInvoke("Offense");
+        gameObject.GetComponent<SpriteRenderer>().sprite = hideSprite;      // Change to hide sprite
+        getDamage = false;          // Invulnerable
+        CancelInvoke("Offense");    // Stop attacking
     }
 
+    // Attack
     void Offense()
     {
         Instantiate(flowerBullet, transform.position, transform.rotation);

@@ -29,29 +29,29 @@ public class Keybinds : ScriptableObject
             case "Down":
                 return down;
 
-            case "Right":
-                return right;
-
             case "Left":
                 return left;
+
+            case "Right":
+                return right;
 
             case "Jump":
                 return jump;
 
+            case "SuperJump":
+                return SuperJump;
+
             case "Dash":
                 return dash;
 
-            case "SuperJump":
-                return SuperJump;
+            case "Swap":
+                return swap;
 
             case "Fire1":
                 return fire1;
 
             case "Fire2":
                 return fire2;
-
-            case "Swap":
-                return swap;
 
             default:
                 return KeyCode.None;
@@ -69,25 +69,29 @@ public class Keybinds : ScriptableObject
             case "Down":
                 down = key;
                 break;
+  
+            case "Left":
+                left = key;
+                break;
 
             case "Right":
                 right = key;
-                break;
-
-            case "Left":
-                left = key;
                 break;
 
             case "Jump":
                 jump = key;
                 break;
 
+            case "SuperJump":
+                SuperJump = key;
+                break;
+
             case "Dash":
                 dash = key;
                 break;
 
-            case "SuperJump":
-                SuperJump = key;
+            case "Swap":
+                swap = key;
                 break;
 
             case "Fire1":
@@ -96,10 +100,6 @@ public class Keybinds : ScriptableObject
 
             case "Fire2":
                 fire2 = key;
-                break;
-
-            case "Swap":
-                swap = key;
                 break;
 
             default:
