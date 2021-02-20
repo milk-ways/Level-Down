@@ -40,7 +40,8 @@ public class Slime : EnemyController
         {
             Vector2 dir = (player.transform.position - transform.position).normalized;
             slimeRigid.velocity = new Vector2(dir.x,0) * speed;
-            if(canJump)
+            transform.right = new Vector2(dir.x, 0);
+            if (canJump)
             {
                 Jump();
             }            

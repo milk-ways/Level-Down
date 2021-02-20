@@ -1862,10 +1862,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1196858768817465970, guid: 0257f2bace2685f42905cf57fa615d01,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1196858768817465971, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196858768817465975, guid: 0257f2bace2685f42905cf57fa615d01,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1196858768817465993, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
@@ -1875,17 +1885,17 @@ PrefabInstance:
     - target: {fileID: 1196858768817465993, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7233305
+      value: 3.35
       objectReference: {fileID: 0}
     - target: {fileID: 1196858768817465993, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2918284
+      value: 2.63
       objectReference: {fileID: 0}
     - target: {fileID: 1196858768817465993, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.368291
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1196858768817465993, guid: 0257f2bace2685f42905cf57fa615d01,
         type: 3}
