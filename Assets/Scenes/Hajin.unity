@@ -1887,75 +1887,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &1843692245
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 14.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199451, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5281659559778199453, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d,
-        type: 3}
-      propertyPath: m_Name
-      value: Temp Success
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 72adf27540b6e4e0c9cfd8ae390d0d2d, type: 3}
 --- !u!1 &2007213953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +1899,7 @@ GameObject:
   - component: {fileID: 2007213954}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

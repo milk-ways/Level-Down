@@ -21,13 +21,14 @@ public class Cow : EnemyController
     GameObject player;
     SightController sightController;
     Rigidbody2D rb;
-    
+    Animator cameraAnim;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
+        cameraAnim = GameObject.FindGameObjectWithTag("Camera").GetComponent<Animator>();
     }
 
     void Update()
@@ -50,7 +51,7 @@ public class Cow : EnemyController
         if (isMad && !hitPlayer)
         {
             speed = madSpeed;
-            rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);
+            rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);        // Run to player
         }
         else
         {
@@ -71,6 +72,11 @@ public class Cow : EnemyController
     {
         if(collision.transform.tag == "Player")
         {
+            if (MoveDir() > 0)  // Player on right
+                cameraAnim.SetTrigger("SmallRight");
+            else
+                cameraAnim.SetTrigger("SmallLeft");
+
             rb.velocity = Vector2.zero;
             hitPlayer = true;
             StartCoroutine(AttackDelay());
