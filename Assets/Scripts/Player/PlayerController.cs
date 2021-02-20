@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Check")]
     public Transform groundCheck;                   // Ground check position
     public LayerMask groundLayer;                   // Ground layer
-    public Vector2 groundSize;
+    public Vector2 groundSize;                      // Ground check width x length
     [SerializeField] bool isGrounded;               // True if player on ground
     [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
         
@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour
         if (!dash && dashEnabled && InputManager.instance.KeyDown("Dash"))       // Input.GetKeyDown(KeyCode.D)
         {
             dash = true;
+            isFalling = false;
             immortal = true;                    // Don't recieve damage when dashing
             playerAtk.attackAble = false;       // Can't attack when dashing
         }
