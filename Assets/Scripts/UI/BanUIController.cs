@@ -2,99 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BanUIController : MonoBehaviour
 {
     //banimage on button
     [SerializeField] Sprite banimage;
+    [SerializeField] Image[] banUI; // 버튼 UI
 
-    private bool buttonOn = false;
-
-    [SerializeField] Image[] BanUI; //좌측하단 UI
-
-    private float time = 0;
-
-    PlayerAttack playerAttack;
-    PlayerController playerController;
-    // Start is called before the first frame update
     void Start()
     {
-        playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            BanUI[i].enabled = false;
-        }
+        if (!GameController.instance.jumpEnabled)
+            banUI[0].sprite = banimage;
+        if (!GameController.instance.dashEnabled)
+            banUI[1].sprite = banimage;
+        if (!GameController.instance.meleeEnabled)
+            banUI[2].sprite = banimage;
+        if (!GameController.instance.rangedEnabled)
+            banUI[3].sprite = banimage;
+        if (!GameController.instance.skillEnabled)
+            banUI[4].sprite = banimage;
     }
 
-    private void Update()
+    IEnumerator Restart()
     {
-        //버튼을 누르고 2초후에 banpanel 비활성화
-        if (buttonOn == true)
-        {
-            time += Time.deltaTime;
-        }
-        if (time >= 2)
-        {
-            GameObject.Find("BanPanel").SetActive(false);
-            time = 0;
-            buttonOn = false;
-        }
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void BanJump(Button button)
+    public void BanJump()
     {
-        if (buttonOn == false)
-        {
-            playerController.jumpEnabled = false;         
-            button.GetComponent<Button>().image.sprite = banimage;
-            BanUI[0].enabled = true;
-            buttonOn = true;
-        }
+        GameController.instance.jumpEnabled = false;
+        StartCoroutine(Restart());
     }
-    public void BanDash(Button button)
+
+    public void BanDash()
     {
-        if (buttonOn == false)
-        {
-            playerController.dashEnabled = false;
-            button.GetComponent<Button>().image.sprite = banimage;
-            BanUI[1].enabled = true;
-            buttonOn = true;
-        }
-
-
+        GameController.instance.dashEnabled = false;
+        StartCoroutine(Restart());
     }
-    public void BanMelee(Button button)
-    {
-        if (buttonOn == false)
-        {
-            playerAttack.RemoveMelee();
-            button.GetComponent<Button>().image.sprite = banimage;
-            BanUI[2].enabled = true;
-            buttonOn = true;
-        }
-    }
-    public void BanRange(Button button)
-    {
-        if (buttonOn == false)
-        {
-            playerAttack.RemoveRange();
-            button.GetComponent<Button>().image.sprite = banimage;
-            BanUI[3].enabled = true;
-            buttonOn = true;
-        }
 
-    }
-    public void BanSkill(Button button)
+    public void BanMelee()
     {
-        if (buttonOn == false)
-        {
-            playerAttack.skillEnabled = false;
-            button.GetComponent<Button>().image.sprite = banimage;
-            BanUI[4].enabled = true;
-            buttonOn = true;
-        }
+        GameController.instance.meleeEnabled = false;
+        StartCoroutine(Restart());
+    }
 
+    public void BanRange()
+    {
+        GameController.instance.rangedEnabled = false;
+        StartCoroutine(Restart());
+    }
+
+    public void BanSkill()
+    {
+        GameController.instance.skillEnabled = false;
+        StartCoroutine(Restart());
     }
 }

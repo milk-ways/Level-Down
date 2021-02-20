@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     // Abilities
-    public bool meleeEnabled;
-    public bool rangeEnabled;
     public bool skillEnabled;
     public bool attackAble = true;
 
@@ -15,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     int atkTypeIndex = 0;                       // 0 - hand, 1 - melee, 2 - ranged
     public enum AtkType { Hand, Melee, Range };
     public AtkType currentAtkType;              // Current attack type
-    List<AtkType> atkTypeList;                  // Available attack types
+    [SerializeField] List<AtkType> atkTypeList;                  // Available attack types
 
     [Header("Punch")]
     public float punchAtkTime;                  // Punch attack delay time
@@ -65,6 +63,10 @@ public class PlayerAttack : MonoBehaviour
         atkTypeList.Add(AtkType.Range);
         currentAtkType = atkTypeList[0];
         uiController.ChangeWeaponImg(currentAtkType);
+
+        RemoveMelee(GameController.instance.meleeEnabled);
+        RemoveRange(GameController.instance.rangedEnabled);
+        skillEnabled = GameController.instance.skillEnabled;
     }
 
     void Update()
@@ -152,22 +154,24 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Remove melee attack
-    public void RemoveMelee()
+    void RemoveMelee(bool enabled)
     {
-        meleeEnabled = false;
-        atkTypeList.Insert(0, AtkType.Hand);
-        atkTypeList.Remove(AtkType.Melee);
+        if (!enabled)
+        {
+            atkTypeList.Insert(0, AtkType.Hand);
+            atkTypeList.Remove(AtkType.Melee);
 
-        if (currentAtkType == AtkType.Melee)
-            currentAtkType = AtkType.Hand;
-        uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
+            if (currentAtkType == AtkType.Melee)
+                currentAtkType = AtkType.Hand;
+            uiController.ChangeWeaponImg(currentAtkType);       // Change weapon UI
+        }
     }
 
     // Remove range attack
-    public void RemoveRange()
+    void RemoveRange(bool enabled)
     {
-        rangeEnabled = false;
-        atkTypeList.Remove(AtkType.Range);
+        if (!enabled)
+            atkTypeList.Remove(AtkType.Range);
     }
 
     // Next available attack type

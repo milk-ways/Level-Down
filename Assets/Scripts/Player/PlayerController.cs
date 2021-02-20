@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool dashEnabled = true;     // true:can dash
     public bool jumpEnabled = true;     // true:can super jump
     [SerializeField] bool immortal = false;              // Can't be damaged when immortal
+    public GameObject banPanel;         // Temp
 
     // Player movement related
     [Header("Movement")]
@@ -58,6 +59,9 @@ public class PlayerController : MonoBehaviour
         playerAtk = GetComponent<PlayerAttack>();
 
         dashTime = defaultDashTime;     // Reset dash time
+
+        dashEnabled = GameController.instance.dashEnabled;
+        jumpEnabled = GameController.instance.jumpEnabled;
     }
 
     void FixedUpdate()
@@ -178,6 +182,12 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             TakeDamage(collision.GetComponent<EnemyController>().damage);
+        }
+
+        // Temp
+        if (collision.tag == "Finish")
+        {
+            banPanel.SetActive(true);
         }
     }
 

@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     // Weapon change
     public Image weapon;
     public Sprite[] weaponTypes;
+    [SerializeField] Image[] banUI; //좌측하단 UI
 
     // Skill cooltime
     [SerializeField] Image skill;
@@ -31,6 +32,17 @@ public class UIController : MonoBehaviour
         // Skill cooltime setting (using PlayerAttack.cs)
         currentTime = playerAttack.skillCoolTime;
         delayTime = playerAttack.skillCoolTime;
+
+        if (GameController.instance.jumpEnabled)
+            banUI[0].enabled = false;
+        if (GameController.instance.dashEnabled)
+            banUI[1].enabled = false;
+        if (GameController.instance.meleeEnabled)
+            banUI[2].enabled = false;
+        if (GameController.instance.rangedEnabled)
+            banUI[3].enabled = false;
+        if (GameController.instance.skillEnabled)
+            banUI[4].enabled = false;
     }
  
     void Update()
