@@ -4,43 +4,40 @@ using UnityEngine;
 
 public class Octopus : EnemyController
 {
-    [Header("Setting")]
-    public float rayLength;
+    [Header("Attack")]
     public LayerMask playerLayer;
-    public float bulletSpeed;
-    public float waitTime;
-    public GameObject bullet;
+    public GameObject bulletGO;
+    public Transform playerCheckPos;
+    public Vector2 playerCheckSize;
+    bool playerCheck = false;
+    bool attacking = false;
 
-    [Header("State")]
-    public bool waiting;        //waiting for attack
-    Rigidbody2D bulletRigid;
-    private void Start()
+    void Update()
     {
-        bulletRigid = bullet.GetComponent<Rigidbody2D>();
-    }
-    private void Update()
-    {
-        if(!waiting)                //doesn't sense during waiting
+        playerCheck = Physics2D.OverlapBox(playerCheckPos.position, playerCheckSize, 0, playerLayer); // Check if player is on platform
+        
+        if (playerCheck && !attacking)          // Player above the platform and not yet attacking
         {
-            sense();
+            Attack();
         }
     }
 
-    void attackPlayer()
+    void Shoot()
     {
-        waiting = false;
-        Rigidbody2D bullet_pre = Instantiate(bulletRigid, transform.position, Quaternion.Euler(0, 0, 0));
-        bullet_pre.velocity = Vector2.up * bulletSpeed;
-        Destroy(bullet_pre.gameObject, 1f);
+        GameObject bullet = Instantiate(bulletGO, transform.position, Quaternion.Euler(0, 0, 0));
+        Destroy(bullet, 1f);
+        attacking = false;
     }
-    void sense()
+
+    void Attack()
     {
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, Vector2.up, 5f, playerLayer);
-        if (hit.collider != null)
-        {
-            waiting = true;
-            Invoke("attackPlayer",3f);
-        }
+        attacking = true;
+        Invoke("Shoot", 3f);     // Shoot after 3 seconds
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(playerCheckPos.position, new Vector3(playerCheckSize.x, playerCheckSize.y, 0));      // Ground check gizmo
     }
 }

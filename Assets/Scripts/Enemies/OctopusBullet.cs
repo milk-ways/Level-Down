@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class OctopusBullet : MonoBehaviour
 {
+    public float speed;
     public int damage;
-    Collider2D bulletCollider;
-    private void Start()
-    {
-        bulletCollider = GetComponent<Collider2D>();
 
+    Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.velocity = Vector2.up * speed;
     }
 
-    private void Update()
-    {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
        if( collision.tag == "Player")
-        {
+       {
             collision.GetComponent<PlayerController>().TakeDamage(damage);
             Destroy(gameObject);
-        }
+       }
     }
 }

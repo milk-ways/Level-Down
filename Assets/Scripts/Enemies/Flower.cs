@@ -5,9 +5,9 @@ using UnityEngine;
 public class Flower : EnemyController
 {
     [Header("Sight")]
-    public float appearSightX;      // X축 시야 범위
-    // public float appearSightY;      // Y축 시야
-    public float hideSightX;        // 플레이어가 근접할 시 숨는다.
+    public LayerMask playerLayer;
+    public float appearSight;       // Appear sight
+    public float hideSight;         // Hide sight
     bool playerInSight = false;     // Player is in sight
     bool playerInhidesight = false; // Player is inside hide sight
 
@@ -22,18 +22,16 @@ public class Flower : EnemyController
 
     // Component
     PlayerController player;
-    SightController sightController;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        sightController = GetComponent<SightController>();
     }
 
     void Update()
     {
-        playerInSight = sightController.PlayerInSight(Vector2.right, appearSightX) || sightController.PlayerInSight(Vector2.left, appearSightX);
-        playerInhidesight = sightController.PlayerInSight(Vector2.right, hideSightX) || sightController.PlayerInSight(Vector2.left, hideSightX);
+        playerInSight = Physics2D.OverlapCircle(transform.position, appearSight, playerLayer);
+        playerInhidesight = Physics2D.OverlapCircle(transform.position, hideSight, playerLayer);
 
         if (!playerInSight || playerInhidesight)
             Hide();     // Stay hiding if player is not in sight
@@ -78,5 +76,12 @@ public class Flower : EnemyController
     void Offense()
     {
         Instantiate(flowerBullet, transform.position, transform.rotation);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, appearSight);
+        Gizmos.DrawWireSphere(transform.position, hideSight);
     }
 }
