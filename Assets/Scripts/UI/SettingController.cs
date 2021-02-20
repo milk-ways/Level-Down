@@ -9,6 +9,7 @@ public class SettingController : MonoBehaviour
     public GameObject keyPanel;
     public Text[] keyText;              // Key texts
     public string[] keyNames;           // Name of the keys (Up, Down, Left, Right, Jump, Dash, Swap, Fire1, Fire2)
+    bool esc;
 
     string changeKeyName = "";
     bool changeKey = false;
@@ -16,14 +17,14 @@ public class SettingController : MonoBehaviour
     void Start()
     {
         ShowKeyNames();
-        keyPanel.SetActive(false);              //임시
-        //settingPanel.SetActive(false);        //임시
+        //keyPanel.SetActive(false);              //임시
+        gameObject.SetActive(false);        //임시
     }
 
     void OnGUI()
     {
         Event keyEvent = Event.current;
-        if (keyEvent.isKey && changeKey)        // Key is pressed and need to change key
+        if (keyEvent.isKey && changeKey &&keyEvent.keyCode != KeyCode.Escape)        // Key is pressed and need to change key
         {
             KeyCode pressedKey = keyEvent.keyCode;
             // Check if pressed key is being used
@@ -40,6 +41,21 @@ public class SettingController : MonoBehaviour
 
             keyPanel.SetActive(false);
             changeKey = false;
+        }
+    }
+    private void Update()
+    {
+        esc = Input.GetKeyDown(KeyCode.Escape);
+        if (changeKey && esc)
+        {
+            keyPanel.SetActive(false);
+            changeKey = false;
+            esc = false;
+        }
+        else if(!changeKey && esc)
+        {
+            exitSetting();
+            esc = false;
         }
     }
 
