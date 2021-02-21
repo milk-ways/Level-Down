@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public class SettingController : MonoBehaviour
 {
+    [Header("Keybinds")]
     public GameObject keyPanel;
     public Text[] keyText;              // Key texts
     public string[] keyNames;           // Name of the keys (Up, Down, Left, Right, Jump, Dash, Swap, Fire1, Fire2)
-    bool esc;
-
     string changeKeyName = "";
-    bool changeKey = false;
+    [SerializeField] bool changeKey = false;
+
+    [Header("Audio")]
+    public AudioMixer bgAudioMixer;
 
     void Start()
     {
@@ -43,19 +46,19 @@ public class SettingController : MonoBehaviour
             changeKey = false;
         }
     }
-    private void Update()
+
+    void Update()
     {
-        esc = Input.GetKeyDown(KeyCode.Escape);
-        if (changeKey && esc)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            keyPanel.SetActive(false);
-            changeKey = false;
-            esc = false;
-        }
-        else if(!changeKey && esc)
-        {
-            exitSetting();
-            esc = false;
+            if (changeKey)
+            {
+                keyPanel.SetActive(false);
+            }
+            else
+            {
+                exitSetting();
+            }
         }
     }
 
@@ -72,6 +75,11 @@ public class SettingController : MonoBehaviour
         keyPanel.SetActive(true);
         changeKey = true;               // Need to change key
         changeKeyName = EventSystem.current.currentSelectedGameObject.name;
+    }
+
+    public void SetBGMusicVolume(float volume)
+    {
+        bgAudioMixer.SetFloat("Volume", volume);
     }
 
     public void exitSetting()

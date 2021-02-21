@@ -506,21 +506,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 468342043}
     m_Modifications:
-    - target: {fileID: 7362647309419274167, guid: d19aaa09c0b6e494f9b8f3f788bd2736,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1d9debed623629e4dbc620b79e9fc775,
-        type: 3}
+    - target: {fileID: 620575068, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 620575068, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044999234, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044999234, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044999234, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7362647310466771043, guid: d19aaa09c0b6e494f9b8f3f788bd2736,
         type: 3}
       propertyPath: m_Name
       value: SettingPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7362647310466771043, guid: d19aaa09c0b6e494f9b8f3f788bd2736,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7362647310466771868, guid: d19aaa09c0b6e494f9b8f3f788bd2736,
         type: 3}
