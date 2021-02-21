@@ -228,7 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  damageImmortalTime: 1
   dashEnabled: 1
   jumpEnabled: 1
   immortal: 0
@@ -255,6 +254,9 @@ MonoBehaviour:
   wasGrounded: 0
   deathParticle: {fileID: 1252112650767536656, guid: a98ab4d6a0c444e829122b60058dcbb1,
     type: 3}
+  damageColor: {r: 1, g: 0.50980395, b: 0.50980395, a: 1}
+  damageImmortalTime: 1
+  alphaTime: 0
 --- !u!114 &3424734350823569907
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,39 +6,54 @@ public class Goblin : EnemyController
 {
     [Header("Movement")]
     public float speed;
-    public int dir = 0;
+    bool isMoving = false;
 
     [Header("Attack")]
     public float sightRadius;
     public float attackRadius;
+    public float attackDelay;
     bool playerInSight = false;
     bool playerInAtk = false;
+    bool attackReady = true;
 
     // Components
     PlayerController player;
     SightController sightController;
     Rigidbody2D rb;
+    Animator anim;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         if (playerInAtk)         // If player is inside attack radius
         {
-            rb.velocity = Vector2.zero;
-            player.TakeDamage(damage);
+            isMoving = false;
+            rb.velocity = Vector2.zero;     // Stop moving
+
+            if (attackReady)        // If can attack
+            {
+                attackReady = false;
+                anim.SetTrigger("Attack");
+                StartCoroutine(AttackDelay());      // Match attack motion
+            }
         }
         else if (playerInSight)     // If player is inside sight radius
         {
-            rb.velocity = new Vector2(dir * speed, 0);
+            isMoving = true;
+            int dir = MoveDir();
+            rb.velocity = new Vector2(dir * speed, 0);      // Move to player
         }
         else
         {
+            attackReady = true;     // Attack ready if player outside the range
+            isMoving = false;
             rb.velocity = Vector2.zero;
         }
     }
@@ -48,11 +63,34 @@ public class Goblin : EnemyController
         playerInSight = sightController.PlayerInSight(Vector2.right, sightRadius) || sightController.PlayerInSight(Vector2.left, sightRadius);
         playerInAtk = sightController.PlayerInSight(Vector2.right, attackRadius) || sightController.PlayerInSight(Vector2.left, attackRadius);
 
+        anim.SetBool("IsMoving", isMoving);
+    }
+
+    int MoveDir()
+    {
         if (player.transform.position.x > transform.position.x)
-            dir = 1;
-        else if (player.transform.position.x < transform.position.x)
-            dir = -1;
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return 1;
+        }
         else
-            dir = 0;
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return -1;
+        }
+    }
+
+    // Match attack with motion
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        player.TakeDamage(damage);      // Attack
+        StartCoroutine(AttackReady());  // Reset attackReady after time
+    }
+
+    IEnumerator AttackReady()
+    {
+        yield return new WaitForSeconds(attackDelay);
+        attackReady = true;
     }
 }

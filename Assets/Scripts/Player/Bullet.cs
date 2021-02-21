@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         {
             if (target == null)
             {
-                target = collision.gameObject;                                      // Get first enemy unit
+                target = collision.gameObject;                                     // Get first enemy unit
                 target.GetComponent<EnemyController>().TakeDamage(damage);          // Give damage
             }
 

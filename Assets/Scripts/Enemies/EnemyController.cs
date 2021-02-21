@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log(gameObject.transform.name + " Recieved damage");
 
             hp -= damage;
+            Camera.main.GetComponent<CamShake>().BigRand();
 
             if (hp <= 0)
             {

@@ -22,7 +22,7 @@ public class Cow : EnemyController
     SightController sightController;
     Rigidbody2D rb;
     Animator anim;
-    //Animator cameraAnim;
+    CamShake camShake;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class Cow : EnemyController
         sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();            // Cow animator
-        //cameraAnim = GameObject.FindGameObjectWithTag("Camera").GetComponent<Animator>();       // Camera animator
+        camShake = Camera.main.GetComponent<CamShake>();       // Camera animator
     }
 
     void Update()
@@ -38,7 +38,9 @@ public class Cow : EnemyController
         playerInSight = (sightController.PlayerInSight(Vector2.right, sightDistance) || sightController.PlayerInSight(Vector2.left, sightDistance));
 
         if (playerInSight)
+        {
             isMad = true;
+        }
 
         if (isMad && playerInSight && !hitPlayer)        // Dash to player
         {
@@ -87,9 +89,9 @@ public class Cow : EnemyController
         if(collision.transform.tag == "Player")
         {
             //if (MoveDir() > 0)  // Player on right
-            //    cameraAnim.SetTrigger("SmallRight");
+            //    camShake.SmallR();
             //else
-            //    cameraAnim.SetTrigger("SmallLeft");
+            //    camShake.SmallR();
 
             rb.velocity = Vector2.zero;
             hitPlayer = true;

@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     // Player basic settings
     [Header("Basic Settings")]
     public int hp;
-    public float damageImmortalTime;    // Become immortal when attacked
     public bool dashEnabled = true;     // true:can dash
     public bool jumpEnabled = true;     // true:can super jump
     [SerializeField] bool immortal = false;              // Can't be damaged when immortal
@@ -47,19 +46,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isGrounded;               // True if player on ground
     [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
 
-    [Header("Death")]
-    public GameObject deathParticle;
+    [Header("Damage")]
+    public GameObject deathParticle;        // Death particle when dead
+    public Color damageColor;
+    public float damageImmortalTime;    // Become immortal when attacked
+    public float alphaTime;                 // Time for flickering when damaged
 
     // Components
     Rigidbody2D rigidBody;
+    SpriteRenderer sprite;
     Animator anim;
     PlayerAttack playerAtk;
+    CamShake camShake;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         playerAtk = GetComponent<PlayerAttack>();
+        camShake = Camera.main.GetComponent<CamShake>();
 
         dashTime = defaultDashTime;     // Reset dash time
 
@@ -200,21 +206,27 @@ public class PlayerController : MonoBehaviour
         if (!immortal)
         {
             hp -= damage;
-            immortal = true;        // Set immortal after taking damage
-            Debug.Log("Player damage taken");
-            StartCoroutine(DamageImmortal(damageImmortalTime));
 
             // HP goes below 0
             if (hp <= 0)
             {
                 Die();
             }
+            else
+            {
+                sprite.color = damageColor;
+                immortal = true;        // Set immortal after taking damage
+                Debug.Log("Player damage taken");
+                StartCoroutine(DamageImmortal());     // Reset immortal after time
+                camShake.SmallRand();       // Camera shake
+            }
         }
     }
 
-    IEnumerator DamageImmortal(float time)
+    IEnumerator DamageImmortal()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(damageImmortalTime);
+        sprite.color = Color.white;
         immortal = false;
     }
 
@@ -229,6 +241,7 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Instantiate(deathParticle, transform.position, Quaternion.identity);
+        camShake.PlayerDie();
         Debug.Log("Dead");
         gameObject.SetActive(false);
     }
