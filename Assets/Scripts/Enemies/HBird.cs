@@ -46,6 +46,7 @@ public class HBird : EnemyController
         yield return new WaitForSeconds(downTime);
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(attackWaitTime);
+        anim.SetTrigger("Attack");
         rb.velocity = new Vector2(attackSpeed * dir, 0);
 
     }

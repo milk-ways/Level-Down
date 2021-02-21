@@ -12,9 +12,9 @@ public class Flower : EnemyController
     bool playerInhidesight = false; // Player is inside hide sight
 
     [Header("Sprite")]
-    [SerializeField] Sprite appearSprite;
-    [SerializeField] Sprite hideSprite;
-    [SerializeField] bool isAppear;     // True: appear, false: hide
+    //[SerializeField] Sprite appearSprite;
+    //[SerializeField] Sprite hideSprite;
+    [SerializeField] bool isAppear;     // True: appeared, false: hiding
 
     [Header("Offense")]
     public int offenseDelay;
@@ -22,10 +22,15 @@ public class Flower : EnemyController
 
     // Component
     PlayerController player;
+    Animator anim;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
+
+        // Start hiding
+        Hide();
     }
 
     void Update()
@@ -33,7 +38,7 @@ public class Flower : EnemyController
         playerInSight = Physics2D.OverlapCircle(transform.position, appearSight, playerLayer);
         playerInhidesight = Physics2D.OverlapCircle(transform.position, hideSight, playerLayer);
 
-        if (!playerInSight || playerInhidesight)
+        if (isAppear && (!playerInSight || playerInhidesight))
             Hide();     // Stay hiding if player is not in sight
 
         if (!isAppear)
@@ -51,8 +56,9 @@ public class Flower : EnemyController
 
     void Appear(int dir)
     {
+        anim.SetTrigger("Show");
         isAppear = true;
-        gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;        // Change to appear sprite
+        //gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;        // Change to appear sprite
 
         // Set direction depending on player location
         if (dir == 1)
@@ -66,8 +72,9 @@ public class Flower : EnemyController
 
     void Hide()
     {
+        anim.SetTrigger("Hide");
         isAppear = false;
-        gameObject.GetComponent<SpriteRenderer>().sprite = hideSprite;      // Change to hide sprite
+        //gameObject.GetComponent<SpriteRenderer>().sprite = hideSprite;      // Change to hide sprite
         getDamage = false;          // Invulnerable
         CancelInvoke("Offense");    // Stop attacking
     }

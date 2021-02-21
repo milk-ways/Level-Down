@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7775662165483092092}
   - component: {fileID: 7775662165483092091}
   - component: {fileID: 7775662165483092088}
+  - component: {fileID: 936943861}
   m_Layer: 9
   m_Name: Flower
   m_TagString: Enemy
@@ -72,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 303c5016520f546749cc729b83c2d21b, type: 3}
+  m_Sprite: {fileID: -2853081450016545578, guid: 77f91e70ddbbd4fc2a33ff61d6345181,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,9 +131,26 @@ MonoBehaviour:
     m_Bits: 1024
   appearSight: 5
   hideSight: 2
-  appearSprite: {fileID: 21300000, guid: 303c5016520f546749cc729b83c2d21b, type: 3}
-  hideSprite: {fileID: 21300000, guid: 3f608909706387b44a495ef63be52478, type: 3}
   isAppear: 0
   offenseDelay: 1
   flowerBullet: {fileID: 5427391495902819903, guid: 09f35d97a03c9b04885006753f4c1941,
     type: 3}
+--- !u!95 &936943861
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775662165483092087}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 778a7a697ba8e4810a61fa84c1e2c6b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

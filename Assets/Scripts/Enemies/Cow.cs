@@ -21,14 +21,16 @@ public class Cow : EnemyController
     GameObject player;
     SightController sightController;
     Rigidbody2D rb;
-    Animator cameraAnim;
+    Animator anim;
+    //Animator cameraAnim;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
-        cameraAnim = GameObject.FindGameObjectWithTag("Camera").GetComponent<Animator>();
+        anim = GetComponent<Animator>();            // Cow animator
+        //cameraAnim = GameObject.FindGameObjectWithTag("Camera").GetComponent<Animator>();       // Camera animator
     }
 
     void Update()
@@ -37,6 +39,18 @@ public class Cow : EnemyController
 
         if (playerInSight)
             isMad = true;
+
+        if (isMad && playerInSight && !hitPlayer)        // Dash to player
+        {
+            int dir = MoveDir();
+            anim.SetTrigger("Attack");
+            speed = madSpeed;
+            rb.velocity = new Vector2(dir * speed, rb.velocity.y);        // Run to player
+        }
+        else
+        {
+            speed = normalSpeed;
+        }
 
         if (!playerInSight && isMad && returnNormalTimer <= 0)
         {
@@ -48,34 +62,34 @@ public class Cow : EnemyController
             returnNormalTimer -= Time.deltaTime;
         }
 
-        if (isMad && !hitPlayer)
-        {
-            speed = madSpeed;
-            rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);        // Run to player
-        }
-        else
-        {
-            speed = normalSpeed;
-        }
+        anim.SetBool("HitPlayer", hitPlayer);
+        anim.SetBool("IsMad", isMad);
     }
 
     int MoveDir()
     {
         if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
             return 1;
+        }
         else
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
             return -1;
+        }
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Hit player
         if(collision.transform.tag == "Player")
         {
-            if (MoveDir() > 0)  // Player on right
-                cameraAnim.SetTrigger("SmallRight");
-            else
-                cameraAnim.SetTrigger("SmallLeft");
+            //if (MoveDir() > 0)  // Player on right
+            //    cameraAnim.SetTrigger("SmallRight");
+            //else
+            //    cameraAnim.SetTrigger("SmallLeft");
 
             rb.velocity = Vector2.zero;
             hitPlayer = true;

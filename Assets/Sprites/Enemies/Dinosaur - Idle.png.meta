@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: de93919ca1c364a78bc80197b3b5dd62
+guid: 9fae386a4a26a48cfa4be20ead5bcb5f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8399834860012524574
-    second: Dinosaur - Idle_0
+      213: -3187875618433125209
+    second: Dinosaur_0
   - first:
-      213: 4041105160809063592
-    second: Dinosaur - Idle_1
+      213: 3620823182582022009
+    second: Dinosaur_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dinosaur - Idle_0
+      name: Dinosaur_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e145dfa0d45329470800000000000000
-      internalID: 8399834860012524574
+      spriteID: 7a43a2fd30462c3d0800000000000000
+      internalID: -3187875618433125209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dinosaur - Idle_1
+      name: Dinosaur_1
       rect:
         serializedVersion: 2
         x: 40
@@ -164,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a4a50aabb3e41830800000000000000
-      internalID: 4041105160809063592
+      spriteID: 97ffc48208fbf3230800000000000000
+      internalID: 3620823182582022009
       vertices: []
       indices: 
       edges: []
