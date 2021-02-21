@@ -253,6 +253,8 @@ MonoBehaviour:
   groundSize: {x: 0.5, y: 0.05}
   isGrounded: 0
   wasGrounded: 0
+  deathParticle: {fileID: 1252112650767536656, guid: a98ab4d6a0c444e829122b60058dcbb1,
+    type: 3}
 --- !u!114 &3424734350823569907
 MonoBehaviour:
   m_ObjectHideFlags: 0

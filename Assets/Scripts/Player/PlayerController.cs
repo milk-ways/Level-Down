@@ -46,7 +46,10 @@ public class PlayerController : MonoBehaviour
     public Vector2 groundSize;                      // Ground check width x length
     [SerializeField] bool isGrounded;               // True if player on ground
     [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
-        
+
+    [Header("Death")]
+    public GameObject deathParticle;
+
     // Components
     Rigidbody2D rigidBody;
     Animator anim;
@@ -200,6 +203,12 @@ public class PlayerController : MonoBehaviour
             immortal = true;        // Set immortal after taking damage
             Debug.Log("Player damage taken");
             StartCoroutine(DamageImmortal(damageImmortalTime));
+
+            // HP goes below 0
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -215,6 +224,13 @@ public class PlayerController : MonoBehaviour
         faceDir *= -1;
 
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    void Die()
+    {
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
+        Debug.Log("Dead");
+        gameObject.SetActive(false);
     }
 
     void OnDrawGizmos()
