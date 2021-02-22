@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (!immortal)
+        if (!immortal && damage > 0)
         {
             hp -= damage;
 

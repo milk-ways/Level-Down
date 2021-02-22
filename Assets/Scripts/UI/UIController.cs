@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour
 {
     // Hp UI
     public Image[] heart;
-    private int heartnum = 5;
+    int heartnum;
 
     // Weapon change
     public Image weapon;
@@ -33,6 +33,7 @@ public class UIController : MonoBehaviour
         currentTime = playerAttack.skillCoolTime;
         delayTime = playerAttack.skillCoolTime;
 
+        // Ban UI
         if (GameController.instance.jumpEnabled)
             banUI[0].enabled = false;
         if (GameController.instance.dashEnabled)
@@ -43,8 +44,13 @@ public class UIController : MonoBehaviour
             banUI[3].enabled = false;
         if (GameController.instance.skillEnabled)
             banUI[4].enabled = false;
+
+        // Heart settings
+        StartCoroutine(HeartShine());
+        heartnum = heart.Length;
+
     }
- 
+
     void Update()
     {
         //using skill
@@ -96,5 +102,16 @@ public class UIController : MonoBehaviour
             weapon.sprite = weaponTypes[1];
         else
             weapon.sprite = weaponTypes[2];
+    }
+
+    IEnumerator HeartShine()
+    {
+        float rand = Random.Range(5, 10);
+        yield return new WaitForSeconds(rand);
+        for (int i = 0; i < heart.Length; i++)
+        {
+            heart[i].GetComponent<Animator>().SetTrigger("Shine");
+        }
+        StartCoroutine(HeartShine());
     }
 }

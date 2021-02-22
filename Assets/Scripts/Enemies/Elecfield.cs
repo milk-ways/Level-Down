@@ -7,6 +7,7 @@ public class Elecfield : EnemyController
     [Header("Spark settings")]
     public GameObject spark;
     public float activeTime;            // Time for setting spark on/off
+    int damageVal;
     bool isActive = false;                      // Active: spark on
 
     Animator anim;
@@ -15,6 +16,8 @@ public class Elecfield : EnemyController
     {
         anim = GetComponent<Animator>();
 
+        damageVal = damage;
+
         InvokeRepeating("SetActive", activeTime, activeTime);
     }
 
@@ -22,6 +25,11 @@ public class Elecfield : EnemyController
     {
         isActive = !isActive;       // on/off
         spark.SetActive(!spark.activeSelf);
+
+        if (isActive)
+            damage = damageVal;
+        else
+            damage = 0;
 
         anim.SetBool("IsActive", isActive);
     }

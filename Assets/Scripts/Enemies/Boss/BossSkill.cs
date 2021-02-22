@@ -43,4 +43,13 @@ public class BossSkill : MonoBehaviour
         shoot = true;
         Destroy(gameObject, 5f);        // Destroy after 5 sec
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerController>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
 }
