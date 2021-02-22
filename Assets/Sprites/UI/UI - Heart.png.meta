@@ -4,31 +4,58 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -1815551329071265782
-    second: UI - Heart_0
+    second: UI - Heart_L0
   - first:
       213: -4508451373106393776
-    second: UI - Heart_1
+    second: UI - Heart_R0
   - first:
       213: 8034261909394437395
-    second: UI - Heart_2
+    second: UI - Heart_L1
   - first:
       213: -6338557517308338853
-    second: UI - Heart_3
+    second: UI - Heart_R1
   - first:
       213: -5257627049052403282
-    second: UI - Heart_4
+    second: UI - Heart_L2
   - first:
       213: -3226127569062402752
-    second: UI - Heart_5
+    second: UI - Heart_R2
   - first:
       213: 3468317047789869180
-    second: UI - Heart_6
+    second: UI - Heart_L3
   - first:
       213: -3809245255764070864
-    second: UI - Heart_7
+    second: UI - Heart_R3
   - first:
       213: 1799542743802989216
-    second: UI - Heart_8
+    second: UI - Heart_L4
+  - first:
+      213: -5632253293214936462
+    second: UI - Heart_R4
+  - first:
+      213: -8832011083533166277
+    second: UI - Heart_L5
+  - first:
+      213: 3527880400139745730
+    second: UI - Heart_R5
+  - first:
+      213: -6286022753969878797
+    second: UI - Heart_L6
+  - first:
+      213: 7095254790039620422
+    second: UI - Heart_R6
+  - first:
+      213: 1475754501990793013
+    second: UI - Heart_L7
+  - first:
+      213: -1388330046673830759
+    second: UI - Heart_R7
+  - first:
+      213: 6365084957966893379
+    second: UI - Heart_L8
+  - first:
+      213: 6887889321743700611
+    second: UI - Heart_R8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -150,12 +177,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI - Heart_0
+      name: UI - Heart_L0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,12 +198,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_1
+      name: UI - Heart_R0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -192,12 +219,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_2
+      name: UI - Heart_L1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -213,12 +240,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_3
+      name: UI - Heart_R1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 24
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -234,12 +261,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_4
+      name: UI - Heart_L2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -255,12 +282,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_5
+      name: UI - Heart_R2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 40
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -276,12 +303,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_6
+      name: UI - Heart_L3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 48
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -297,12 +324,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_7
+      name: UI - Heart_R3
       rect:
         serializedVersion: 2
-        x: 112
+        x: 56
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -318,12 +345,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI - Heart_8
+      name: UI - Heart_L4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 0
-        width: 16
+        width: 8
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -334,6 +361,195 @@ TextureImporter:
       bones: []
       spriteID: 0aa4282579249f810800000000000000
       internalID: 1799542743802989216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_R4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27256e4887736d1b0800000000000000
+      internalID: -5632253293214936462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_L5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3951b9a6b46e6580800000000000000
+      internalID: -8832011083533166277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_R5
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c9746c488c85f030800000000000000
+      internalID: 3527880400139745730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_L6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f84a9b2c9f83c8a0800000000000000
+      internalID: -6286022753969878797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_R6
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b4337a3a8677260800000000000000
+      internalID: 7095254790039620422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_L7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f38d296eeea7410800000000000000
+      internalID: 1475754501990793013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_R7
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c3101ad29abbce0800000000000000
+      internalID: -1388330046673830759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_L8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3418cccab03555850800000000000000
+      internalID: 6365084957966893379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI - Heart_R8
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3825db238d2b69f50800000000000000
+      internalID: 6887889321743700611
       vertices: []
       indices: 
       edges: []
