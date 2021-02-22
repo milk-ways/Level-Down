@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
-  damage: 1
+  damage: 2
   getDamage: 1
   speed: 7
   sightRadius: 5

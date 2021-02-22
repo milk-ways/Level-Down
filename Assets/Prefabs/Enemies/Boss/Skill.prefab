@@ -164,6 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  damage: 1
+  damage: 2
   trail: {fileID: 1774314259355697985, guid: 06d2ab1b95a954378898066beaa49ba6, type: 3}
   spawnTime: 0.1
