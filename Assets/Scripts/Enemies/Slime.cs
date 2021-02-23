@@ -12,48 +12,69 @@ public class Slime : EnemyController
     public LayerMask layer;
 
     [Header("State")]
-    public bool seePlayer;
     public bool isMad;
     public bool canJump;
+    public bool isJumping;
     
     Rigidbody2D slimeRigid;
-    Collider2D slimeCollider;
     GameObject player;
-    private void Start()
+    Animator anim;
+
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sight = GetComponent<SightController>();
         slimeRigid = GetComponent<Rigidbody2D>();
-        slimeCollider = GetComponentInChildren<Collider2D>();
+        anim = GetComponent<Animator>();
     }
-    private void Update()
+
+    void Update()
     {
-        if(!isMad)
-        {
-            seePlayer = sight.PlayerInSight(Vector2.right, sightDistance) || sight.PlayerInSight(-Vector2.right, sightDistance);
-        }
-        if(seePlayer)
-        {
+        if (sight.PlayerInSight(Vector2.right, sightDistance) || sight.PlayerInSight(-Vector2.right, sightDistance))
             isMad = true;
-        }
+
         if(isMad)
         {
             Vector2 dir = (player.transform.position - transform.position).normalized;
-            slimeRigid.velocity = new Vector2(dir.x,0) * speed;
-            transform.right = new Vector2(dir.x, 0);
+            if (isJumping)
+                slimeRigid.velocity = new Vector2(MoveDir() * speed, slimeRigid.velocity.y);        // Move towards player
+            else
+                slimeRigid.velocity = new Vector2(0, slimeRigid.velocity.y);
+
             if (canJump)
             {
-                Jump();
+                StartCoroutine(Jump());
             }            
         }
+
         if(hp == 2 || hp == 1)
         {
             isMad = true;
         }
+
+        anim.SetBool("CanJump", canJump);
     }
 
-    void Jump()
+    int MoveDir()
     {
-        slimeRigid.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return 1;
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return -1;
+        }
+    }
+
+    IEnumerator Jump()
+    {
+        canJump = false;
+        anim.SetTrigger("Jump");
+        yield return new WaitForSeconds(0.3f);
+        isJumping = true;
+        slimeRigid.velocity = Vector2.up * jumpForce;
     }   
 }

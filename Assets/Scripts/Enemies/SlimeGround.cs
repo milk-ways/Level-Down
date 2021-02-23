@@ -5,18 +5,22 @@ using UnityEngine;
 public class SlimeGround : MonoBehaviour
 {
     Slime slime;
-    private void Awake()
+
+    void Start()
     {
-        slime = GameObject.Find("Slime").GetComponent<Slime>();
+        slime = transform.parent.GetComponent<Slime>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (!slime.canJump)
         {
             slime.canJump = true;
+            slime.isJumping = false;
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    void OnCollisionExit2D(Collision2D collision)
     {
         slime.canJump = false;
     }
