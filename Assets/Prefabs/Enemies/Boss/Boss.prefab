@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8128042228341052687}
   - component: {fileID: 8128042228341052686}
   - component: {fileID: 8128042228341052684}
+  - component: {fileID: 407541758}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Enemy
@@ -177,15 +178,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  damage: 0
-  getDamage: 0
-  speed: 0
+  damage: 2
+  getDamage: 1
+  speed: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
   attackPos: {fileID: 8128042229596194866}
   attackRadius: 0.75
-  patternTime: 0
+  patternTime: 5
   playerInAtkRange: 0
   isUsingPattern: 0
   pattern1DelayTime: 0.5
@@ -194,11 +195,33 @@ MonoBehaviour:
     type: 3}
   pattern2Pos: {fileID: 1127137744}
   pattern2DelayTime: 2
+  pattern3DelayTime: 1
   pattern4DelayTime: 2
   pattern4Damage: 3
   pattern5DelayTime: 1
   jumpForce: 30
-  repeat: 0
+  repeat: 3
+  pattern6DelayTime: 1
+  pattern7DelayTime: 1
+--- !u!95 &407541758
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8128042228341054195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1457b7730af749f0836848774307353, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8128042228911817985
 GameObject:
   m_ObjectHideFlags: 0

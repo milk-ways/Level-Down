@@ -60,11 +60,42 @@ public class BossController : EnemyController
     void Update()
     {
         playerInAtkRange = Physics2D.OverlapCircle(attackPos.position, attackRadius, playerLayer);
+
+        if (!isUsingPattern)
+        {
+            rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);        // Move towards player
+        }
+
+        if (playerInAtkRange)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+    }
+
+    int MoveDir()
+    {
+        float dis = player.transform.position.x - transform.position.x;
+
+        if (-0.05 < dis && dis < 0.05)
+            return 0;
+
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return 1;
+        }
+        else //(player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return -1;
+        }
     }
 
     IEnumerator StartPattern()
     {
         yield return new WaitForSeconds(patternTime);
+
+        rb.velocity = new Vector2(0, rb.velocity.y);        // Stop moving towards player
 
         int rand = Random.Range(1, 101);
 

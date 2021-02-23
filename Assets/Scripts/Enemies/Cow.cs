@@ -70,14 +70,19 @@ public class Cow : EnemyController
 
     int MoveDir()
     {
+        float dis = player.transform.position.x - transform.position.x;
+
+        if (-0.05 < dis && dis < 0.05)
+            return 0;
+
         if (player.transform.position.x > transform.position.x)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            transform.eulerAngles = new Vector3(0, 180, 0);
             return 1;
         }
-        else
+        else //(player.transform.position.x < transform.position.x)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            transform.eulerAngles = new Vector3(0, 0, 0);
             return -1;
         }
     }

@@ -43,15 +43,34 @@ public class Flower : EnemyController
 
         if (!isAppear)
             if (playerInSight && !playerInhidesight)        // Player is in sight and outside hide sight
-                Appear(Dir());
+                Appear(MoveDir());
     }
 
-    int Dir()
+    //int Dir()
+    //{
+    //    if (transform.position.x < player.transform.position.x)
+    //        return 1;       // Player on right
+    //    else
+    //        return -1;      // Player on left
+    //}
+
+    int MoveDir()
     {
-        if (transform.position.x < player.transform.position.x)
-            return 1;       // Player on right
-        else
-            return -1;      // Player on left
+        float dis = player.transform.position.x - transform.position.x;
+
+        if (-0.05 < dis && dis < 0.05)
+            return 0;
+
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return 1;
+        }
+        else //(player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return -1;
+        }
     }
 
     void Appear(int dir)
@@ -60,11 +79,11 @@ public class Flower : EnemyController
         isAppear = true;
         //gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;        // Change to appear sprite
 
-        // Set direction depending on player location
-        if (dir == 1)
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        else if (dir == -1)
-            transform.eulerAngles = new Vector3(0, 180, 0);
+        //// Set direction depending on player location
+        //if (dir == 1)
+        //    transform.eulerAngles = new Vector3(0, 0, 0);
+        //else if (dir == -1)
+        //    transform.eulerAngles = new Vector3(0, 180, 0);
 
         getDamage = true;           // Can get damage from player
         InvokeRepeating("Offense", offenseDelay, offenseDelay);     // Start attacking
