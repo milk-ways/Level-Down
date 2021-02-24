@@ -137,9 +137,7 @@ MonoBehaviour:
   bulletGO: {fileID: 9083294507040583941, guid: 29259148b8cc67a4c861eca07fa1c891,
     type: 3}
   playerCheckPos: {fileID: 7367804877027442037}
-  playerCheckSize: {x: 6.5, y: 0.5}
-  rayLength: 6
-  waiting: 0
+  playerCheckSize: {x: 6.5, y: 1.5}
 --- !u!61 &534829960
 BoxCollider2D:
   m_ObjectHideFlags: 0
