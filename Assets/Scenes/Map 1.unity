@@ -524,6 +524,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8065533733288963267, guid: d54cc1982a2794d3b883ad22c00167d3,
+        type: 3}
+      propertyPath: m_TagString
+      value: GamePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 8065533733288963276, guid: d54cc1982a2794d3b883ad22c00167d3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
