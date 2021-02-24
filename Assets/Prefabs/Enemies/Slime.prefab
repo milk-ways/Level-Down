@@ -293,9 +293,14 @@ MonoBehaviour:
   hp: 4
   damage: 2
   getDamage: 1
+  deathParticle: {fileID: 0}
+  slime_1: {fileID: 3426697491225457433, guid: 4de60130d9283f241bee4f5b285dbdcf, type: 3}
+  slime_2: {fileID: 3513683775108791177, guid: c680fcb3f1b2bc64eb880d33180d0d73, type: 3}
+  maxHp: 4
   sightDistance: 7.5
   speed: 4
   jumpForce: 8
+  divideForce: 6
   layer:
     serializedVersion: 2
     m_Bits: 256
