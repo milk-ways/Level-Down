@@ -17,6 +17,7 @@ public class Flower : EnemyController
     [SerializeField] bool isAppear;     // True: appeared, false: hiding
 
     [Header("Offense")]
+    public Transform attackPos;
     public int offenseDelay;
     [SerializeField] GameObject flowerBullet;
 
@@ -38,53 +39,39 @@ public class Flower : EnemyController
         playerInSight = Physics2D.OverlapCircle(transform.position, appearSight, playerLayer);
         playerInhidesight = Physics2D.OverlapCircle(transform.position, hideSight, playerLayer);
 
+        FaceDir();
+
         if (isAppear && (!playerInSight || playerInhidesight))
             Hide();     // Stay hiding if player is not in sight
 
         if (!isAppear)
             if (playerInSight && !playerInhidesight)        // Player is in sight and outside hide sight
-                Appear(MoveDir());
+                Appear();
     }
 
-    //int Dir()
-    //{
-    //    if (transform.position.x < player.transform.position.x)
-    //        return 1;       // Player on right
-    //    else
-    //        return -1;      // Player on left
-    //}
-
-    int MoveDir()
+    void FaceDir()
     {
         float dis = player.transform.position.x - transform.position.x;
 
-        if (-0.05 < dis && dis < 0.05)
-            return 0;
+        //if (-0.05 < dis && dis < 0.05)
+        //    return 0;
 
         if (player.transform.position.x > transform.position.x)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
-            return 1;
+            //return 1;
         }
         else //(player.transform.position.x < transform.position.x)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
-            return -1;
+            //return -1;
         }
     }
 
-    void Appear(int dir)
+    void Appear()
     {
         anim.SetTrigger("Show");
         isAppear = true;
-        //gameObject.GetComponent<SpriteRenderer>().sprite = appearSprite;        // Change to appear sprite
-
-        //// Set direction depending on player location
-        //if (dir == 1)
-        //    transform.eulerAngles = new Vector3(0, 0, 0);
-        //else if (dir == -1)
-        //    transform.eulerAngles = new Vector3(0, 180, 0);
-
         getDamage = true;           // Can get damage from player
         InvokeRepeating("Offense", offenseDelay, offenseDelay);     // Start attacking
     }
@@ -93,7 +80,6 @@ public class Flower : EnemyController
     {
         anim.SetTrigger("Hide");
         isAppear = false;
-        //gameObject.GetComponent<SpriteRenderer>().sprite = hideSprite;      // Change to hide sprite
         getDamage = false;          // Invulnerable
         CancelInvoke("Offense");    // Stop attacking
     }
@@ -101,7 +87,7 @@ public class Flower : EnemyController
     // Attack
     void Offense()
     {
-        Instantiate(flowerBullet, transform.position, transform.rotation);
+        Instantiate(flowerBullet, attackPos.position, transform.rotation);
     }
 
     void OnDrawGizmos()

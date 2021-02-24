@@ -13,6 +13,7 @@ public class Slime : EnemyController
 
     [Header("State")]
     public bool isMad;
+    public bool movingToPlayer;
     public bool canJump;
     public bool isJumping;
     
@@ -33,23 +34,25 @@ public class Slime : EnemyController
         if (sight.PlayerInSight(Vector2.right, sightDistance) || sight.PlayerInSight(-Vector2.right, sightDistance))
             isMad = true;
 
-        if(isMad)
-        {
-            Vector2 dir = (player.transform.position - transform.position).normalized;
-            if (isJumping)
-                slimeRigid.velocity = new Vector2(MoveDir() * speed, slimeRigid.velocity.y);        // Move towards player
-            else
-                slimeRigid.velocity = new Vector2(0, slimeRigid.velocity.y);
+        //isMad = (sight.PlayerInSight(Vector2.right, sightDistance) || sight.PlayerInSight(-Vector2.right, sightDistance));
+        int dir = MoveDir();
 
-            if (canJump)
-            {
-                StartCoroutine(Jump());
-            }            
-        }
-
-        if(hp == 2 || hp == 1)
+        if (hp == 2 || hp == 1)
         {
             isMad = true;
+        }
+
+        if (canJump)
+        {
+            StartCoroutine(Jump());
+        }
+
+        if (isMad)
+        {
+            if (isJumping)
+                slimeRigid.velocity = new Vector2(dir * speed, slimeRigid.velocity.y);        // Move towards player
+            else
+                slimeRigid.velocity = new Vector2(0, slimeRigid.velocity.y);
         }
 
         anim.SetBool("CanJump", canJump);
@@ -67,7 +70,7 @@ public class Slime : EnemyController
             transform.eulerAngles = new Vector3(0, 180, 0);
             return 1;
         }
-        else //(player.transform.position.x < transform.position.x)
+        else
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
             return -1;
@@ -80,6 +83,16 @@ public class Slime : EnemyController
         anim.SetTrigger("Jump");
         yield return new WaitForSeconds(0.3f);
         isJumping = true;
+        if (isMad)
+            movingToPlayer = true;
         slimeRigid.velocity = Vector2.up * jumpForce;
-    }   
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Sight
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + sightDistance, transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x - sightDistance, transform.position.y, transform.position.z));
+    }
 }

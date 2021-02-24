@@ -206,10 +206,12 @@ MonoBehaviour:
   hp: 2
   damage: 2
   getDamage: 1
+  deathParticle: {fileID: 0}
   speed: 7
+  stoppingDis: 0.5
   sightRadius: 5
   attackRadius: 1
-  attackDelay: 0.5
+  attackDelay: 2
 --- !u!114 &608390069
 MonoBehaviour:
   m_ObjectHideFlags: 0

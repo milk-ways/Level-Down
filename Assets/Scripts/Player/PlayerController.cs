@@ -187,13 +187,16 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("IsDashing", dash);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
             TakeDamage(collision.GetComponent<EnemyController>().damage);
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
         // Temp
         if (collision.tag == "Finish")
         {
@@ -216,7 +219,7 @@ public class PlayerController : MonoBehaviour
             {
                 sprite.color = damageColor;
                 immortal = true;        // Set immortal after taking damage
-                Debug.Log("Player damage taken");
+                //Debug.Log("Player damage taken");
                 StartCoroutine(DamageImmortal());     // Reset immortal after time
                 camShake.SmallRand();       // Camera shake
             }

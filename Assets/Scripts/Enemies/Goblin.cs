@@ -6,6 +6,7 @@ public class Goblin : EnemyController
 {
     [Header("Movement")]
     public float speed;
+    public float stoppingDis;
     bool isMoving = false;
 
     [Header("Attack")]
@@ -32,10 +33,12 @@ public class Goblin : EnemyController
 
     void FixedUpdate()
     {
+        int dir = MoveDir();
+
         if (playerInAtk)         // If player is inside attack radius
         {
             isMoving = false;
-            rb.velocity = Vector2.zero;     // Stop moving
+            rb.velocity = new Vector2(0, rb.velocity.y);     // Stop moving
 
             if (attackReady)        // If can attack
             {
@@ -44,17 +47,16 @@ public class Goblin : EnemyController
                 StartCoroutine(AttackDelay());      // Match attack motion
             }
         }
-        else if (playerInSight)     // If player is inside sight radius
+        else if (playerInSight && attackReady)     // If player is inside sight radius
         {
             isMoving = true;
-            int dir = MoveDir();
-            rb.velocity = new Vector2(dir * speed, 0);      // Move to player
+            rb.velocity = new Vector2(dir * speed, rb.velocity.y);      // Move to player
         }
         else
         {
-            attackReady = true;     // Attack ready if player outside the range
+            //attackReady = true;     // Attack ready if player outside the range
             isMoving = false;
-            rb.velocity = Vector2.zero;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -70,7 +72,7 @@ public class Goblin : EnemyController
     {
         float dis = player.transform.position.x - transform.position.x;
 
-        if (-0.05 < dis && dis < 0.05)
+        if (-stoppingDis < dis && dis < stoppingDis)
             return 0;
 
         if (player.transform.position.x > transform.position.x)
@@ -88,8 +90,9 @@ public class Goblin : EnemyController
     // Match attack with motion
     IEnumerator AttackDelay()
     {
-        yield return new WaitForSeconds(0.1f);
-        player.TakeDamage(damage);      // Attack
+        yield return new WaitForSeconds(0.2f);
+        if (playerInAtk)
+            player.TakeDamage(damage);      // Attack
         StartCoroutine(AttackReady());  // Reset attackReady after time
     }
 
@@ -97,5 +100,18 @@ public class Goblin : EnemyController
     {
         yield return new WaitForSeconds(attackDelay);
         attackReady = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Sight
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + sightRadius, transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x - sightRadius, transform.position.y, transform.position.z));
+
+        // Attack
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackRadius, transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x - attackRadius, transform.position.y, transform.position.z));
     }
 }

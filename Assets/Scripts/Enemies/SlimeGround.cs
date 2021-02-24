@@ -17,11 +17,12 @@ public class SlimeGround : MonoBehaviour
         {
             slime.canJump = true;
             slime.isJumping = false;
+            slime.movingToPlayer = false;
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        slime.canJump = false;
-    }
+    //void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    slime.canJump = false;
+    //}
 }
