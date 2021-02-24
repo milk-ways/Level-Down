@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     // Damage
     public int damage;
     public bool getDamage;             // true:get damage, false:immortal
+    public GameObject deathParticle;    // Death particles
 
     public virtual void TakeDamage(int damage)
     {
@@ -33,6 +34,8 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -1290,6 +1290,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8065533733288963267, guid: d54cc1982a2794d3b883ad22c00167d3,
+        type: 3}
+      propertyPath: m_TagString
+      value: GamePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 8065533733670399689, guid: d54cc1982a2794d3b883ad22c00167d3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1400,6 +1405,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8065533733670399692, guid: d54cc1982a2794d3b883ad22c00167d3,
+        type: 3}
+      propertyPath: m_TagString
+      value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065533734572046283, guid: d54cc1982a2794d3b883ad22c00167d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d54cc1982a2794d3b883ad22c00167d3, type: 3}
 --- !u!1001 &8128042228480085262
@@ -1412,8 +1427,20 @@ PrefabInstance:
     - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
         type: 3}
       propertyPath: hp
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
+        type: 3}
+      propertyPath: banUI
+      value: 
+      objectReference: {fileID: 4143805391670832286, guid: 8ee79ac7a01264dad8f32c4282aa680a,
+        type: 3}
+    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
+        type: 3}
+      propertyPath: deathParticle
+      value: 
+      objectReference: {fileID: 8714218873275264849, guid: 7a8186a53e07e4be196f54246f8fe138,
+        type: 3}
     - target: {fileID: 8128042228341054193, guid: 542502dcf34ef4561ab9a8edcad51b68,
         type: 3}
       propertyPath: m_RootOrder

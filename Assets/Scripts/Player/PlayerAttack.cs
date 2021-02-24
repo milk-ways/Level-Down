@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        uiController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+        uiController = GameObject.FindGameObjectWithTag("GamePanel").GetComponent<UIController>();
         anim = GetComponent<Animator>();
 
         reloadTimer = reloadTime; // Reset reload time
