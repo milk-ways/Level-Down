@@ -27,6 +27,7 @@ public class BossController : EnemyController
     public float pattern2DelayTime;
 
     [Header("Pattern 3")]
+    public GameObject pattern3;                     // Pattern 3 prefab
     public float pattern3DelayTime;
 
     [Header("Pattern 4")]
@@ -107,7 +108,7 @@ public class BossController : EnemyController
         int rand = Random.Range(1, 101);
 
         if (0 < rand && rand < 101)          // Between 1~20 (20%)
-            StartCoroutine(Pattern4());
+            StartCoroutine(Pattern3());
         else if (20 < rand && rand < 36)    // Between 21~35 (15%)
             StartCoroutine(Pattern2());
         else if (35 < rand && rand < 51)    // Between 36~50 (15%)
@@ -156,6 +157,7 @@ public class BossController : EnemyController
         isUsingPattern = true;          // Start pattern
         Debug.Log("pattern 3 (Purple)");
 
+        GameObject lightning = Instantiate(pattern3, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(pattern3DelayTime);
 
         yield return new WaitForSeconds(endPatternTime);

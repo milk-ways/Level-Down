@@ -137,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 338581797559790086, guid: 7be7d6d0a342c435a80e4791c0d814f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -229,6 +229,8 @@ MonoBehaviour:
     type: 3}
   pattern2Pos: {fileID: 1127137744}
   pattern2DelayTime: 2
+  pattern3: {fileID: 4213924283831978112, guid: 456a7f777008e40b4b223747acd14146,
+    type: 3}
   pattern3DelayTime: 1
   bullet: {fileID: 2006370919404355249, guid: 7fd7f05c1c8eb4289b55bc2d258446da, type: 3}
   pattern4Pos: {fileID: 1253635824}
