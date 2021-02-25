@@ -160,7 +160,7 @@ public class BossController : EnemyController
         isUsingPattern = true;          // Start pattern
         Debug.Log("pattern 3 (Purple)");
 
-        Instantiate(pattern3, pattern3Pos.position, Quaternion.identity);
+        Instantiate(pattern3, pattern3Pos.position, Quaternion.identity);       // Create purple effect
         yield return new WaitForSeconds(pattern3DelayTime);
 
         yield return new WaitForSeconds(endPatternTime);
@@ -176,7 +176,7 @@ public class BossController : EnemyController
 
         yield return new WaitForSeconds(pattern4DelayTime);
         anim.SetTrigger("Punch");
-        Instantiate(bullet, pattern4Pos.position, transform.rotation);
+        Instantiate(bullet, pattern4Pos.position, transform.rotation);          // Create punch effect
 
         yield return new WaitForSeconds(endPatternTime + punchMotionTime);
         anim.SetTrigger("PunchEnd");
