@@ -9,6 +9,7 @@ public class Cow : EnemyController
     public float normalSpeed;               // Normal speed
     public float madSpeed;                  // Mad speed
     float speed;                            // Move speed
+    int dir = 0;
 
     [Header("Attack")]
     public float sightDistance;
@@ -18,6 +19,8 @@ public class Cow : EnemyController
     [SerializeField] bool isMad = false;
     bool hitPlayer = false;
     bool isDashing = false;
+    public float dashTime;                  // Dash time if not hit player
+    [SerializeField] float dashTimer;
 
     // Component
     GameObject player;
@@ -31,14 +34,15 @@ public class Cow : EnemyController
         sightController = GetComponent<SightController>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();            // Cow animator
-
-        
     }
 
     void Update()
     {
         playerInSight = (sightController.PlayerInSight(Vector2.right, sightDistance) || sightController.PlayerInSight(Vector2.left, sightDistance));
-        int dir = MoveDir();
+        if (!isDashing)
+        {
+            dir = MoveDir();
+        }
 
         if (playerInSight)
         {
@@ -50,25 +54,23 @@ public class Cow : EnemyController
         {
             speed = madSpeed;
 
-            if (playerInSight)
+            if (!hitPlayer)
             {
-                if (!hitPlayer)
-                {
-                    anim.SetTrigger("Attack");
-                    isDashing = true;
-                    rb.velocity = new Vector2(dir * speed, rb.velocity.y);        // Run to player
-                }
-            }
-            else
-            {
-                if (isDashing)
+                anim.SetTrigger("Attack");
+                isDashing = true;
+                rb.velocity = new Vector2(dir * speed, rb.velocity.y);        // Run to player
+                dashTimer -= Time.deltaTime;
+                if (dashTimer <= 0)
                     StopDash();
-                
+            }
+            if (!playerInSight)
+            {
                 // Player outside of sight
                 if (returnNormalTimer <= 0)
                 {
                     returnNormalTimer = returnNormalTime;
                     isMad = false;
+                    StopDash();
                 }
                 else
                 {
@@ -79,6 +81,7 @@ public class Cow : EnemyController
         else
         {
             speed = normalSpeed;
+            rb.velocity = new Vector2(dir * speed, rb.velocity.y);        // Run to player
         }
 
         anim.SetBool("IsDashing", isDashing);
@@ -109,6 +112,7 @@ public class Cow : EnemyController
         rb.velocity = new Vector2(0, rb.velocity.y);
         hitPlayer = true;
         isDashing = false;
+        dashTimer = dashTime;
         StartCoroutine(AttackDelay());
     }
 
@@ -123,7 +127,7 @@ public class Cow : EnemyController
 
     IEnumerator AttackDelay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         hitPlayer = false;
     }
 
