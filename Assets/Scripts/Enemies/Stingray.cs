@@ -12,6 +12,10 @@ public class Stingray : EnemyController
     [SerializeField] bool isNormal = true;
     [SerializeField] bool isMad = false;
 
+    public LayerMask playerLayer;
+    public float sight;
+    [SerializeField] bool isMoving = false;
+
     // Components
     GameObject player;
     Rigidbody2D rb;
@@ -24,8 +28,18 @@ public class Stingray : EnemyController
         anim = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        if (!isMoving)
+        {
+            isMoving = Physics2D.OverlapCircle(transform.position, sight, playerLayer);
+        }
+    }
+
     void FixedUpdate()
     {
+        if (!isMoving)
+            return;
         // Go up when normal
         if (isNormal && transform.position.y < player.transform.position.y + upOffset)
         {
@@ -42,5 +56,11 @@ public class Stingray : EnemyController
             anim.SetBool("IsMad", isMad);
             rb.velocity = (player.transform.position - transform.position).normalized * speed;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sight);
     }
 }

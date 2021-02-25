@@ -144,6 +144,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  damage: 1
+  damage: 2
   getDamage: 1
-  speed: 6
+  deathParticle: {fileID: 0}
+  speed: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  sight: 9
+  playerWasFound: 0
+  moveDelay: 0.5
+  isMoving: 0

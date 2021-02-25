@@ -6,6 +6,12 @@ public class Bat : EnemyController
 {
     public float speed;
 
+    public LayerMask playerLayer;
+    public float sight;
+    [SerializeField] bool playerWasFound = false;
+    public float moveDelay;
+    [SerializeField] bool isMoving = false;
+
     GameObject player;
     Rigidbody2D rb;
 
@@ -13,17 +19,38 @@ public class Bat : EnemyController
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        speed = 0;
-        Invoke("Move", 0.5f);
+    }
+
+    void Update()
+    {
+        if (!playerWasFound)
+        {
+            playerWasFound = Physics2D.OverlapCircle(transform.position, sight, playerLayer);
+            if (playerWasFound)
+                InvokeMove();
+        }
     }
 
     void FixedUpdate()
     {
+        if (!isMoving)
+            return;
         rb.velocity = (player.transform.position - transform.position).normalized * speed;
+    }
+
+    void InvokeMove()
+    {
+        Invoke("Move", moveDelay);
     }
 
     void Move()
     {
-        speed = 6;
+        isMoving = true;
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, sight);
+    //}
 }
