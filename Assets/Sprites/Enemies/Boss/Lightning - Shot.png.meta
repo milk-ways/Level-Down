@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: a771c534f4f814621bc859315f040474
+guid: e063ffc00584b419a96926d6052c4cef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2774899589916555605
-    second: Boss - Punch Ready_0
+      213: -640192544344874750
+    second: Lightning - Shot_0
   - first:
-      213: -8935692816085758337
-    second: Boss - Punch Ready_1
-  - first:
-      213: -2093759525643137067
-    second: Boss - Punch Ready_2
-  - first:
-      213: 8982394063472474370
-    second: Boss - Punch Ready_3
-  - first:
-      213: -1745340774017758063
-    second: Boss - Punch Ready_4
+      213: -2022730915105072612
+    second: Lightning - Shot_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -76,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -88,7 +79,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,7 +91,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -112,7 +103,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -138,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss - Punch Ready_0
+      name: Lightning - Shot_0
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba685a766839d79d0800000000000000
-      internalID: -2774899589916555605
+      spriteID: 2016876d5449d17f0800000000000000
+      internalID: -640192544344874750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss - Punch Ready_1
+      name: Lightning - Shot_1
       rect:
         serializedVersion: 2
         x: 32
@@ -173,71 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7ec2332aba0ef380800000000000000
-      internalID: -8935692816085758337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss - Punch Ready_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5df43fcfdc871f2e0800000000000000
-      internalID: -2093759525643137067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss - Punch Ready_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 209bad95fcfd7ac70800000000000000
-      internalID: 8982394063472474370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss - Punch Ready_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19c8aa030dd47c7e0800000000000000
-      internalID: -1745340774017758063
+      spriteID: c1a16f813f0dde3e0800000000000000
+      internalID: -2022730915105072612
       vertices: []
       indices: 
       edges: []

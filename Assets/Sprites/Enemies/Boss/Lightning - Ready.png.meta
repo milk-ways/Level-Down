@@ -1,22 +1,37 @@
 fileFormatVersion: 2
-guid: a771c534f4f814621bc859315f040474
+guid: 3bfee5a473c8c48129eb228507f26cd6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2774899589916555605
-    second: Boss - Punch Ready_0
+      213: -1043331566527779594
+    second: Lightning - Ready_0
   - first:
-      213: -8935692816085758337
-    second: Boss - Punch Ready_1
+      213: -8377091983535104976
+    second: Lightning - Ready_1
   - first:
-      213: -2093759525643137067
-    second: Boss - Punch Ready_2
+      213: -2731677723007725125
+    second: Lightning - Ready_2
   - first:
-      213: 8982394063472474370
-    second: Boss - Punch Ready_3
+      213: -7649321056265140342
+    second: Lightning - Ready_3
   - first:
-      213: -1745340774017758063
-    second: Boss - Punch Ready_4
+      213: -280732244828984297
+    second: Lightning - Ready_4
+  - first:
+      213: -8283688230649878096
+    second: Lightning - Ready_5
+  - first:
+      213: -5249414674054515046
+    second: Lightning - Ready_6
+  - first:
+      213: -7144864863001583633
+    second: Lightning - Ready_7
+  - first:
+      213: 5552083442075020205
+    second: Lightning - Ready_8
+  - first:
+      213: 8467162573371363903
+    second: Lightning - Ready_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -76,7 +91,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -88,7 +103,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,7 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -112,7 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -124,7 +139,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -138,7 +153,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss - Punch Ready_0
+      name: Lightning - Ready_0
       rect:
         serializedVersion: 2
         x: 0
@@ -152,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba685a766839d79d0800000000000000
-      internalID: -2774899589916555605
+      spriteID: 6fce822d7775581f0800000000000000
+      internalID: -1043331566527779594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss - Punch Ready_1
+      name: Lightning - Ready_1
       rect:
         serializedVersion: 2
         x: 32
@@ -173,14 +188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7ec2332aba0ef380800000000000000
-      internalID: -8935692816085758337
+      spriteID: 03c1e9689379ebb80800000000000000
+      internalID: -8377091983535104976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss - Punch Ready_2
+      name: Lightning - Ready_2
       rect:
         serializedVersion: 2
         x: 64
@@ -194,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5df43fcfdc871f2e0800000000000000
-      internalID: -2093759525643137067
+      spriteID: bb1d64f7591271ad0800000000000000
+      internalID: -2731677723007725125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss - Punch Ready_3
+      name: Lightning - Ready_3
       rect:
         serializedVersion: 2
         x: 96
@@ -215,14 +230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 209bad95fcfd7ac70800000000000000
-      internalID: 8982394063472474370
+      spriteID: a878664f60728d590800000000000000
+      internalID: -7649321056265140342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss - Punch Ready_4
+      name: Lightning - Ready_4
       rect:
         serializedVersion: 2
         x: 128
@@ -236,8 +251,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19c8aa030dd47c7e0800000000000000
-      internalID: -1745340774017758063
+      spriteID: 71c68fdb283aa1cf0800000000000000
+      internalID: -280732244828984297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning - Ready_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9a70e617d6a0d80800000000000000
+      internalID: -8283688230649878096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning - Ready_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96f142aa255627b0800000000000000
+      internalID: -5249414674054515046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning - Ready_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fefde90234758dc90800000000000000
+      internalID: -7144864863001583633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning - Ready_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daba5307976fc0d40800000000000000
+      internalID: 5552083442075020205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightning - Ready_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f325841ef77618570800000000000000
+      internalID: 8467162573371363903
       vertices: []
       indices: 
       edges: []
