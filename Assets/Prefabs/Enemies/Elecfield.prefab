@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 2576051585442349959}
   - component: {fileID: 6917236509690389488}
   - component: {fileID: 1479781861027707894}
+  - component: {fileID: 481859551722452221}
   m_Layer: 9
   m_Name: Elecfield
   m_TagString: Enemy
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479781860774722445}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea84c7258ea09264b8bb26804d263971, type: 3}
   m_Name: 
@@ -218,6 +219,7 @@ MonoBehaviour:
   hp: 1
   damage: 2
   getDamage: 1
+  deathParticle: {fileID: 0}
   spark: {fileID: 883994298}
   activeTime: 1
 --- !u!95 &1479781861027707894
@@ -239,3 +241,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &481859551722452221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479781860774722445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1111ec99f85734246aec6b53b15694bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  activateRadius: 20

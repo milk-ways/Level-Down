@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 769956742804733789}
   - component: {fileID: 2583301568032200150}
   - component: {fileID: 8233243536439193620}
+  - component: {fileID: 265840083049133727}
   m_Layer: 9
   m_Name: Stingray
   m_TagString: Enemy
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6159892353249415047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 083b80913e6252741931b363ac892c24, type: 3}
   m_Name: 
@@ -176,3 +177,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   sight: 9
+  isMoving: 0
+--- !u!114 &265840083049133727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6159892353249415047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1111ec99f85734246aec6b53b15694bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  activateRadius: 20

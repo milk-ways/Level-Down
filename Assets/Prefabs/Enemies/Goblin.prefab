@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4502450080328967269}
   - component: {fileID: 4502450080328967273}
   - component: {fileID: 608390069}
+  - component: {fileID: 1545074901195300155}
   - component: {fileID: 657368291}
   m_Layer: 9
   m_Name: Goblin
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4502450080328967270}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51528c754f4034b50a69d1a40c5b1f59, type: 3}
   m_Name: 
@@ -227,6 +228,22 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 14848
+--- !u!114 &1545074901195300155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502450080328967270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1111ec99f85734246aec6b53b15694bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  activateRadius: 20
 --- !u!95 &657368291
 Animator:
   serializedVersion: 3

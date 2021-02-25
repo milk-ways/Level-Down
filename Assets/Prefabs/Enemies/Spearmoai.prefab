@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5528512488204745541}
   - component: {fileID: 5528512488204745540}
   - component: {fileID: 5528512488204745543}
+  - component: {fileID: 8687653985683692870}
   m_Layer: 9
   m_Name: Spearmoai
   m_TagString: Enemy
@@ -138,7 +139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528512488204745542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b87a3bced91dde6489c0e7cfd3dfff57, type: 3}
   m_Name: 
@@ -146,3 +147,24 @@ MonoBehaviour:
   hp: 6
   damage: 2
   getDamage: 1
+  deathParticle: {fileID: 0}
+  sight: {fileID: 0}
+  inSight: 0
+  anim: {fileID: 0}
+  spear: {fileID: 0}
+--- !u!114 &8687653985683692870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528512488204745542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1111ec99f85734246aec6b53b15694bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  activateRadius: 20
