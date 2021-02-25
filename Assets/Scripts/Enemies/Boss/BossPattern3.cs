@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossPattern3 : MonoBehaviour
 {
+    public GameObject particle;
     public int damage;
     bool attackAble = false;
 
@@ -17,6 +18,8 @@ public class BossPattern3 : MonoBehaviour
     public void Shot()
     {
         anim.SetTrigger("Shot");
+        GameObject temp = Instantiate(particle, transform.position, Quaternion.identity);
+        Destroy(temp, 2f);
         attackAble = true;
     }
 

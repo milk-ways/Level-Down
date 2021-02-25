@@ -230,30 +230,19 @@ MonoBehaviour:
   hp: 10
   dashEnabled: 1
   jumpEnabled: 1
-  immortal: 0
   banPanel: {fileID: 0}
   speed: 6
-  faceDir: 1
   dashSpeed: 30
   dashCoolTime: 1
   defaultDashTime: 0.1
-  dashCoolTimer: 0
-  dashTime: 0
-  dash: 0
   jumpForce: 10
   maxJumps: 1
-  extraJumps: 0
-  isJumping: 0
-  isFalling: 0
   superJumpForce: 15
-  isSuperJumping: 0
   groundCheck: {fileID: 3424734351133856521}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundSize: {x: 0.5, y: 0.05}
-  isGrounded: 0
-  wasGrounded: 0
   deathParticle: {fileID: 1252112650767536656, guid: a98ab4d6a0c444e829122b60058dcbb1,
     type: 3}
   damageColor: {r: 1, g: 0.50980395, b: 0.50980395, a: 1}

@@ -262,13 +262,16 @@ MonoBehaviour:
   pattern2DelayTime: 2
   pattern3: {fileID: 4213924283831978112, guid: 456a7f777008e40b4b223747acd14146,
     type: 3}
-  pattern3DelayTime: 1
+  pattern3Pos: {fileID: 2528307099869500480}
+  pattern3DelayTime: 3
   bullet: {fileID: 2006370919404355249, guid: 7fd7f05c1c8eb4289b55bc2d258446da, type: 3}
   pattern4Pos: {fileID: 1253635824}
   pattern4DelayTime: 2
+  punchMotionTime: 0.5
   pattern5DelayTime: 1
   jumpForce: 30
   repeat: 3
+  bat: {fileID: 0}
   pattern6DelayTime: 1
 --- !u!95 &407541758
 Animator:
