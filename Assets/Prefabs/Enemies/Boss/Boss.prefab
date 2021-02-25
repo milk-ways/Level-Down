@@ -270,9 +270,13 @@ MonoBehaviour:
   punchMotionTime: 0.5
   pattern5DelayTime: 1
   jumpForce: 30
-  repeat: 3
-  bat: {fileID: 0}
+  pattern5Repeat: 3
+  bat: {fileID: 263735276369042571, guid: 5b7a94022ab3545d49c8430badae15d1, type: 3}
+  spawnDisX: {x: -2, y: 2}
+  spawnDisY: {x: 0.7, y: 2}
+  spawnDelayTime: 3
   pattern6DelayTime: 1
+  pattern6Repeat: 3
 --- !u!95 &407541758
 Animator:
   serializedVersion: 3

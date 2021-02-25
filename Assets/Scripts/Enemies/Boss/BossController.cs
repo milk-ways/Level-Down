@@ -40,12 +40,16 @@ public class BossController : EnemyController
     [Header("Pattern 5")]
     public float pattern5DelayTime; 
     public float jumpForce;                         // Jumping force
-    public int repeat;                              // Number of times repeating pattern 5
+    public int pattern5Repeat;                      // Number of times repeating pattern 5
     float gravity;
 
     [Header("Pattern 6")]
     public GameObject bat;                          // Bat prefab
+    public Vector2 spawnDisX;                       // Spawn distance for X (x:min, y:max)
+    public Vector2 spawnDisY;                       // Spawn distance for Y (x:min, y:max)
+    public float spawnDelayTime;
     public float pattern6DelayTime;
+    public int pattern6Repeat;                      // Nu,ber of times repeating pattern 6
 
     // Components
     Rigidbody2D rb;
@@ -111,7 +115,7 @@ public class BossController : EnemyController
         int rand = Random.Range(1, 101);
 
         if (0 < rand && rand < 101)          // Between 1~20 (20%)
-            StartCoroutine(Pattern3());
+            StartCoroutine(Pattern6(0));
         else if (20 < rand && rand < 36)    // Between 21~35 (15%)
             StartCoroutine(Pattern2());
         else if (35 < rand && rand < 51)    // Between 36~50 (15%)
@@ -121,7 +125,7 @@ public class BossController : EnemyController
         else if (70 < rand && rand < 91)    // Between 71~90 (20%)
             StartCoroutine(Pattern5(0));
         else                                // Between 91~100 (10%)
-            StartCoroutine(Pattern6());
+            StartCoroutine(Pattern6(0));
     }
 
     IEnumerator Pattern1()
@@ -203,7 +207,7 @@ public class BossController : EnemyController
         anim.SetTrigger("JumpReady");
         index++;
 
-        if (index < repeat)
+        if (index < pattern5Repeat)
             StartCoroutine(Pattern5(index));        // Repeat
         else
         {
@@ -214,16 +218,29 @@ public class BossController : EnemyController
         }
     }
 
-    IEnumerator Pattern6()
+    IEnumerator Pattern6(int index)
     {
         isUsingPattern = true;          // Start pattern
         Debug.Log("pattern 6 (Bat)");
 
-        yield return new WaitForSeconds(pattern3DelayTime);
+        yield return new WaitForSeconds(pattern6DelayTime);
+        for (int i = 0; i < 5; i++)
+        {
+            float randX = Random.Range(spawnDisX.x, spawnDisX.y);
+            float randY = Random.Range(spawnDisY.x, spawnDisY.y);
+            Instantiate(bat, new Vector3(transform.position.x + randX, transform.position.y + randY, 0), Quaternion.identity);
+        }
+        yield return new WaitForSeconds(spawnDelayTime);
+        index++;
 
-        yield return new WaitForSeconds(endPatternTime);
-        isUsingPattern = false;         // End pattern
-        StartCoroutine(StartPattern()); // Start next pattern
+        if (index < pattern6Repeat)
+            StartCoroutine(Pattern6(index));        // Repeat
+        else
+        {
+            yield return new WaitForSeconds(endPatternTime);
+            isUsingPattern = false;     // End pattern
+            StartCoroutine(StartPattern()); // Start next pattern
+        }
     }
 
     void OnDrawGizmos()
