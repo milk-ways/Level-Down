@@ -6,17 +6,22 @@ public class Slime : EnemyController
 {
     [Header("Setting")]
     SightController sight;
+    //public LayerMask layer;
+    public GameObject slimeM;
+    public GameObject slimeS;
     public float sightDistance;
     public float speed;
     public float jumpForce;
-    public LayerMask layer;
+    public float divideForce;
+    public int maxHp;
 
     [Header("State")]
     public bool isMad;
     public bool movingToPlayer;
     public bool canJump;
     public bool isJumping;
-    
+
+    // Components
     Rigidbody2D slimeRigid;
     GameObject player;
     Animator anim;
@@ -27,7 +32,7 @@ public class Slime : EnemyController
         sight = GetComponent<SightController>();
         slimeRigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-    }
+}
 
     void Update()
     {
@@ -86,6 +91,44 @@ public class Slime : EnemyController
         if (isMad)
             movingToPlayer = true;
         slimeRigid.velocity = Vector2.up * jumpForce;
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        if (getDamage)
+        {
+            // Recieve damage
+            Debug.Log(gameObject.transform.name + " Recieved damage");
+
+            hp -= damage;
+            Camera.main.GetComponent<CamShake>().BigRand();
+
+            if (hp <= 0)
+            {
+                SlimeDivison();
+            }
+        }
+
+        else
+            Debug.Log("Did not Recieve damage");
+    }
+
+    void SlimeDivison()
+    {
+        if (maxHp == 4)
+        {
+            Instantiate(slimeM, gameObject.transform.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(slimeM, gameObject.transform.position - new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+        }
+        if (maxHp == 2)
+        {
+            Instantiate(slimeS, gameObject.transform.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(slimeS, gameObject.transform.position - new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+        }
+
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()

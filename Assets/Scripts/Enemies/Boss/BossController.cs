@@ -6,51 +6,53 @@ public class BossController : EnemyController
 {
     [Header("Movement")]
     public float speed;
+    bool isMoving = false;
 
     [Header("Attacks")]
     public LayerMask playerLayer;
     public Transform attackPos;
     public float attackRadius;
     public float patternTime;                           // Delay time between patterns
+    public float endPatternTime;
     [SerializeField] bool playerInAtkRange = false;     // Check if player is inside attack range
     [SerializeField] bool isUsingPattern = false;       // True when pattern is enabled
 
     [Header("Pattern 1")]
     public float pattern1DelayTime;
-    public int pattern1Damage;
+    public int pattern1Damage;                      // Pattern 1 damage
 
     [Header("Pattern 2")]
-    public GameObject pattern2;
-    public Transform pattern2Pos;
+    public GameObject pattern2;                     // Pattern 2 prefab
+    public Transform pattern2Pos;                   // Position for instantiating pattern 2
     public float pattern2DelayTime;
 
     [Header("Pattern 3")]
     public float pattern3DelayTime;
 
     [Header("Pattern 4")]
+    public GameObject bullet;                       // Bullet prefab
+    public Transform pattern4Pos;                   // Position for shooting bullet
     public float pattern4DelayTime;
-    public int pattern4Damage;
 
     [Header("Pattern 5")]
-    public float pattern5DelayTime;
-    public float jumpForce;
-    public int repeat;
+    public float pattern5DelayTime; 
+    public float jumpForce;                         // Jumping force
+    public int repeat;                              // Number of times repeating pattern 5
     float gravity;
 
     [Header("Pattern 6")]
     public float pattern6DelayTime;
 
-    [Header("Pattern 7")]
-    public float pattern7DelayTime;
-
     // Components
     Rigidbody2D rb;
     PlayerController player;
+    Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
 
         gravity = rb.gravityScale;
 
@@ -63,13 +65,17 @@ public class BossController : EnemyController
 
         if (!isUsingPattern)
         {
+            isMoving = true;
             rb.velocity = new Vector2(MoveDir() * speed, rb.velocity.y);        // Move towards player
         }
 
-        if (playerInAtkRange)
+        if (playerInAtkRange || isUsingPattern)
         {
+            isMoving = false;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
+
+        anim.SetBool("IsMoving", isMoving);
     }
 
     int MoveDir()
@@ -95,38 +101,39 @@ public class BossController : EnemyController
     {
         yield return new WaitForSeconds(patternTime);
 
+        isMoving = false;
         rb.velocity = new Vector2(0, rb.velocity.y);        // Stop moving towards player
 
         int rand = Random.Range(1, 101);
 
-        // Pattern 1
-        if (0 < rand && rand < 21)          // Between 1~20 (20%)
-            StartCoroutine(Pattern1());
+        if (0 < rand && rand < 101)          // Between 1~20 (20%)
+            StartCoroutine(Pattern4());
         else if (20 < rand && rand < 36)    // Between 21~35 (15%)
             StartCoroutine(Pattern2());
         else if (35 < rand && rand < 51)    // Between 36~50 (15%)
             StartCoroutine(Pattern3());
         else if (50 < rand && rand < 71)    // Between 51~70 (20%)
             StartCoroutine(Pattern4());
-        else if (70 < rand && rand < 86)    // Between 71~85 (15%)
+        else if (70 < rand && rand < 91)    // Between 71~90 (20%)
             StartCoroutine(Pattern5(0));
-        else if (85 < rand && rand < 96)    // Between 86~95 (10%)
+        else                                // Between 91~100 (10%)
             StartCoroutine(Pattern6());
-        else                                // Between 96~100 (5%)
-            StartCoroutine(Pattern7());
     }
 
     IEnumerator Pattern1()
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("Pattern 1");
+        Debug.Log("Pattern 1 (Slash)");
+        anim.SetTrigger("SlashReady");
 
         yield return new WaitForSeconds(pattern1DelayTime);
+        anim.SetTrigger("Slash");
         if (playerInAtkRange)
         {
             player.TakeDamage(pattern1Damage);
         }
 
+        yield return new WaitForSeconds(endPatternTime);
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }
@@ -134,11 +141,12 @@ public class BossController : EnemyController
     IEnumerator Pattern2()
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("Pattern 2");
+        Debug.Log("Pattern 2 (Bottom Shoot)");
 
         yield return new WaitForSeconds(pattern2DelayTime);
         Instantiate(pattern2, pattern2Pos.position, Quaternion.identity);
 
+        yield return new WaitForSeconds(endPatternTime);
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }
@@ -146,10 +154,11 @@ public class BossController : EnemyController
     IEnumerator Pattern3()
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("pattern 3");
+        Debug.Log("pattern 3 (Purple)");
 
         yield return new WaitForSeconds(pattern3DelayTime);
 
+        yield return new WaitForSeconds(endPatternTime);
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }
@@ -157,14 +166,12 @@ public class BossController : EnemyController
     IEnumerator Pattern4()
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("Pattern 4");
+        Debug.Log("Pattern 4 (Punch)");
 
         yield return new WaitForSeconds(pattern4DelayTime);
-        if (playerInAtkRange)
-        {
-            player.TakeDamage(pattern4Damage);
-        }
+        Instantiate(bullet, pattern4Pos.position, transform.rotation);
 
+        yield return new WaitForSeconds(endPatternTime);
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }
@@ -172,44 +179,41 @@ public class BossController : EnemyController
     IEnumerator Pattern5(int index)
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("Pattern 4");
+        Debug.Log("Pattern 5 (Jump)");
 
+        anim.SetTrigger("JumpReady");
         yield return new WaitForSeconds(pattern5DelayTime);
         Vector3 playerPos = player.transform.position;          // Current location of player
         rb.gravityScale = 0;
+        anim.SetTrigger("Jump");
         rb.velocity = Vector2.up * jumpForce;                   // Move up
         yield return new WaitForSeconds(pattern5DelayTime);     // Going up
         transform.position = new Vector3(playerPos.x, transform.position.y, transform.position.z);      // Move to player x position
         rb.velocity = Vector2.down * jumpForce;                 // Move down
         yield return new WaitForSeconds(pattern5DelayTime);     // Falling down 
         rb.gravityScale = gravity;                              // Back to normal gravity after hitting ground
+        anim.SetTrigger("JumpReady");
         index++;
 
         if (index < repeat)
             StartCoroutine(Pattern5(index));        // Repeat
         else
+        {
+            yield return new WaitForSeconds(endPatternTime);
+            anim.SetTrigger("JumpEnd");
             isUsingPattern = false;     // End pattern
-        StartCoroutine(StartPattern()); // Start next pattern
+            StartCoroutine(StartPattern()); // Start next pattern
+        }
     }
 
     IEnumerator Pattern6()
     {
         isUsingPattern = true;          // Start pattern
-        Debug.Log("pattern 6");
+        Debug.Log("pattern 6 (Bat)");
 
         yield return new WaitForSeconds(pattern3DelayTime);
 
-        isUsingPattern = false;         // End pattern
-        StartCoroutine(StartPattern()); // Start next pattern
-    }
-
-    IEnumerator Pattern7()
-    {
-        isUsingPattern = true;          // Start pattern
-        Debug.Log("pattern 7");
-
-        yield return new WaitForSeconds(pattern3DelayTime);
-
+        yield return new WaitForSeconds(endPatternTime);
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }

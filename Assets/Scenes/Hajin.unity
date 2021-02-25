@@ -1424,23 +1424,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
-        type: 3}
-      propertyPath: hp
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
-        type: 3}
-      propertyPath: banUI
-      value: 
-      objectReference: {fileID: 4143805391670832286, guid: 8ee79ac7a01264dad8f32c4282aa680a,
-        type: 3}
-    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
-        type: 3}
-      propertyPath: deathParticle
-      value: 
-      objectReference: {fileID: 8714218873275264849, guid: 7a8186a53e07e4be196f54246f8fe138,
-        type: 3}
     - target: {fileID: 8128042228341054193, guid: 542502dcf34ef4561ab9a8edcad51b68,
         type: 3}
       propertyPath: m_RootOrder
@@ -1500,11 +1483,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128042228341054195, guid: 542502dcf34ef4561ab9a8edcad51b68,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542502dcf34ef4561ab9a8edcad51b68, type: 3}
