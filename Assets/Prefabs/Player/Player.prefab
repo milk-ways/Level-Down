@@ -235,7 +235,9 @@ MonoBehaviour:
   speed: 6
   faceDir: 1
   dashSpeed: 30
+  dashCoolTime: 1
   defaultDashTime: 0.1
+  dashCoolTimer: 0
   dashTime: 0
   dash: 0
   jumpForce: 10

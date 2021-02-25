@@ -9,47 +9,51 @@ public class PlayerController : MonoBehaviour
     public int hp;
     public bool dashEnabled = true;     // true:can dash
     public bool jumpEnabled = true;     // true:can super jump
-    [SerializeField] bool immortal = false;              // Can't be damaged when immortal
+    bool immortal = false;              // Can't be damaged when immortal
+
     public GameObject banPanel;         // Temp
 
     // Player movement related
     [Header("Movement")]
     public float speed;                             // Move speed
     float moveInput;                                // Horizontal input
-    [SerializeField] int faceDir = 1;               // Player facing direction 1:right, -1:left
+    int faceDir = 1;               // Player facing direction 1:right, -1:left
     bool isWalking = false;
 
     // Player dash related
     [Header("Dash")]
-    public float dashSpeed;                         // dash speed
-    public float defaultDashTime;                   // dash lasting time
-    [SerializeField] float dashTime;                // dash lasting countdown timer
-    [SerializeField] bool dash = false;             // true:dash, false:stop dash
+    public float dashSpeed;                         // Dash speed
+    public float dashCoolTime;                      // Dash cooltime
+    public float defaultDashTime;                   // Dash lasting time
+    float dashCoolTimer;           // Dash cooltime timer
+    float dashTime;                // Dash lasting countdown timer
+    bool dash = false;             // True:dash, false:stop dash
+    bool canDash = true;
 
     // Player Jump related
     [Header("Jump")]
     public float jumpForce;                     // Jumping force
     public int maxJumps;                        // Max number of jumps
-    [SerializeField] int extraJumps = 1;        // Number of jumps
-    [SerializeField] bool isJumping = false;
-    [SerializeField] bool isFalling = false;
+    int extraJumps = 1;        // Number of jumps
+    bool isJumping = false;
+    bool isFalling = false;
 
     [Header("Super Jump")]
     public float superJumpForce;
-    [SerializeField] bool isSuperJumping = false;
+    bool isSuperJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
     public Transform groundCheck;                   // Ground check position
     public LayerMask groundLayer;                   // Ground layer
     public Vector2 groundSize;                      // Ground check width x length
-    [SerializeField] bool isGrounded;               // True if player on ground
-    [SerializeField] bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
+    bool isGrounded;               // True if player on ground
+    bool wasGrounded;              // Check if player was on ground in prev frame (need for jump check)
 
     [Header("Damage")]
     public GameObject deathParticle;        // Death particle when dead
     public Color damageColor;
-    public float damageImmortalTime;    // Become immortal when attacked
+    public float damageImmortalTime;        // Become immortal when attacked
     public float alphaTime;                 // Time for flickering when damaged
 
     // Components
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
         camShake = Camera.main.GetComponent<CamShake>();
 
         dashTime = defaultDashTime;     // Reset dash time
+        dashCoolTimer = dashCoolTime;
 
         dashEnabled = GameController.instance.dashEnabled;
         jumpEnabled = GameController.instance.jumpEnabled;
@@ -175,12 +180,26 @@ public class PlayerController : MonoBehaviour
         }
 
         // Dash
-        if (!dash && dashEnabled && InputManager.instance.KeyDown("Dash"))       // Input.GetKeyDown(KeyCode.D)
+        if (canDash && !dash && dashEnabled && InputManager.instance.KeyDown("Dash"))
         {
+            canDash = false;
             dash = true;
             isFalling = false;
             immortal = true;                    // Don't recieve damage when dashing
             playerAtk.attackAble = false;       // Can't attack when dashing
+        }
+
+        if (!canDash)
+        {
+            if (dashCoolTimer <= 0)
+            {
+                canDash = true;
+                dashCoolTimer = dashCoolTime;
+            }
+            else
+            {
+                dashCoolTimer -= Time.deltaTime;
+            }
         }
 
         // Dash animation
