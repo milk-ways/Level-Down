@@ -121,7 +121,7 @@ public class Cow : EnemyController
         // Hit player
         if(collision.transform.tag == "Player")
         {
-            StopDash();
+            Invoke("StopDash", 0.05f);
         }
     }
 
