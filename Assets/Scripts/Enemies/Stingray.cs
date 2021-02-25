@@ -12,8 +12,10 @@ public class Stingray : EnemyController
     [SerializeField] bool isNormal = true;
     [SerializeField] bool isMad = false;
 
+    [Header("Movement")]
     public LayerMask playerLayer;
     public float sight;
+    public float stoppingDis;
     [SerializeField] bool isMoving = false;
 
     // Components
@@ -30,6 +32,8 @@ public class Stingray : EnemyController
 
     void Update()
     {
+        int dir = MoveDir();
+
         if (!isMoving)
         {
             isMoving = Physics2D.OverlapCircle(transform.position, sight, playerLayer);
@@ -55,6 +59,25 @@ public class Stingray : EnemyController
         {
             anim.SetBool("IsMad", isMad);
             rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        }
+    }
+
+    int MoveDir()
+    {
+        float dis = player.transform.position.x - transform.position.x;
+
+        if (-stoppingDis < dis && dis < stoppingDis)
+            return 0;
+
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return 1;
+        }
+        else //(player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return -1;
         }
     }
 

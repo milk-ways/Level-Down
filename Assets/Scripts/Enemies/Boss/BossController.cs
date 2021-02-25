@@ -28,12 +28,14 @@ public class BossController : EnemyController
 
     [Header("Pattern 3")]
     public GameObject pattern3;                     // Pattern 3 prefab
+    public Transform pattern3Pos;
     public float pattern3DelayTime;
 
     [Header("Pattern 4")]
     public GameObject bullet;                       // Bullet prefab
     public Transform pattern4Pos;                   // Position for shooting bullet
     public float pattern4DelayTime;
+    public float punchMotionTime;                   // Time for punch motion
 
     [Header("Pattern 5")]
     public float pattern5DelayTime; 
@@ -42,6 +44,7 @@ public class BossController : EnemyController
     float gravity;
 
     [Header("Pattern 6")]
+    public GameObject bat;                          // Bat prefab
     public float pattern6DelayTime;
 
     // Components
@@ -157,7 +160,7 @@ public class BossController : EnemyController
         isUsingPattern = true;          // Start pattern
         Debug.Log("pattern 3 (Purple)");
 
-        GameObject lightning = Instantiate(pattern3, transform.position, Quaternion.identity);
+        Instantiate(pattern3, pattern3Pos.position, Quaternion.identity);
         yield return new WaitForSeconds(pattern3DelayTime);
 
         yield return new WaitForSeconds(endPatternTime);
@@ -169,11 +172,14 @@ public class BossController : EnemyController
     {
         isUsingPattern = true;          // Start pattern
         Debug.Log("Pattern 4 (Punch)");
+        anim.SetTrigger("PunchReady");
 
         yield return new WaitForSeconds(pattern4DelayTime);
+        anim.SetTrigger("Punch");
         Instantiate(bullet, pattern4Pos.position, transform.rotation);
 
-        yield return new WaitForSeconds(endPatternTime);
+        yield return new WaitForSeconds(endPatternTime + punchMotionTime);
+        anim.SetTrigger("PunchEnd");
         isUsingPattern = false;         // End pattern
         StartCoroutine(StartPattern()); // Start next pattern
     }

@@ -7,9 +7,10 @@ public class Bat : EnemyController
     public float speed;
 
     public LayerMask playerLayer;
+    public float stoppingDis;
     public float sight;
-    [SerializeField] bool playerWasFound = false;
     public float moveDelay;
+    [SerializeField] bool playerWasFound = false;
     [SerializeField] bool isMoving = false;
 
     GameObject player;
@@ -25,17 +26,20 @@ public class Bat : EnemyController
     {
         if (!playerWasFound)
         {
-            playerWasFound = Physics2D.OverlapCircle(transform.position, sight, playerLayer);
-            if (playerWasFound)
+            if (Physics2D.OverlapCircle(transform.position, sight, playerLayer))
+            {
+                playerWasFound = true;
                 InvokeMove();
+            }
         }
     }
 
     void FixedUpdate()
     {
-        if (!isMoving)
-            return;
-        rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        int dir = MoveDir();
+
+        if (isMoving)
+            rb.velocity = rb.velocity = (player.transform.position - transform.position).normalized * speed;
     }
 
     void InvokeMove()
@@ -48,9 +52,28 @@ public class Bat : EnemyController
         isMoving = true;
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, sight);
-    //}
+    int MoveDir()
+    {
+        float dis = player.transform.position.x - transform.position.x;
+
+        if (-stoppingDis < dis && dis < stoppingDis)
+            return 0;
+
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            return 1;
+        }
+        else //(player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            return -1;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sight);
+    }
 }
