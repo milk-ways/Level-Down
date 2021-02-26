@@ -6,8 +6,8 @@ public class Dinosaur : EnemyController
 {
     [Header("Movement")]
     public float speed;
-    public int moveSec = 0;
-    public int moveDir = 0;
+    int moveDir;
+    Vector2 initPos;
 
     [Header("Damage")]
     public Transform behindCheck;
@@ -22,33 +22,18 @@ public class Dinosaur : EnemyController
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Move();
-    }
-
-    void Move()
-    {
-        moveSec = Random.Range(1, 4);
-
-        int newMoveDir = Random.Range(-1, 2);
-
-        while (moveDir == newMoveDir)
-        {
-            newMoveDir = Random.Range(-1, 2);
-        }
-
-        moveDir = newMoveDir;
-
-        if (moveDir == 1)
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        else if (moveDir == -1)
-            transform.eulerAngles = new Vector3(0, 180, 0);
-
-        Invoke("Move", moveSec);
+        initPos = transform.position;
+        MoveToLeft();
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+
+        if (transform.position.x - initPos.x >= 3 && moveDir == 1)
+            StopMoving();
+        if (transform.position.x - initPos.x <= -3 && moveDir == -1)
+            StopMoving();
     }
 
     void Update()
@@ -62,6 +47,33 @@ public class Dinosaur : EnemyController
         // Only get damage if attacked from behind
         if (playerIsBehind)
             base.TakeDamage(damage);
+    }
+
+    void StopMoving()
+    {
+        if (moveDir == 1)
+        {
+            moveDir = 0;
+            Invoke("MoveToLeft", 2);
+        }
+        
+        if (moveDir == -1)
+        {
+            moveDir = 0;
+            Invoke("MoveToRight", 2);
+        }
+    }
+
+    void MoveToLeft()
+    {
+        moveDir = -1;
+        transform.eulerAngles = new Vector3(0, 180, 0);
+    }
+
+    void MoveToRight()
+    {
+        moveDir = 1;
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     void OnDrawGizmos()
