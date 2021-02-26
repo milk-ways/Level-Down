@@ -41,7 +41,7 @@ public class BossController : EnemyController
     public float pattern5DelayTime; 
     public float jumpForce;                         // Jumping force
     public int pattern5Repeat;                      // Number of times repeating pattern 5
-    float gravity;
+    float gravity;                                  // Original gravity of boss
 
     [Header("Pattern 6")]
     public GameObject bat;                          // Bat prefab
@@ -50,6 +50,7 @@ public class BossController : EnemyController
     public float spawnDelayTime;
     public float pattern6DelayTime;
     public int pattern6Repeat;                      // Nu,ber of times repeating pattern 6
+    int tempDamage;                                 // Original damage of boss
 
     // Components
     Rigidbody2D rb;
@@ -62,6 +63,7 @@ public class BossController : EnemyController
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         anim = GetComponent<Animator>();
 
+        tempDamage = damage;
         gravity = rb.gravityScale;
 
         StartCoroutine(StartPattern());
@@ -220,11 +222,13 @@ public class BossController : EnemyController
 
     IEnumerator Pattern6(int index)
     {
-        isUsingPattern = true;          // Start pattern
+        // isUsingPattern = true;          // Start pattern
         Debug.Log("pattern 6 (Bat)");
 
         yield return new WaitForSeconds(pattern6DelayTime);
-        for (int i = 0; i < 5; i++)
+        if (index == 0)
+            FadeOut();                                              // Fade out
+        for (int i = 0; i < 5; i++)                             // Spawn bats
         {
             float randX = Random.Range(spawnDisX.x, spawnDisX.y);
             float randY = Random.Range(spawnDisY.x, spawnDisY.y);
@@ -237,10 +241,27 @@ public class BossController : EnemyController
             StartCoroutine(Pattern6(index));        // Repeat
         else
         {
+            FadeIn();                               // Fade in
             yield return new WaitForSeconds(endPatternTime);
-            isUsingPattern = false;     // End pattern
+            // isUsingPattern = false;     // End pattern
             StartCoroutine(StartPattern()); // Start next pattern
         }
+    }
+
+    void FadeOut()
+    {
+        Debug.Log("Fade Out");
+        anim.SetTrigger("FadeOut");
+        damage = 0;
+        getDamage = false;
+    }
+
+    void FadeIn()
+    {
+        Debug.Log("Fade In");
+        anim.SetTrigger("FadeIn");
+        damage = tempDamage;
+        getDamage = true;
     }
 
     void OnDrawGizmos()
