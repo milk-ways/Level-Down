@@ -237,7 +237,7 @@ MonoBehaviour:
   defaultDashTime: 0.1
   jumpForce: 10
   maxJumps: 1
-  superJumpForce: 15
+  superJumpForce: 18
   groundCheck: {fileID: 3424734351133856521}
   groundLayer:
     serializedVersion: 2

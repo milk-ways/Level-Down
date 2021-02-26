@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     PlayerAttack playerAtk;
     CamShake camShake;
+    GroundController ground;
 
     void Start()
     {
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         playerAtk = GetComponent<PlayerAttack>();
         camShake = Camera.main.GetComponent<CamShake>();
+        ground = GameObject.FindGameObjectWithTag("Ground").GetComponent<GroundController>();
 
         dashTime = defaultDashTime;     // Reset dash time
         dashCoolTimer = dashCoolTime;
@@ -145,6 +147,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded && jumpEnabled)
             {
+                ground.ChangeArc();
                 rigidBody.velocity = Vector2.up * superJumpForce;
                 isJumping = true;
                 isSuperJumping = true;
