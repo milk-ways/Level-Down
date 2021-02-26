@@ -212,7 +212,7 @@ MonoBehaviour:
   stoppingDis: 0.5
   sightRadius: 5
   attackRadius: 1
-  attackDelay: 2
+  attackDelay: 1
 --- !u!114 &608390069
 MonoBehaviour:
   m_ObjectHideFlags: 0
