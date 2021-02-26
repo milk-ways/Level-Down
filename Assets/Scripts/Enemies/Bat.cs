@@ -36,10 +36,12 @@ public class Bat : EnemyController
 
     void FixedUpdate()
     {
-        int dir = MoveDir();
-
         if (isMoving)
-            rb.velocity = rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        {
+            int dir = MoveDir();
+            if (dir != 0)
+                rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        }
     }
 
     void InvokeMove()
@@ -54,21 +56,11 @@ public class Bat : EnemyController
 
     int MoveDir()
     {
-        float dis = player.transform.position.x - transform.position.x;
+        float dis = Vector2.Distance(player.transform.position, transform.position);
 
         if (-stoppingDis < dis && dis < stoppingDis)
             return 0;
-
-        if (player.transform.position.x > transform.position.x)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            return 1;
-        }
-        else //(player.transform.position.x < transform.position.x)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            return -1;
-        }
+        return 1;
     }
 
     void OnDrawGizmos()

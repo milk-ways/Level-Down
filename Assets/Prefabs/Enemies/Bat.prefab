@@ -154,7 +154,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  stoppingDis: 0
+  stoppingDis: 1
   sight: 9
   moveDelay: 0.5
   playerWasFound: 0

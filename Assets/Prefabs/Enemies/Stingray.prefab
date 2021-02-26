@@ -177,6 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   sight: 9
+  stoppingDis: 1
   isMoving: 0
 --- !u!114 &265840083049133727
 MonoBehaviour:

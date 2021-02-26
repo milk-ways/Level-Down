@@ -32,8 +32,6 @@ public class Stingray : EnemyController
 
     void Update()
     {
-        int dir = MoveDir();
-
         if (!isMoving)
         {
             isMoving = Physics2D.OverlapCircle(transform.position, sight, playerLayer);
@@ -44,6 +42,7 @@ public class Stingray : EnemyController
     {
         if (!isMoving)
             return;
+
         // Go up when normal
         if (isNormal && transform.position.y < player.transform.position.y + upOffset)
         {
@@ -58,13 +57,15 @@ public class Stingray : EnemyController
         if (isMad)
         {
             anim.SetBool("IsMad", isMad);
-            rb.velocity = (player.transform.position - transform.position).normalized * speed;
+            int dir = MoveDir();
+            if (dir != 0)
+                rb.velocity = (player.transform.position - transform.position).normalized * speed;
         }
     }
 
     int MoveDir()
     {
-        float dis = player.transform.position.x - transform.position.x;
+        float dis = Vector2.Distance(player.transform.position, transform.position);
 
         if (-stoppingDis < dis && dis < stoppingDis)
             return 0;
