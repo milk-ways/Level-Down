@@ -208,7 +208,7 @@ MonoBehaviour:
   damage: 1
   getDamage: 1
   deathParticle: {fileID: 0}
-  speed: 0
+  speed: 1
   bulletLayer:
     serializedVersion: 2
     m_Bits: 2048
