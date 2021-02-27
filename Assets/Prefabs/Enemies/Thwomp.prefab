@@ -70,7 +70,6 @@ GameObject:
   - component: {fileID: -7499633568412291064}
   - component: {fileID: 5090538469997242803}
   - component: {fileID: -3440535768635576861}
-  - component: {fileID: 2207073597969413598}
   m_Layer: 9
   m_Name: Thwomp
   m_TagString: Enemy
@@ -189,24 +188,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 5
 --- !u!114 &-3440535768635576861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668621517607859336}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b380e3d9304b95f4db9b3249058d663f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  damage: 1
-  getDamage: 0
-  deathParticle: {fileID: 0}
---- !u!114 &2207073597969413598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,10 +198,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1668621517607859336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1111ec99f85734246aec6b53b15694bc, type: 3}
+  m_Script: {fileID: 11500000, guid: b380e3d9304b95f4db9b3249058d663f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  activateRadius: 20
+  hp: 0
+  damage: 1
+  getDamage: 0
+  deathParticle: {fileID: 0}

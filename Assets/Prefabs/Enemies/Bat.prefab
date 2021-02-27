@@ -174,7 +174,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  activateRadius: 20
+  activateRadius: 13
 --- !u!95 &887178447
 Animator:
   serializedVersion: 3
