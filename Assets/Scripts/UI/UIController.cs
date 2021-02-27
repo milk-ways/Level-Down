@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
 
     // Skill cooltime
     [SerializeField] Image skill;
+    [SerializeField] Image dash;
     private bool isCoolTime = false;
     private float currentTime;
     private float delayTime;
@@ -69,6 +70,15 @@ public class UIController : MonoBehaviour
                 currentTime = playerAttack.skillCoolTime;
                 skill.fillAmount = currentTime / delayTime;
             }
+        }
+
+        if(!playerController.canDash)
+        {
+            dash.fillAmount = playerController.dashCoolTimer / playerController.dashCoolTime;
+        }
+        else
+        {
+            dash.fillAmount = 1;
         }
     }
 
