@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;                         // Dash speed
     public float dashCoolTime;                      // Dash cooltime
     public float defaultDashTime;                   // Dash lasting time
-    float dashCoolTimer;           // Dash cooltime timer
-    float dashTime;                // Dash lasting countdown timer
+    public float dashCoolTimer;           // Dash cooltime timer
+    public float dashTime;                // Dash lasting countdown timer
     bool dash = false;             // True:dash, false:stop dash
-    bool canDash = true;
+    public bool canDash = true;
 
     // Player Jump related
     [Header("Jump")]
