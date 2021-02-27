@@ -116,8 +116,8 @@ public class BossController : EnemyController
 
         int rand = Random.Range(1, 101);
 
-        if (0 < rand && rand < 101)          // Between 1~20 (20%)
-            StartCoroutine(Pattern6(0));
+        if (0 < rand && rand < 21)          // Between 1~20 (20%)
+            StartCoroutine(Pattern1());
         else if (20 < rand && rand < 36)    // Between 21~35 (15%)
             StartCoroutine(Pattern2());
         else if (35 < rand && rand < 51)    // Between 36~50 (15%)
