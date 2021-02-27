@@ -44,14 +44,22 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float skillCoolTimer;      // Skill cooldown timer
     [SerializeField] bool skillReady = false;           // true - can use skill
 
+    [Header("Audio")]
+    public AudioClip punchAudio;
+    public AudioClip meleeAudio;
+    public AudioClip rangeAudio;
+    public AudioClip skillAudio;
+
     // Components
     UIController uiController;
     Animator anim;
+    AudioSource audioSource;
 
     void Start()
     {
         uiController = GameObject.FindGameObjectWithTag("GamePanel").GetComponent<UIController>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         reloadTimer = reloadTime; // Reset reload time
         bulletNum = maxBulletNum;       // Reset bullet num
@@ -195,6 +203,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D enemy = Physics2D.OverlapCircle(meleeAtkPos.position, meleeAtkRange, enemyLayer);
         if (enemy != null)
             enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+        audioSource.PlayOneShot(punchAudio);
     }
 
     // Melee attack
@@ -226,6 +235,7 @@ public class PlayerAttack : MonoBehaviour
         if (skillReady)
         {
             Instantiate(skillPref, skillAtkPos.position, skillAtkPos.rotation);
+            audioSource.PlayOneShot(skillAudio);
             skillReady = false;
         }
     }
@@ -234,6 +244,7 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(rangeAtkDelay);
         Instantiate(bullet, rangeAtkPos.position, rangeAtkPos.rotation);
+        audioSource.PlayOneShot(rangeAudio);
     }
 
     IEnumerator MeleeAttackDelay()
@@ -245,8 +256,8 @@ public class PlayerAttack : MonoBehaviour
         {
             enemies[i].GetComponent<EnemyController>().TakeDamage(attackDamage);
         }
+        audioSource.PlayOneShot(meleeAudio);
     }
-
 
     void OnDrawGizmos()
     {

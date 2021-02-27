@@ -56,10 +56,15 @@ public class PlayerController : MonoBehaviour
     public float damageImmortalTime;        // Become immortal when attacked
     public float alphaTime;                 // Time for flickering when damaged
 
+    [Header("Audio")]
+    public AudioClip jumpAudio;
+    public AudioClip dashAudio;
+
     // Components
     Rigidbody2D rigidBody;
     SpriteRenderer sprite;
     Animator anim;
+    AudioSource audioSource;
     PlayerAttack playerAtk;
     CamShake camShake;
     GroundController ground;
@@ -69,6 +74,8 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
         playerAtk = GetComponent<PlayerAttack>();
         camShake = Camera.main.GetComponent<CamShake>();
         ground = GameObject.FindGameObjectWithTag("Ground").GetComponent<GroundController>();
@@ -128,12 +135,14 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)  // First jump (when on ground)
             {
+                audioSource.PlayOneShot(jumpAudio);             // Jump sound
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 isJumping = true;
                 anim.SetTrigger("Jump");
             }
             else if (!isGrounded && !isSuperJumping && extraJumps > 0) // Extra jumps (when not on ground)
             {
+                audioSource.PlayOneShot(jumpAudio);             // Jump sound
                 extraJumps--;
                 rigidBody.velocity = Vector2.up * jumpForce;    // Jump
                 isJumping = true;               // Required if jumping while falling from ground
@@ -147,8 +156,9 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded && jumpEnabled)
             {
-                ground.ChangeArc();
-                rigidBody.velocity = Vector2.up * superJumpForce;
+                audioSource.PlayOneShot(jumpAudio);                 // Jump sound
+                ground.ChangeArc();                                 // Can go onto ground from bottom
+                rigidBody.velocity = Vector2.up * superJumpForce;   // Jump
                 isJumping = true;
                 isSuperJumping = true;
                 anim.SetTrigger("Jump");
@@ -185,6 +195,7 @@ public class PlayerController : MonoBehaviour
         // Dash
         if (canDash && !dash && dashEnabled && InputManager.instance.KeyDown("Dash"))
         {
+            audioSource.PlayOneShot(dashAudio);     // Dash audio
             canDash = false;
             dash = true;
             isFalling = false;
