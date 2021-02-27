@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     PlayerAttack playerAtk;
     CamShake camShake;
-    GroundController ground;
 
     void Start()
     {
@@ -78,8 +77,7 @@ public class PlayerController : MonoBehaviour
 
         playerAtk = GetComponent<PlayerAttack>();
         camShake = Camera.main.GetComponent<CamShake>();
-        ground = GameObject.FindGameObjectWithTag("Ground").GetComponent<GroundController>();
-
+       
         dashTime = defaultDashTime;     // Reset dash time
         dashCoolTimer = dashCoolTime;
 
@@ -140,7 +138,7 @@ public class PlayerController : MonoBehaviour
                 isJumping = true;
                 anim.SetTrigger("Jump");
             }
-            else if (!isGrounded && !isSuperJumping && extraJumps > 0) // Extra jumps (when not on ground)
+            else if (!isGrounded && extraJumps > 0) // Extra jumps (when not on ground)
             {
                 audioSource.PlayOneShot(jumpAudio);             // Jump sound
                 extraJumps--;
@@ -157,7 +155,6 @@ public class PlayerController : MonoBehaviour
             if (isGrounded && jumpEnabled)
             {
                 audioSource.PlayOneShot(jumpAudio);                 // Jump sound
-                ground.ChangeArc();                                 // Can go onto ground from bottom
                 rigidBody.velocity = Vector2.up * superJumpForce;   // Jump
                 isJumping = true;
                 isSuperJumping = true;
