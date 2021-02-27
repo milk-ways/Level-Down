@@ -188,7 +188,7 @@ MonoBehaviour:
     m_Bits: 1024
   attackPos: {fileID: 1942039889}
   attackArea: {x: 3, y: 0.5}
-  attackDelay: 0.5
+  attackDelay: 2
 --- !u!114 &8687653985683692870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
-  activateRadius: 20
+  activateRadius: 8
 --- !u!95 &1075589464
 Animator:
   serializedVersion: 3
