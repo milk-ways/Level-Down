@@ -233,8 +233,8 @@ MonoBehaviour:
   jumpEnabled: 1
   banPanel: {fileID: 0}
   speed: 6
-  dashSpeed: 30
-  dashCoolTime: 1
+  dashSpeed: 50
+  dashCoolTime: 2
   defaultDashTime: 0.1
   jumpForce: 10
   maxJumps: 1
@@ -267,15 +267,15 @@ MonoBehaviour:
   attackAble: 1
   currentAtkType: 0
   atkTypeList: 
-  punchAtkTime: 1
+  punchAtkTime: 0.1
   meleeAtkPos: {fileID: 3424734350701969024}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
-  meleeAtkRange: 0.5
-  meleeAtkTime: 1
+  meleeAtkRange: 0.8
+  meleeAtkTime: 0.5
   meleeAtkDelay: 0.1
-  attackDamage: 1
+  attackDamage: 2
   rangeAtkPos: {fileID: 3424734350582465981}
   bullet: {fileID: 5427391495902819903, guid: 6c369217f0da8480ba5dc8b28118543a, type: 3}
   reloadTime: 10
