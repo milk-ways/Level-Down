@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  damage: 1
+  damage: 3
   trail: {fileID: 858676335521993455, guid: 4720734c7a3f843118b844f71c57c366, type: 3}
   spawnTime: 0.1
   spawnTimer: 0

@@ -150,7 +150,7 @@ MonoBehaviour:
   damage: 1
   getDamage: 1
   deathParticle: {fileID: 0}
-  speed: 5
+  speed: 3.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
