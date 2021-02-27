@@ -5,29 +5,28 @@ using UnityEngine.UI;
 
 public class CATDOGLogoScript : MonoBehaviour
 {
+    public GameLogoPlayerScript GameLogoPlayer;
     public Image LogoImage;
-    public void FadeIn()
+    private void Start()
     {
-        StartCoroutine(AnimationFadeIn());
+        StartCoroutine(CATDOGLogoCoroutine());
     }
-    public void FadeOut()
-    {
-        StartCoroutine(AnimationFadeOut());
-    }
-    IEnumerator AnimationFadeIn()
+
+    IEnumerator CATDOGLogoCoroutine()
     {
         for (float t = 0; t < 1.0f; t += Time.deltaTime)
         {
             LogoImage.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), t / 0.5f);
             yield return null;
         }
-    }
-    IEnumerator AnimationFadeOut()
-    {
+        yield return new WaitForSeconds(1.5f);
         for (float t = 0; t < 1.0f; t += Time.deltaTime)
         {
             LogoImage.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), t / 0.5f);
             yield return null;
         }
+        yield return new WaitForSeconds(0.5f);
+        GameLogoPlayer.StartAnimation();
+        yield return null;
     }
 }
