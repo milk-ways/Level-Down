@@ -8,6 +8,7 @@ public class CowWall : MonoBehaviour
     {
         if (collision.tag == "Ground")
         {
+            if (gameObject.GetComponentInParent<Cow>().isMad == false)
             gameObject.GetComponentInParent<Cow>().StopMoving();
         }
     }

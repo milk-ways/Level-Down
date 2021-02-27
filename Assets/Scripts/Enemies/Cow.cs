@@ -17,7 +17,7 @@ public class Cow : EnemyController
     public float returnNormalTime;          // Time for turning back to normal when player out of sight
     [SerializeField] float returnNormalTimer;                // Timer
     [SerializeField] bool playerInSight = false;             // True when player in sight
-    [SerializeField] bool isMad = false;
+    public bool isMad = false;
     bool hitPlayer = false;
     bool isDashing = false;
     public float dashTime;                  // Dash time if not hit player
@@ -77,7 +77,7 @@ public class Cow : EnemyController
                     isMad = false;
                     StopDash();
                     initPos = transform.position;
-                    MoveToLeft();
+                    StopMoving();
                 }
                 else
                 {
