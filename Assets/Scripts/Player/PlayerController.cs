@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Super Jump")]
     public float superJumpForce;
-    bool isSuperJumping = false;
 
     // Ground Check related
     [Header("Ground Check")]
@@ -157,7 +156,6 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(jumpAudio);                 // Jump sound
                 rigidBody.velocity = Vector2.up * superJumpForce;   // Jump
                 isJumping = true;
-                isSuperJumping = true;
                 anim.SetTrigger("Jump");
             }
         }
@@ -183,7 +181,6 @@ public class PlayerController : MonoBehaviour
         {
             extraJumps = maxJumps;     // Reset extraJump if on ground
             isJumping = false;
-            isSuperJumping = false;
             playerAtk.attackAble = true;
             wasGrounded = true;
             isFalling = false;
