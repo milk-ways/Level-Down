@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 4
-  damage: 2
+  damage: 1
   getDamage: 1
   deathParticle: {fileID: 0}
   slimeM: {fileID: 1138919011187979574, guid: 41c1a4e5d83a04c01a532bd2dd5a93d8, type: 3}
