@@ -6,8 +6,9 @@ public class Turtle : EnemyController
 {
     [Header("Movement")]
     public float speed;
-    int moveDir;
     Vector2 initPos;
+    int moveDir;
+    bool isMoving = false;
 
     [Header("Damage")]
     public LayerMask bulletLayer;
@@ -41,16 +42,21 @@ public class Turtle : EnemyController
         {
             Show();
         }
+
+        anim.SetBool("IsWalking", isMoving);
     }
 
     void FixedUpdate()
     {
         if (isHiding)
+        {
             rb.velocity = new Vector2(0, rb.velocity.y);
-
+            isMoving = false;
+        }
         else
         {
             rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+            isMoving = true;
 
             if (transform.position.x - initPos.x >= 3 && moveDir == 1)
                 StopMoving();
@@ -61,6 +67,7 @@ public class Turtle : EnemyController
 
     void StopMoving()
     {
+        isMoving = false;
         if (moveDir == 1)
         {
             moveDir = 0;
