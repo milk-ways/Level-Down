@@ -125,7 +125,7 @@ public class Cow : EnemyController
         hitPlayer = false;
     }
 
-    void StopMoving()
+    public void StopMoving()
     {
         if (moveDir == 1)
         {
