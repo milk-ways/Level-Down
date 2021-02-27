@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  damage: 2
+  damage: 1
   getDamage: 1
   deathParticle: {fileID: 0}
   speed: 0

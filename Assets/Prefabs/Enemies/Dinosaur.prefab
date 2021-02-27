@@ -236,12 +236,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  damage: 2
+  damage: 1
   getDamage: 1
   deathParticle: {fileID: 0}
   speed: 3
-  moveSec: 0
-  moveDir: 0
   behindCheck: {fileID: 1199139044}
   playerLayer:
     serializedVersion: 2

@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  damage: 2
+  damage: 1
   getDamage: 0
   deathParticle: {fileID: 0}
 --- !u!114 &2207073597969413598
