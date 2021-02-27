@@ -16,9 +16,9 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = transform.right * speed;
-
+        Debug.Log(transform.rotation.z);
         // Temp destroy after 10 sec
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 3f);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +32,14 @@ public class Bullet : MonoBehaviour
             }
 
             Destroy(gameObject);
+        }
+
+        if (collision.tag == "Ground")
+        {
+            if (transform.rotation.z == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

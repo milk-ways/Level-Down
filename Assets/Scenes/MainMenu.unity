@@ -277,10 +277,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 468342043}
     m_Modifications:
-    - target: {fileID: 6388574969330646, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
-      propertyPath: m_Text
-      value: "\uAC8C\uC784\uC2DC\uC791"
-      objectReference: {fileID: 0}
     - target: {fileID: 6388575064211696, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -373,18 +369,6 @@ PrefabInstance:
       propertyPath: settingPanel
       value: 
       objectReference: {fileID: 1021610745}
-    - target: {fileID: 6388576083381784, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
-      propertyPath: m_Name
-      value: Game Start
-      objectReference: {fileID: 0}
-    - target: {fileID: 6388576083381790, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NewGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 6388576136743189, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63860af27f465364d93cdb989c0dcc6f, type: 3}
 --- !u!1 &468342039
@@ -511,6 +495,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 620575068, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022782168, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022782168, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022782168, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209231791, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209231791, guid: d19aaa09c0b6e494f9b8f3f788bd2736, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

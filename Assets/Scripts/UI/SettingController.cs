@@ -16,6 +16,7 @@ public class SettingController : MonoBehaviour
 
     [Header("Audio")]
     public AudioMixer bgAudioMixer;
+    public AudioMixer sfxAudioMixer;
 
     void Start()
     {
@@ -80,6 +81,11 @@ public class SettingController : MonoBehaviour
     public void SetBGMusicVolume(float volume)
     {
         bgAudioMixer.SetFloat("Volume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxAudioMixer.SetFloat("Volume", volume);
     }
 
     public void exitSetting()
