@@ -12,7 +12,6 @@ public class Slime : EnemyController
     public float sightDistance;
     public float speed;
     public float jumpForce;
-    public float divideForce;
     public int maxHp;
 
     [Header("State")]
@@ -25,7 +24,7 @@ public class Slime : EnemyController
     Rigidbody2D slimeRigid;
     GameObject player;
     Animator anim;
-
+    int dir;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -40,7 +39,11 @@ public class Slime : EnemyController
             isMad = true;
 
         //isMad = (sight.PlayerInSight(Vector2.right, sightDistance) || sight.PlayerInSight(-Vector2.right, sightDistance));
-        int dir = MoveDir();
+        if (!isJumping)
+        {
+            dir = MoveDir();
+        }
+        
 
         if (hp == 2 || hp == 1)
         {
@@ -67,7 +70,7 @@ public class Slime : EnemyController
     {
         float dis = player.transform.position.x - transform.position.x;
 
-        if (-0.05 < dis && dis < 0.05)
+        if (-0.5f< dis && dis < 0.5f)
             return 0;
 
         if (player.transform.position.x > transform.position.x)

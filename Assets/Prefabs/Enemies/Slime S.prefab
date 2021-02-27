@@ -298,8 +298,7 @@ MonoBehaviour:
   slimeS: {fileID: 1671983563557236621}
   sightDistance: 7.5
   speed: 4
-  jumpForce: 8
-  divideForce: 6
+  jumpForce: 11
   maxHp: 1
   isMad: 0
   movingToPlayer: 0
