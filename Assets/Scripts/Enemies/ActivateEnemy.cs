@@ -17,7 +17,10 @@ public class ActivateEnemy : MonoBehaviour
     void Update()
     {
         if (Physics2D.OverlapCircle(transform.position, activateRadius, playerLayer))
+        {
             enemy.enabled = true;
+            Destroy(this);
+        }
     }
 
     void OnDrawGizmos()

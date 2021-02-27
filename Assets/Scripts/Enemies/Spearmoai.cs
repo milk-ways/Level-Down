@@ -4,32 +4,80 @@ using UnityEngine;
 
 public class Spearmoai : EnemyController
 {
-    [SerializeField] SightController sight;
-    public bool inSight;
-    public Animator anim;
-    [SerializeField] GameObject spear;
-    GameObject player;
+    [Header("Sight")]
+    public float sightDistance;
+    public float sightYOffset;
+    bool inSight;                       // Player in attack range
 
+    [Header("Attack")]
+    public LayerMask playerLayer;
+    public Transform attackPos;
+    public Vector2 attackArea;
+    public float attackDelay;           // Delay before attacking
+    bool isAttacking = false;
 
+    Animator anim;
+    SightController sight;
+    PlayerController player;
 
-    private void Start()
+    void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         sight = GetComponent<SightController>();
         anim = GetComponent<Animator>();
-        spear.transform.localRotation = Quaternion.Euler(0, 0, 90);
-    }
-    private void Update()
-    {
-        inSight = sight.PlayerInSight(Vector2.right, 7.5f) || sight.PlayerInSight(-Vector2.right, 7.5f);
-        anim.SetBool("inSight", inSight);
-        if (inSight)
-        {
-            transform.right = new Vector3(player.transform.position.x - transform.position.x, 0, 0);
 
-            
+        anim.SetTrigger("Charge");
+    }
+
+    void Update()
+    {
+        inSight = sight.PlayerInSight(Vector2.right, sightDistance, sightYOffset) || sight.PlayerInSight(-Vector2.right, sightDistance, sightYOffset);
+
+        if (inSight && !isAttacking)
+        {
+            isAttacking = true;
+            StartCoroutine(Attack());
         }
     }
 
-    
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(attackDelay);
+
+        FaceDir();
+        anim.SetTrigger("Attack");
+        if (Physics2D.OverlapBox(attackPos.position, attackArea, 0, playerLayer))
+        {
+            player.TakeDamage(damage);
+        }
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
+
+    void FaceDir()
+    {
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else //(player.transform.position.x < transform.position.x)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        // Attack
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackPos.position, new Vector3(attackArea.x, attackArea.y, 0));
+
+        // Sight
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - sightYOffset,transform.position.z), new Vector3(transform.position.x + sightDistance, transform.position.y - sightYOffset, transform.position.z));
+        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - sightYOffset, transform.position.z), new Vector3(transform.position.x - sightDistance, transform.position.y - sightYOffset, transform.position.z));
+    }
 }
