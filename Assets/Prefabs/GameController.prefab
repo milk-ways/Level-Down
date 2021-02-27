@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bdc864e030d4a38bb162281a21af6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 10
   jumpEnabled: 1
   dashEnabled: 1
   meleeEnabled: 1

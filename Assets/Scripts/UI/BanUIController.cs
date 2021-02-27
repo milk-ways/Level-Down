@@ -26,7 +26,11 @@ public class BanUIController : MonoBehaviour
 
     IEnumerator Restart()
     {
+        GameController.instance.SaveGame();
+        GameController.instance.SaveHP(10);
+
         yield return new WaitForSeconds(1);
+        GameController.instance.LoadGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

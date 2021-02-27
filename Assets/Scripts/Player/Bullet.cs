@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = transform.right * speed;
-        Debug.Log(transform.rotation.z);
+
         // Temp destroy after 10 sec
         Destroy(gameObject, 3f);
     }

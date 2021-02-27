@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         dashTime = defaultDashTime;     // Reset dash time
         dashCoolTimer = dashCoolTime;
 
+        hp = GameController.instance.hp;
         dashEnabled = GameController.instance.dashEnabled;
         jumpEnabled = GameController.instance.jumpEnabled;
     }
@@ -124,6 +126,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Temp game save
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+        {
+            GameController.instance.SaveHP(hp);
+            GameController.instance.LoadGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+        {
+            GameController.instance.Reset();
+            GameController.instance.LoadGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         // Ground check
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundSize, 0, groundLayer);
 
