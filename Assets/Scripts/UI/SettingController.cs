@@ -18,11 +18,14 @@ public class SettingController : MonoBehaviour
     public AudioMixer bgAudioMixer;
     public AudioMixer sfxAudioMixer;
 
+    public Sprite[] button;
+    public Button settingButton;
+    Button btn;    
     void Start()
     {
         ShowKeyNames();
         //keyPanel.SetActive(false);              //임시
-        gameObject.SetActive(false);        //임시
+        gameObject.SetActive(false);        //임시        
     }
 
     void OnGUI()
@@ -44,6 +47,7 @@ public class SettingController : MonoBehaviour
             ShowKeyNames();
 
             keyPanel.SetActive(false);
+            btn.image.sprite = button[0];
             changeKey = false;
         }
     }
@@ -55,6 +59,8 @@ public class SettingController : MonoBehaviour
             if (changeKey)
             {
                 keyPanel.SetActive(false);
+                btn.image.sprite = button[0];
+                
             }
             else
             {
@@ -71,11 +77,13 @@ public class SettingController : MonoBehaviour
         }
     }
 
-    public void ChangeKeyButton()
+    public void ChangeKeyButton(Button but)
     {
+        btn = but;
+        but.image.sprite = button[1];
         keyPanel.SetActive(true);
         changeKey = true;               // Need to change key
-        changeKeyName = EventSystem.current.currentSelectedGameObject.name;
+        changeKeyName = EventSystem.current.currentSelectedGameObject.name;        
     }
 
     public void SetBGMusicVolume(float volume)
@@ -90,6 +98,7 @@ public class SettingController : MonoBehaviour
 
     public void exitSetting()
     {
+        settingButton.image.sprite = button[0];
         gameObject.SetActive(false);
     }
 }
