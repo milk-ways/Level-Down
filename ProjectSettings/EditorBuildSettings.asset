@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e45ab687f749e454ca61b2e244f34df4
   - enabled: 1
-    path: Assets/Scenes/Hajin.unity
-    guid: 1ce09c85fa78b4a0793d4cda9890d356
+    path: Assets/Scenes/Map 1.unity
+    guid: a9cd6b0fc861648609c12cad60ddfaa9
   - enabled: 1
     path: Assets/Scenes/Map 2.unity
     guid: c6e4d598275ad49fdb3bf464043f2869

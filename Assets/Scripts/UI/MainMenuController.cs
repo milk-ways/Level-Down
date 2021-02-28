@@ -11,27 +11,25 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] button;
 
     
-    public void LoadGame(Button btn)
+    public void LoadGame()
     {
-        btn.image.sprite = button[1];        
-        menuPanel.SetActive(false);
+        GameController.instance.LoadGame();
+        SceneManager.LoadScene(2);      // Load map 1
     }
 
-    public void NewGame(Button btn)
+    public void NewGame()
     {
-        btn.image.sprite = button[1];
-        menuPanel.SetActive(false);
+        GameController.instance.Reset();
+        SceneManager.LoadScene(2);      // Load map 1
     }
 
-    public void Setting(Button btn)
+    public void Setting()
     {
-        btn.image.sprite = button[1];
         settingPanel.SetActive(true);
     }
 
-    public void Exit(Button btn)
+    public void Exit()
     {
-        btn.image.sprite = button[1];
         Application.Quit();
     }
 }

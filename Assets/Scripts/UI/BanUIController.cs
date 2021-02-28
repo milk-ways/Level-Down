@@ -10,6 +10,8 @@ public class BanUIController : MonoBehaviour
     [SerializeField] Sprite banimage;
     [SerializeField] Image[] banUI; // 버튼 UI
 
+    bool selected = false;
+
     void Start()
     {
         if (!GameController.instance.jumpEnabled)
@@ -29,42 +31,61 @@ public class BanUIController : MonoBehaviour
         GameController.instance.SaveGame(10);
 
         yield return new WaitForSeconds(1);
-        GameController.instance.LoadGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void BanJump()
     {
-        GameController.instance.jumpEnabled = false;
-        banUI[0].sprite = banimage;
-        StartCoroutine(Restart());
+        if (!selected)
+        {
+            selected = true;
+            GameController.instance.jumpEnabled = false;
+            banUI[0].sprite = banimage;
+            StartCoroutine(Restart());
+        }
     }
 
     public void BanDash()
     {
-        GameController.instance.dashEnabled = false;
-        banUI[1].sprite = banimage;
-        StartCoroutine(Restart());
+        if (!selected)
+        {
+            selected = true;
+            GameController.instance.dashEnabled = false;
+            banUI[1].sprite = banimage;
+            StartCoroutine(Restart());
+        }
     }
 
     public void BanMelee()
     {
-        GameController.instance.meleeEnabled = false;
-        banUI[2].sprite = banimage;
-        StartCoroutine(Restart());
+        if (!selected)
+        {
+            selected = true;
+            GameController.instance.meleeEnabled = false;
+            banUI[2].sprite = banimage;
+            StartCoroutine(Restart());
+        }
     }
 
     public void BanRange()
     {
-        GameController.instance.rangedEnabled = false;
-        banUI[3].sprite = banimage;
-        StartCoroutine(Restart());
+        if (!selected)
+        {
+            selected = true;
+            GameController.instance.rangedEnabled = false;
+            banUI[3].sprite = banimage;
+            StartCoroutine(Restart());
+        }
     }
 
     public void BanSkill()
     {
-        GameController.instance.skillEnabled = false;
-        banUI[4].sprite = banimage;
-        StartCoroutine(Restart());
+        if (!selected)
+        {
+            selected = true;
+            GameController.instance.skillEnabled = false;
+            banUI[4].sprite = banimage;
+            StartCoroutine(Restart());
+        }
     }
 }
