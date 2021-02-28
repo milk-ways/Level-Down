@@ -16,7 +16,7 @@ public class GameLogoPlayerScript : MonoBehaviour
     {
         to = recttransform.anchoredPosition;
         FinalLocation = to + new Vector3(-240, 0, 0);
-        from = to + new Vector3(0, -700, 0);
+        from = to + new Vector3(0, -900, 0);
         recttransform.anchoredPosition = from;
     }
 
