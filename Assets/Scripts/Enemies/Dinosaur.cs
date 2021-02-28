@@ -49,7 +49,7 @@ public class Dinosaur : EnemyController
             base.TakeDamage(damage);
     }
 
-    void StopMoving()
+    public void StopMoving()
     {
         if (moveDir == 1)
         {

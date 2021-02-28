@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6908410653795086296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7537029784477911806}
@@ -184,7 +184,7 @@ MonoBehaviour:
   bulletGO: {fileID: 9083294507040583941, guid: 29259148b8cc67a4c861eca07fa1c891,
     type: 3}
   playerCheckPos: {fileID: 7367804877027442037}
-  playerCheckSize: {x: 6.5, y: 1.5}
+  playerCheckSize: {x: 6.5, y: 4.5}
 --- !u!114 &1768387778003830323
 MonoBehaviour:
   m_ObjectHideFlags: 0

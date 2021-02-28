@@ -10,6 +10,7 @@ public class Spearmoai : EnemyController
     bool inSight;                       // Player in attack range
 
     [Header("Attack")]
+    public int spearDamage;
     public LayerMask playerLayer;
     public Transform attackPos;
     public Vector2 attackArea;
@@ -46,9 +47,10 @@ public class Spearmoai : EnemyController
 
         FaceDir();
         anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.2f);
         if (Physics2D.OverlapBox(attackPos.position, attackArea, 0, playerLayer))
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(spearDamage);
         }
     }
 

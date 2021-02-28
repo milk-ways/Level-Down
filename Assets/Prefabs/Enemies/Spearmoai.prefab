@@ -178,11 +178,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 6
-  damage: 1
+  damage: 0
   getDamage: 1
   deathParticle: {fileID: 0}
   sightDistance: 7.5
   sightYOffset: 0.75
+  spearDamage: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024

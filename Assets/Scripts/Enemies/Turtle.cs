@@ -65,7 +65,7 @@ public class Turtle : EnemyController
         }
     }
 
-    void StopMoving()
+    public void StopMoving()
     {
         isMoving = false;
         if (moveDir == 1)
