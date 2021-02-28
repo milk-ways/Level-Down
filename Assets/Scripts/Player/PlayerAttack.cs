@@ -72,6 +72,7 @@ public class PlayerAttack : MonoBehaviour
         currentAtkType = atkTypeList[0];
         uiController.ChangeWeaponImg(currentAtkType);
 
+        GameController.instance.LoadGame();
         RemoveMelee(GameController.instance.meleeEnabled);
         RemoveRange(GameController.instance.rangedEnabled);
         skillEnabled = GameController.instance.skillEnabled;

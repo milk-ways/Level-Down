@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
         dashTime = defaultDashTime;     // Reset dash time
         dashCoolTimer = dashCoolTime;
 
+        // Load gamecontroller
+        GameController.instance.LoadGame();
         hp = GameController.instance.hp;
         dashEnabled = GameController.instance.dashEnabled;
         jumpEnabled = GameController.instance.jumpEnabled;
@@ -129,14 +131,12 @@ public class PlayerController : MonoBehaviour
         // Temp game save
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            GameController.instance.SaveHP(hp);
-            GameController.instance.LoadGame();
+            GameController.instance.SaveGame(hp);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (Input.GetKeyDown(KeyCode.RightBracket))
         {
             GameController.instance.Reset();
-            GameController.instance.LoadGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

@@ -7,6 +7,7 @@ public class Skill : MonoBehaviour
     // Basic settings
     public float speed;
     public int damage;
+    public LayerMask enemyLayer;
 
     // Trail
     [Header("Trail")]
@@ -45,13 +46,23 @@ public class Skill : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyController>().TakeDamage(damage);
-            Destroy(gameObject);
+            StartCoroutine(Attack());
         }
 
         if (collision.transform.tag == "Ground")
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Collider2D[] enemies = Physics2D.OverlapBoxAll(transform.position, transform.GetComponent<SpriteRenderer>().bounds.size, 0, enemyLayer);
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<EnemyController>().TakeDamage(damage);
+        }
+        Destroy(gameObject);
     }
 }

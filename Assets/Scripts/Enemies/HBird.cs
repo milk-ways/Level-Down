@@ -49,6 +49,7 @@ public class HBird : EnemyController
         anim.SetTrigger("Attack");
         rb.velocity = new Vector2(attackSpeed * dir, 0);
 
+        Destroy(gameObject, 5f);
     }
 
     int Dir()

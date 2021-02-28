@@ -36,18 +36,14 @@ public class GameController : MonoBehaviour
         skillEnabled = PlayerPrefs.GetInt("SkillEnabled") == 1;
     }
 
-    public void SaveGame()
+    public void SaveGame(int hp)
     {
+        PlayerPrefs.SetInt("HP", hp);
         PlayerPrefs.SetInt("JumpEnabled", jumpEnabled ? 1 : 0);
         PlayerPrefs.SetInt("DashEnabled", dashEnabled ? 1 : 0);
         PlayerPrefs.SetInt("MeleeEnabled", meleeEnabled ? 1 : 0);
         PlayerPrefs.SetInt("RangedEnabled", rangedEnabled ? 1 : 0);
         PlayerPrefs.SetInt("SkillEnabled", skillEnabled ? 1 : 0);
-    }
-
-    public void SaveHP(int hp)
-    {
-        PlayerPrefs.SetInt("HP", hp);
     }
 
     public void Reset()
