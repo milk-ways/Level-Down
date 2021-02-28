@@ -132,8 +132,9 @@ GameObject:
   - component: {fileID: 68519208}
   - component: {fileID: 68519210}
   - component: {fileID: 68519209}
+  - component: {fileID: 68519211}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GameLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,6 +196,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68519207}
   m_CullTransparentMesh: 0
+--- !u!114 &68519211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68519207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fcd9a3a67e5ed46b98e9f0634c8b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recttransform: {fileID: 68519208}
 --- !u!1001 &243816571
 PrefabInstance:
   m_ObjectHideFlags: 0
