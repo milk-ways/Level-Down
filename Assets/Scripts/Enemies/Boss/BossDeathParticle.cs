@@ -8,6 +8,12 @@ public class BossDeathParticle : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(RestartDelay());
+    }
+
+    IEnumerator RestartDelay()
+    {
+        yield return new WaitForSeconds(1);
         Instantiate(banPanel, GameObject.FindGameObjectWithTag("UI").transform);
     }
 }
