@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,8 +10,6 @@ public class PlayerController : MonoBehaviour
     public bool dashEnabled = true;     // true:can dash
     public bool jumpEnabled = true;     // true:can super jump
     bool immortal = false;              // Can't be damaged when immortal
-
-    public GameObject banPanel;         // Temp
 
     // Player movement related
     [Header("Movement")]
@@ -128,18 +125,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Temp game save
-        if (Input.GetKeyDown(KeyCode.LeftBracket))
-        {
-            GameController.instance.SaveGame(hp);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        if (Input.GetKeyDown(KeyCode.RightBracket))
-        {
-            GameController.instance.Reset();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         // Ground check
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundSize, 0, groundLayer);
 
@@ -228,6 +213,10 @@ public class PlayerController : MonoBehaviour
 
         // Dash animation
         anim.SetBool("IsDashing", dash);
+
+        // Esc
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene(1);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -235,15 +224,6 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             TakeDamage(collision.GetComponent<EnemyController>().damage);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Temp
-        if (collision.tag == "Finish")
-        {
-            banPanel.SetActive(true);
         }
     }
 
@@ -262,7 +242,6 @@ public class PlayerController : MonoBehaviour
             {
                 sprite.color = damageColor;
                 immortal = true;        // Set immortal after taking damage
-                //Debug.Log("Player damage taken");
                 StartCoroutine(DamageImmortal());     // Reset immortal after time
                 camShake.SmallRand();       // Camera shake
             }
@@ -288,7 +267,6 @@ public class PlayerController : MonoBehaviour
     {
         Instantiate(deathParticle, transform.position, Quaternion.identity);
         camShake.PlayerDie();
-        Debug.Log("Dead");
         gameObject.SetActive(false);
     }
 

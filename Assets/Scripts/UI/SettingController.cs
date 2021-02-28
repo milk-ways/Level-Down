@@ -17,15 +17,20 @@ public class SettingController : MonoBehaviour
     [Header("Audio")]
     public AudioMixer bgAudioMixer;
     public AudioMixer sfxAudioMixer;
+    public Slider bgSlider;
+    public Slider sfxSlider;
 
     public Sprite[] button;
     public Button settingButton;
-    Button btn;    
+    Button btn;
+    
     void Start()
     {
         ShowKeyNames();
-        //keyPanel.SetActive(false);              //임시
-        gameObject.SetActive(false);        //임시        
+        SettingSave.instance.LoadSetting();
+
+
+        gameObject.SetActive(false);        //임시
     }
 
     void OnGUI()
@@ -89,11 +94,23 @@ public class SettingController : MonoBehaviour
     public void SetBGMusicVolume(float volume)
     {
         bgAudioMixer.SetFloat("Volume", volume);
+        SettingSave.instance.SaveMusic(volume);
     }
 
     public void SetSFXVolume(float volume)
     {
         sfxAudioMixer.SetFloat("Volume", volume);
+        SettingSave.instance.SaveSFX(volume);
+    }
+
+    public void SetBGMVal(float volume)
+    {
+        bgSlider.value = volume;
+    }
+
+    public void SetSFXVal(float volume)
+    {
+        sfxSlider.value = volume;
     }
 
     public void exitSetting()

@@ -31,7 +31,7 @@ public class BanUIController : MonoBehaviour
         GameController.instance.SaveGame(10);
 
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(2);
     }
 
     public void BanJump()
