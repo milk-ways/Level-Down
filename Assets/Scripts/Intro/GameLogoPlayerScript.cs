@@ -14,7 +14,7 @@ public class GameLogoPlayerScript : MonoBehaviour
     void Start()
     {
         to = transform.position;
-        FinalLocation = to + new Vector3(-240, 120, 0);
+        FinalLocation = to + new Vector3(-240, 0, 0);
         from = to + new Vector3(0, -700, 0);
         transform.position = from;
     }
