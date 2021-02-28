@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class BossPattern4Bullet : MonoBehaviour
 {
+    [Header("Basic settings")]
     public float speed;
     public int damage;
+    public float destroyTime;
+
+    [Header("Trail")]
+    public GameObject trail;
+    public float spawnTime;
+    float spawnTimer;
 
     Rigidbody2D rb;
 
@@ -13,10 +20,25 @@ public class BossPattern4Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        spawnTimer = spawnTime;
+
         rb.velocity = transform.right * speed;
 
-        // Temp destroy after 1 sec
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, destroyTime);
+    }
+
+    void Update()
+    {
+        if (spawnTimer <= 0)
+        {
+            GameObject temp = Instantiate(trail, transform.position, transform.rotation);
+            Destroy(temp, 1f);
+            spawnTimer = spawnTime;
+        }
+        else
+        {
+            spawnTimer -= Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

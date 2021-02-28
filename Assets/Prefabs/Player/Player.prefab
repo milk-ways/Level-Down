@@ -236,6 +236,9 @@ MonoBehaviour:
   dashSpeed: 50
   dashCoolTime: 2
   defaultDashTime: 0.1
+  dashCoolTimer: 0
+  dashTime: 0
+  canDash: 1
   jumpForce: 10
   maxJumps: 1
   superJumpForce: 18

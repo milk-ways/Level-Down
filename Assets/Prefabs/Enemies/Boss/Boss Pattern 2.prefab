@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: 2982027887132936627}
   - {fileID: 2982027887146322227}
   - {fileID: 2982027887521659317}
-  shootDelayTime: 2
+  shootDelayTime: 0.75
 --- !u!1001 &4517251312358558496
 PrefabInstance:
   m_ObjectHideFlags: 0

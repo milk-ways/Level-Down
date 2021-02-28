@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
         {
             // Recieve damage
             Debug.Log(gameObject.transform.name + " Recieved damage");
-
+            StartCoroutine(TurnRed());
             hp -= damage;
             Camera.main.GetComponent<CamShake>().BigRand();
 
@@ -37,5 +37,12 @@ public class EnemyController : MonoBehaviour
         if (deathParticle != null)
             Instantiate(deathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    IEnumerator TurnRed()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

@@ -235,12 +235,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8128042228341054195}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 827b4f4ab7ace4a59b1dcd0b0498de02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
+  hp: 18
   damage: 2
   getDamage: 1
   deathParticle: {fileID: 8714218873275264849, guid: 7a8186a53e07e4be196f54246f8fe138,
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_Bits: 1024
   attackPos: {fileID: 8128042229596194866}
   attackRadius: 0.75
-  patternTime: 5
+  patternTime: 2.5
   endPatternTime: 0.5
   playerInAtkRange: 0
   isUsingPattern: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   activateRadius: 20
 --- !u!1 &8128042228911817985
 GameObject:

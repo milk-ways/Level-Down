@@ -24,8 +24,8 @@ public class Skill : MonoBehaviour
 
         rb.velocity = transform.right * speed;
 
-        // Default destroy time 10 sec
-        Destroy(gameObject, 10f);
+        // Default destroy time 1 sec
+        Destroy(gameObject, 1f);
     }
 
     void Update()
