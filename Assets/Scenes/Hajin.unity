@@ -1439,6 +1439,11 @@ PrefabInstance:
       propertyPath: banPanel
       value: 
       objectReference: {fileID: 116706255}
+    - target: {fileID: 3424734350823569672, guid: 8a2ae1e9b28f34c88a270cc369278159,
+        type: 3}
+      propertyPath: dashCoolTime
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3424734350823569673, guid: 8a2ae1e9b28f34c88a270cc369278159,
         type: 3}
       propertyPath: m_Name
@@ -1652,11 +1657,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8128042228341052684, guid: 542502dcf34ef4561ab9a8edcad51b68,
-        type: 3}
-      propertyPath: patternTime
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8128042228341054193, guid: 542502dcf34ef4561ab9a8edcad51b68,
         type: 3}
       propertyPath: m_RootOrder

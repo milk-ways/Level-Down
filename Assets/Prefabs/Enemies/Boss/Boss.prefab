@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 18
-  damage: 2
+  damage: 1
   getDamage: 1
   deathParticle: {fileID: 8714218873275264849, guid: 7a8186a53e07e4be196f54246f8fe138,
     type: 3}

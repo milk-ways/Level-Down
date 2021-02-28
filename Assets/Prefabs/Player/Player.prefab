@@ -234,7 +234,7 @@ MonoBehaviour:
   banPanel: {fileID: 0}
   speed: 6
   dashSpeed: 50
-  dashCoolTime: 2
+  dashCoolTime: 1.5
   defaultDashTime: 0.1
   dashCoolTimer: 0
   dashTime: 0
